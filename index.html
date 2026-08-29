@@ -34,4 +34,444 @@ header {
   padding: 18px 6%;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 25px;
+  font-weight: 800;
+  letter-spacing: 5px;
+}
+
+.header-link {
+  text-decoration: none;
+  color: #171717;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.hero {
+  padding: 80px 7% 75px;
+  text-align: center;
+  background: #ece9e1;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.hero h1 {
+  max-width: 800px;
+  margin: 18px auto;
+  font-size: clamp(44px, 11vw, 82px);
+  line-height: 0.95;
+  letter-spacing: -4px;
+}
+
+.hero p {
+  max-width: 590px;
+  margin: 0 auto 30px;
+  color: #5d5d5d;
+  font-size: 17px;
+}
+
+.button {
+  display: inline-block;
+  padding: 15px 27px;
+  background: #171717;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 13px;
+}
+
+section {
+  max-width: 1180px;
+  margin: auto;
+  padding: 65px 6%;
+}
+
+.section-label {
+  color: #777;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 11px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.section-title {
+  font-size: 32px;
+  margin-bottom: 28px;
+  letter-spacing: -1px;
+}
+
+.categories {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.category {
+  background: white;
+  border: 1px solid #e6e4df;
+  border-radius: 10px;
+  padding: 28px 12px;
+  text-align: center;
+  text-decoration: none;
+  color: #171717;
+  font-weight: 700;
+  transition: transform .2s;
+}
+
+.category:hover {
+  transform: translateY(-3px);
+}
+
+.category-icon {
+  display: block;
+  font-size: 35px;
+  margin-bottom: 10px;
+}
+
+.feature {
+  background: #171717;
+  color: white;
+  max-width: none;
+}
+
+.feature-inner {
+  max-width: 1180px;
+  margin: auto;
+  padding: 0 6%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 45px;
+  align-items: center;
+}
+
+.feature-image {
+  min-height: 330px;
+  border-radius: 14px;
+  background: #292929;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 100px;
+}
+
+.feature-content .section-label {
+  color: #aaa;
+}
+
+.feature-content h2 {
+  font-size: 42px;
+  line-height: 1;
+  margin-bottom: 18px;
+}
+
+.feature-content p {
+  color: #c8c8c8;
+  margin-bottom: 25px;
+}
+
+.feature .button {
+  background: white;
+  color: #171717;
+}
+
+.products {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.product {
+  background: white;
+  border: 1px solid #e6e4df;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.product-image {
+  height: 220px;
+  background: #e7e4dd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 75px;
+}
+
+.product-info {
+  padding: 22px;
+}
+
+.product-tag {
+  text-transform: uppercase;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  color: #777;
+  font-weight: 700;
+}
+
+.product h3 {
+  margin: 9px 0;
+  font-size: 21px;
+}
+
+.product p {
+  color: #666;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.product-link {
+  color: #171717;
+  font-weight: 700;
+  text-decoration: none;
+  font-size: 13px;
+}
+
+.about {
+  max-width: none;
+  background: #e9e6de;
+  text-align: center;
+}
+
+.about p {
+  max-width: 650px;
+  margin: auto;
+  color: #555;
+}
+
+footer {
+  padding: 40px 6%;
+  background: #171717;
+  color: #aaa;
+  text-align: center;
+  font-size: 12px;
+}
+
+footer strong {
+  color: white;
+  letter-spacing: 3px;
+}
+
+@media (max-width: 750px) {
+  .categories {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .products {
+    grid-template-columns: 1fr;
+  }
+
+  .feature-inner {
+    grid-template-columns: 1fr;
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+
+  .feature-image {
+    min-height: 240px;
+  }
+
+  .feature-content h2 {
+    font-size: 35px;
+  }
+
+  section {
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">ÉVIDA</div>
+  <a class="header-link" href="#categories">EXPLORER</a>
+</header>
+
+<main>
+
+<section class="hero">
+  <div class="eyebrow">La sélection ÉVIDA</div>
+
+  <h1>Découvrez l'évidence.</h1>
+
+  <p>
+    Les produits dont vous ne saviez pas avoir besoin...
+    jusqu'à maintenant.
+  </p>
+
+  <a class="button" href="#trouvailles">VOIR LES TROUVAILLES</a>
+</section>
+
+<section id="categories">
+
+  <div class="section-label">Explorer</div>
+  <h2 class="section-title">Qu'est-ce qui vous intéresse ?</h2>
+
+  <div class="categories">
+
+    <a class="category" href="#animaux">
+      <span class="category-icon">🐾</span>
+      Animaux
+    </a>
+
+    <a class="category" href="#maison">
+      <span class="category-icon">🏠</span>
+      Maison
+    </a>
+
+    <a class="category" href="#beaute">
+      <span class="category-icon">💄</span>
+      Beauté
+    </a>
+
+    <a class="category" href="#trouvailles">
+      <span class="category-icon">✨</span>
+      Trouvailles
+    </a>
+
+  </div>
+</section>
+
+<section class="feature">
+
+  <div class="feature-inner">
+
+    <div class="feature-image">
+      💧
+    </div>
+
+    <div class="feature-content">
+
+      <div class="section-label">La trouvaille du moment</div>
+
+      <h2>Une idée simple qui peut changer le quotidien.</h2>
+
+      <p>
+        Nous sélectionnons des produits qui répondent à de vrais
+        besoins et qui méritent d'être découverts.
+      </p>
+
+      <a class="button" href="#trouvailles">
+        DÉCOUVRIR
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section id="trouvailles">
+
+  <div class="section-label">Notre sélection</div>
+  <h2 class="section-title">Les trouvailles ÉVIDA</h2>
+
+  <div class="products">
+
+    <article class="product" id="animaux">
+
+      <div class="product-image">🐾</div>
+
+      <div class="product-info">
+        <div class="product-tag">Animaux</div>
+
+        <h3>Brosse anti-poils</h3>
+
+        <p>
+          Une solution pratique pour retirer les poils
+          des tissus et du mobilier.
+        </p>
+
+        <a class="product-link" href="#">
+          Découvrir le produit →
+        </a>
+      </div>
+
+    </article>
+
+    <article class="product">
+
+      <div class="product-image">💧</div>
+
+      <div class="product-info">
+        <div class="product-tag">Animaux</div>
+
+        <h3>Fontaine pour animaux</h3>
+
+        <p>
+          Une façon pratique de rendre l'accès à l'eau
+          plus simple pour votre compagnon.
+        </p>
+
+        <a class="product-link" href="#">
+          Découvrir le produit →
+        </a>
+      </div>
+
+    </article>
+
+    <article class="product" id="maison">
+
+      <div class="product-image">💡</div>
+
+      <div class="product-info">
+        <div class="product-tag">Maison</div>
+
+        <h3>Lampe à détection</h3>
+
+        <p>
+          Une lumière automatique pratique pour les
+          endroits où vous en avez besoin.
+        </p>
+
+        <a class="product-link" href="#">
+          Découvrir le produit →
+        </a>
+      </div>
+
+    </article>
+
+  </div>
+</section>
+
+<section class="about" id="beaute">
+
+  <div class="section-label">Notre philosophie</div>
+
+  <h2 class="section-title">
+    Moins chercher. Mieux découvrir.
+  </h2>
+
+  <p>
+    ÉVIDA sélectionne des produits utiles, ingénieux et
+    surprenants pour la maison, les animaux, la beauté
+    et le quotidien.
+  </p>
+
+</section>
+
+</main>
+
+<footer>
+  <strong>ÉVIDA</strong>
+  <br><br>
+  Découvrez l'évidence.
+  <br><br>
+  © 2026 ÉVIDA
+</footer>
+
+</body>
+    </html>
   
