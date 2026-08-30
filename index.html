@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -13,7 +12,7 @@
 
 <meta
   name="description"
-  content="ÉVIDA — Découvrez une sélection de produits utiles, ingénieux et surprenants."
+  content="ÉVIDA — Des découvertes utiles, ingénieuses et surprenantes pour le quotidien."
 >
 
 <style>
@@ -168,7 +167,7 @@ h1 {
 }
 
 /* =========================
-   CONTENU
+   BOUTIQUE
 ========================= */
 
 .wrap {
@@ -213,10 +212,6 @@ h1 {
   border-color:#171717;
 }
 
-/* =========================
-   MESSAGE INFORMATION
-========================= */
-
 .notice {
   background:#fff;
   border:1px solid var(--line);
@@ -225,6 +220,7 @@ h1 {
   color:var(--muted);
   font-size:13px;
   margin-bottom:18px;
+  line-height:1.55;
 }
 
 /* =========================
@@ -246,6 +242,7 @@ h1 {
   flex-direction:column;
   min-width:0;
   transition:transform .2s ease, box-shadow .2s ease;
+  cursor:pointer;
 }
 
 .product:hover {
@@ -255,15 +252,26 @@ h1 {
 
 .visual {
   aspect-ratio:1/1;
-  background:#eee;
-  overflow:hidden;
+  background:linear-gradient(145deg,#eee8de,#faf8f4);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+  text-align:center;
 }
 
-.visual img {
-  width:100%;
-  height:100%;
-  object-fit:cover;
+.visualInner {
+  font-weight:900;
+  font-size:20px;
+  line-height:1.2;
+}
+
+.visualInner small {
   display:block;
+  font-weight:600;
+  font-size:11px;
+  color:var(--muted);
+  margin-top:10px;
 }
 
 .body {
@@ -290,6 +298,7 @@ h1 {
 .supplier {
   font-size:11px;
   color:var(--muted);
+  line-height:1.35;
 }
 
 .foot {
@@ -313,6 +322,17 @@ h1 {
   border-radius:10px;
   padding:9px 11px;
   font-weight:800;
+}
+
+.productDetailsBtn {
+  width:100%;
+  border:1px solid var(--line);
+  background:#fff;
+  color:#171717;
+  border-radius:10px;
+  padding:9px 11px;
+  font-weight:800;
+  margin-top:4px;
 }
 
 /* =========================
@@ -410,69 +430,8 @@ h1 {
 }
 
 /* =========================
-   FOOTER
+   FICHE PRODUIT
 ========================= */
-
-footer {
-  border-top:1px solid var(--line);
-  padding:32px 20px;
-  color:var(--muted);
-  font-size:12px;
-  text-align:center;
-}
-
-/* =========================
-   RESPONSIVE
-========================= */
-
-@media(max-width:1050px) {
-  .grid {
-    grid-template-columns:repeat(3,1fr);
-  }
-
-  .hero {
-    grid-template-columns:1fr;
-  }
-}
-
-@media(max-width:760px) {
-  .navlinks {
-    display:none;
-  }
-
-  .grid {
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .hero {
-    padding-top:45px;
-  }
-}
-
-@media(max-width:480px) {
-  .grid {
-    grid-template-columns:1fr;
-  }
-}
-
-/* =========================
-   FICHE PRODUIT DÉTAILLÉE
-========================= */
-
-.product {
-  cursor:pointer;
-}
-
-.productDetailsBtn {
-  width:100%;
-  border:1px solid var(--line);
-  background:#fff;
-  color:#171717;
-  border-radius:10px;
-  padding:9px 11px;
-  font-weight:800;
-  margin-top:4px;
-}
 
 .productModalOverlay {
   position:fixed;
@@ -514,20 +473,17 @@ footer {
 
 .productModalGrid {
   display:grid;
-  grid-template-columns:1fr 1fr;
+  grid-template-columns:.85fr 1.15fr;
 }
 
-.productModalImage {
+.productModalVisual {
   min-height:520px;
-  background:#f1ede6;
-}
-
-.productModalImage img {
-  width:100%;
-  height:100%;
-  min-height:520px;
-  object-fit:cover;
-  display:block;
+  background:linear-gradient(145deg,#eee8de,#faf8f4);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:48px;
+  text-align:center;
 }
 
 .productModalInfo {
@@ -546,6 +502,11 @@ footer {
   margin:14px 0 22px;
 }
 
+.productDescription {
+  line-height:1.65;
+  color:#4f4a45;
+}
+
 .productFacts {
   margin:22px 0;
   border-top:1px solid var(--line);
@@ -562,11 +523,6 @@ footer {
 
 .productFact span:first-child {
   color:var(--muted);
-}
-
-.productDescription {
-  line-height:1.65;
-  color:#4f4a45;
 }
 
 .productInfoNotice {
@@ -590,7 +546,53 @@ footer {
   margin-top:18px;
 }
 
+.alibabaLink {
+  display:block;
+  width:100%;
+  text-align:center;
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:13px;
+  margin-top:10px;
+  font-weight:800;
+}
+
+footer {
+  border-top:1px solid var(--line);
+  padding:32px 20px;
+  color:var(--muted);
+  font-size:12px;
+  text-align:center;
+  line-height:1.6;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:1050px) {
+  .grid {
+    grid-template-columns:repeat(3,1fr);
+  }
+
+  .hero {
+    grid-template-columns:1fr;
+  }
+}
+
 @media(max-width:760px) {
+  .navlinks {
+    display:none;
+  }
+
+  .grid {
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .hero {
+    padding-top:45px;
+  }
+
   .productModalOverlay {
     padding:10px;
   }
@@ -603,9 +605,8 @@ footer {
     grid-template-columns:1fr;
   }
 
-  .productModalImage,
-  .productModalImage img {
-    min-height:320px;
+  .productModalVisual {
+    min-height:300px;
   }
 
   .productModalInfo {
@@ -617,8 +618,13 @@ footer {
   }
 }
 
-</style>
+@media(max-width:480px) {
+  .grid {
+    grid-template-columns:1fr;
+  }
+}
 
+</style>
 </head>
 
 <body>
@@ -647,12 +653,9 @@ footer {
 
     </nav>
 
-    <button
-      class="cartBtn"
-      id="openCart"
-    >
-      Panier
-      <span id="cartCount">0</span>    </button>
+    <button class="cartBtn" id="openCart">
+      Panier <span id="cartCount">0</span>
+    </button>
 
   </div>
 
@@ -660,133 +663,114 @@ footer {
 
 <main>
 
-  <section class="hero">
+<section class="hero">
 
-    <div>
-
-      <div class="eyebrow">
-        Sélection ÉVIDA · France
-      </div>
-
-      <h1>
-        Moins chercher.<br>
-        Mieux découvrir.
-      </h1>
-
-      <p>
-        Des produits utiles, pratiques et bien pensés pour la maison,
-        le quotidien, les loisirs, les animaux et les nouvelles tendances.
-        ÉVIDA sélectionne des références qui apportent une vraie utilité
-        plutôt qu’un catalogue rempli de produits répétitifs.
-      </p>
-
-    </div>
-
-    <div class="heroCard">
-
-      <strong>
-        Des trouvailles qui méritent vraiment votre attention.
-      </strong>
-
-      <small>
-        Maison · Innovations · Quotidien · Animaux · Idées cadeaux
-      </small>
-
-    </div>
-
-  </section>
-
-  <section
-    class="wrap"
-    id="boutique"
-  >
+  <div>
 
     <div class="eyebrow">
-      La sélection
+      Sélection ÉVIDA · France
     </div>
 
-    <h2>
-      Découvrez nos produits
-    </h2>
+    <h1>
+      Moins chercher.<br>
+      Mieux découvrir.
+    </h1>
 
-    <div class="toolbar">
+    <p>
+      20 trouvailles utiles et faciles à comprendre, choisies autour
+      de la maison, de l'organisation, de la tech pratique,
+      du voyage et des animaux.
+    </p>
 
-      <input
-        class="search"
-        id="search"
-        type="search"
-        placeholder="Rechercher un produit..."
-      >
+  </div>
 
-      <div class="filters">
+  <div class="heroCard">
 
-        <button
-          class="filter active"
-          data-category="Tous"
-        >
-          Tous
-        </button>
+    <strong>
+      Des objets simples qui améliorent vraiment le quotidien.
+    </strong>
 
-        <button
-          class="filter"
-          data-category="Maison"
-        >
-          Maison
-        </button>
+    <small>
+      Maison · Innovation · Voyage · Animaux
+    </small>
 
-        <button
-          class="filter"
-          data-category="Innovation"
-        >
-          Innovation
-        </button>
+  </div>
 
-        <button
-          class="filter"
-          data-category="Animaux"
-        >
-          Animaux
-        </button>
+</section>
 
-        <button
-          class="filter"
-          data-category="Cadeaux"
-        >
-          Cadeaux
-        </button>
+<section class="wrap" id="boutique">
 
-      </div>
+  <div class="eyebrow">
+    La sélection
+  </div>
 
-    </div>
+  <h2>
+    Les 20 trouvailles ÉVIDA
+  </h2>
 
-    <div
-      class="notice"
-      id="infos"
+  <div class="toolbar">
+
+    <input
+      class="search"
+      id="search"
+      type="search"
+      placeholder="Rechercher un produit..."
     >
-      Notre sélection évolue régulièrement afin de privilégier
-      les références pertinentes pour le marché français.
-      Les caractéristiques présentées dans les fiches produits
-      sont limitées aux informations que nous pouvons vérifier.
+
+    <div class="filters">
+
+      <button class="filter active" data-category="Tous">
+        Tous
+      </button>
+
+      <button class="filter" data-category="Maison">
+        Maison
+      </button>
+
+      <button class="filter" data-category="Innovation">
+        Innovation
+      </button>
+
+      <button class="filter" data-category="Voyage">
+        Voyage
+      </button>
+
+      <button class="filter" data-category="Animaux">
+        Animaux
+      </button>
+
     </div>
 
-    <div
-      class="grid"
-      id="grid"
-    ></div>
+  </div>
 
-  </section>
+  <div class="notice" id="infos">
+
+    <strong>Sélection ÉVIDA.</strong>
+
+    Les prix affichés sont actuellement utilisés pour les tests de la boutique.
+    Les coûts de livraison, la disponibilité, les variantes et la conformité
+    de chaque référence devront être validés avec le fournisseur avant
+    l'ouverture commerciale définitive.
+
+  </div>
+
+  <div class="grid" id="grid"></div>
+
+</section>
 
 </main>
 
 <footer>
 
   <strong>ÉVIDA</strong>
-  <br><br>
 
-  Découvrez l’évidence.
   <br>
 
-  Sélection de produits utiles pour le quotidien.
+  Découvrez l'évidence.
+
+  <br>
+
+  Des découvertes utiles, ingénieuses et surprenantes pour le quotidien.
 
 </footer>
 
@@ -794,15 +778,9 @@ footer {
      PANIER
 ========================= -->
 
-<div
-  class="overlay"
-  id="overlay"
-></div>
+<div class="overlay" id="overlay"></div>
 
-<aside
-  class="drawer"
-  id="drawer"
->
+<aside class="drawer" id="drawer">
 
   <div class="drawerHead">
 
@@ -813,7 +791,7 @@ footer {
     <button
       class="close"
       id="closeCart"
-      aria-label="Fermer le panier"
+      aria-label="Fermer"
     >
       ×
     </button>
@@ -853,14 +831,13 @@ footer {
 <div
   class="productModalOverlay"
   id="productModalOverlay"
-  onclick="handleProductModalOverlay(event)"
 >
 
   <div class="productModal">
 
     <button
       class="productModalClose"
-      onclick="closeProductDetails()"
+      id="productModalClose"
       aria-label="Fermer"
     >
       ×
@@ -868,13 +845,20 @@ footer {
 
     <div class="productModalGrid">
 
-      <div class="productModalImage">
+      <div class="productModalVisual">
 
-        <img
-          id="productModalImage"
-          src=""
-          alt=""
-        >
+        <div>
+
+          <div class="eyebrow">
+            Sélection ÉVIDA
+          </div>
+
+          <div
+            class="visualInner"
+            id="productModalVisualName"
+          ></div>
+
+        </div>
 
       </div>
 
@@ -904,13 +888,13 @@ footer {
           id="productModalFacts"
         ></div>
 
-        <div
-          class="productInfoNotice"
-          id="productModalNotice"
-        >
-          ÉVIDA affiche uniquement les caractéristiques disponibles
-          et suffisamment vérifiées. Les informations liées à la
-          livraison peuvent évoluer selon le fournisseur et la destination.
+        <div class="productInfoNotice">
+
+          Les informations fournisseur peuvent évoluer.
+          Avant mise en vente réelle, ÉVIDA validera
+          le coût livré en France, la disponibilité,
+          les délais et la conformité du produit.
+
         </div>
 
         <button
@@ -919,6 +903,16 @@ footer {
         >
           Ajouter au panier
         </button>
+
+        <a
+          class="alibabaLink"
+          id="productAlibabaLink"
+          href="#"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Voir la source Alibaba
+        </a>
 
       </div>
 
@@ -932,677 +926,259 @@ footer {
 
 /* ==========================================================
    CATALOGUE ÉVIDA
-   Sélection réorganisée pour réduire les références
-   répétitives centrées sur le chien.
+   20 PRODUITS
 ========================================================== */
 
 const products = [
 
-  /* =========================
-     MAISON
-  ========================= */
-
   {
-    id:29,
+    id:101,
     category:"Maison",
-    name:"Cocotte en fonte émaillée 2,7 L",
-    supplier:"SMITH DISTRIBUTORS",
-    price:69.90,
-    image:"https://images.unsplash.com/photo-1584990347449-a4f3d4bfa0e6?auto=format&fit=crop&w=900&q=80",
-    description:"Une cocotte pensée pour les préparations du quotidien et les cuissons généreuses. Son format de 2,7 litres convient aux cuisines recherchant un ustensile polyvalent sans encombrement excessif.",
-    details:[
-      ["Capacité","2,7 L"],
-      ["Type","Cocotte"],
-      ["Finition","Fonte émaillée"],
-      ["Fournisseur","SMITH DISTRIBUTORS"]
-    ]
-  },
-
-  {
-    id:35,
-    category:"Maison",
-    name:"Barre magnétique pour couteaux et outils",
-    supplier:"SiliSlick",
+    name:"Organiseur coulissant sous évier — 2 niveaux",
+    supplier:"Alibaba",
     price:24.90,
-    image:"https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=900&q=80",
-    description:"Une solution de rangement pratique permettant de garder certains ustensiles métalliques facilement accessibles tout en libérant de la place sur le plan de travail.",
-    details:[
-      ["Type","Support magnétique"],
-      ["Utilisation","Rangement cuisine et outils"],
-      ["Fournisseur","SiliSlick"]
-    ]
+    source:"https://www.alibaba.com/product-detail/Dropshipping-Suppliers-Home-Products-2-Tier_1601481744016.html",
+    description:
+      "Un rangement coulissant à deux niveaux pensé pour mieux exploiter l'espace disponible sous un évier ou dans un meuble de salle de bain."
   },
 
   {
-    id:23,
+    id:102,
     category:"Maison",
-    name:"Tapis artisanal vintage",
-    supplier:"Canvello",
-    price:89.90,
-    image:"https://images.unsplash.com/photo-1600166898405-da9535204843?auto=format&fit=crop&w=900&q=80",
-    description:"Un tapis décoratif destiné à apporter davantage de texture et de caractère à un salon, une chambre ou un espace de vie.",
-    details:[
-      ["Type","Tapis décoratif"],
-      ["Style","Vintage"],
-      ["Fournisseur","Canvello"]
-    ]
-  },
-
-  {
-    id:24,
-    category:"Maison",
-    name:"Tapis Azra jute & laine",
-    supplier:"ROY's HOME",
-    price:79.90,
-    image:"https://images.unsplash.com/photo-1575414003591-ece8d0416c7a?auto=format&fit=crop&w=900&q=80",
-    description:"Un tapis décoratif associant jute et laine pour créer une ambiance chaleureuse et naturelle dans les espaces de vie.",
-    details:[
-      ["Matières annoncées","Jute et laine"],
-      ["Type","Tapis décoratif"],
-      ["Fournisseur","ROY's HOME"]
-    ]
-  },
-
-  {
-    id:27,
-    category:"Maison",
-    name:"Grand miroir arche noir",
-    supplier:"SMITH DISTRIBUTORS",
-    price:89.90,
-    image:"https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=900&q=80",
-    description:"Un grand miroir au dessin arqué conçu pour apporter de la profondeur à une pièce tout en participant pleinement à la décoration.",
-    details:[
-      ["Type","Miroir"],
-      ["Forme","Arche"],
-      ["Finition","Noire"],
-      ["Fournisseur","SMITH DISTRIBUTORS"]
-    ]
-  },
-
-  {
-    id:33,
-    category:"Maison",
-    name:"Petit lustre cristal doré",
-    supplier:"ShipItFurniture",
-    price:69.90,
-    image:"https://images.unsplash.com/photo-1540932239986-30128078f3c5?auto=format&fit=crop&w=900&q=80",
-    description:"Un luminaire décoratif destiné à créer un point visuel élégant dans une entrée, une chambre ou un espace de réception.",
-    details:[
-      ["Type","Lustre décoratif"],
-      ["Finition","Dorée"],
-      ["Fournisseur","ShipItFurniture"]
-    ]
-  },
-
-  {
-    id:40,
-    category:"Maison",
-    name:"Commode avec portant et LED",
-    supplier:"ROY's HOME",
-    price:119.90,
-    image:"https://images.unsplash.com/photo-1558997519-83ea9252edf8?auto=format&fit=crop&w=900&q=80",
-    description:"Un meuble de rangement multifonction associant espace de rangement, portant et éclairage LED pour optimiser l'organisation d'une chambre ou d'un dressing.",
-    details:[
-      ["Type","Meuble de rangement"],
-      ["Équipement","Portant et LED"],
-      ["Fournisseur","ROY's HOME"]
-    ]
-  },
-
-  {
-    id:21,
-    category:"Maison",
-    name:"Affiche aquarelle décorative",
-    supplier:"Barbara Cleary Designs",
-    price:19.90,
-    image:"https://images.unsplash.com/photo-1549490349-8643362247b5?auto=format&fit=crop&w=900&q=80",
-    description:"Une illustration décorative au style aquarelle permettant de personnaliser facilement un mur ou un espace de vie.",
-    details:[
-      ["Type","Décoration murale"],
-      ["Style","Aquarelle"],
-      ["Fournisseur","Barbara Cleary Designs"]
-    ]
-  },
-
-  {
-    id:28,
-    category:"Maison",
-    name:"Affiche déco ville",
-    supplier:"MapYourDreams",
-    price:19.90,
-    image:"https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&w=900&q=80",
-    description:"Une affiche décorative inspirée de l'univers urbain, pensée pour personnaliser un bureau, un salon ou une chambre.",
-    details:[
-      ["Type","Affiche décorative"],
-      ["Thème","Ville"],
-      ["Fournisseur","MapYourDreams"]
-    ]
-  },
-
-  {
-    id:34,
-    category:"Maison",
-    name:"Tapis moderne beige",
-    supplier:"Canvello",
-    price:79.90,
-    image:"https://images.unsplash.com/photo-1615874694520-474822394e73?auto=format&fit=crop&w=900&q=80",
-    description:"Un tapis au style sobre et contemporain destiné à s'intégrer facilement dans différents univers de décoration intérieure.",
-    details:[
-      ["Type","Tapis décoratif"],
-      ["Style","Moderne"],
-      ["Teinte","Beige"],
-      ["Fournisseur","Canvello"]
-    ]
-  },
-
-  /* =========================
-     INNOVATION / QUOTIDIEN
-  ========================= */
-
-  {
-    id:60,
-    category:"Innovation",
-    name:"Moulin manuel Timemore C5 Pro",
-    supplier:"Timemore",
-    price:69.90,
-    image:"https://cdn.shopify.com/s/files/1/0642/9153/7138/files/C5pro-6.png?v=1752829455",
-    description:"Le Timemore C5 Pro est un moulin à café manuel compact doté de meules S2C-042-III de 42 mm. Son système de réglage propose 16 positions principales par rotation et 48 clics au total, afin d'adapter la mouture à différentes préparations.",
-    details:[
-      ["Meules","S2C-042-III · 42 mm"],
-      ["Réglage","48 clics au total"],
-      ["Précision","0,031 mm par clic"],
-      ["Capacité chambre","30 g"],
-      ["Capacité récipient","25 g"],
-      ["Dimensions","Ø 53 × 172 mm"],
-      ["Poids","Environ 640 g"],
-      ["Matériaux","Acier inoxydable et aluminium"],
-      ["Fabricant","Timemore"]
-    ]
-  },
-
-  {
-    id:44,
-    category:"Innovation",
-    name:"Moulin à café électrique Timemore",
-    supplier:"Timemore",
-    price:99.90,
-    image:"https://images.unsplash.com/photo-1517668808822-9ebb02f2a0e6?auto=format&fit=crop&w=900&q=80",
-    description:"Un moulin électrique destiné aux amateurs de café souhaitant préparer leur mouture à la demande. Les caractéristiques exactes dépendent de la référence Timemore fournie.",
-    details:[
-      ["Type","Moulin à café électrique"],
-      ["Marque","Timemore"],
-      ["Fournisseur","Timemore"]
-    ]
-  },
-
-  {
-    id:51,
-    category:"Innovation",
-    name:"Tasseur café auto-nivelant Timemore",
-    supplier:"Timemore",
-    price:39.90,
-    image:"https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=900&q=80",
-    description:"Un accessoire conçu pour faciliter une pression plus régulière du café avant extraction espresso.",
-    details:[
-      ["Type","Tasseur à café"],
-      ["Fonction","Auto-nivelant"],
-      ["Marque","Timemore"]
-    ]
-  },
-
-  {
-    id:41,
-    category:"Innovation",
-    name:"Radio Bluetooth 9 bandes",
-    supplier:"JupiterGear",
-    price:49.90,
-    image:"https://images.unsplash.com/photo-1593078166033-46d9033a4c6a?auto=format&fit=crop&w=900&q=80",
-    description:"Une radio polyvalente combinant réception multibande et connectivité Bluetooth pour une utilisation quotidienne ou nomade.",
-    details:[
-      ["Type","Radio"],
-      ["Connectivité","Bluetooth"],
-      ["Réception annoncée","9 bandes"],
-      ["Fournisseur","JupiterGear"]
-    ]
-  },
-
-  {
-    id:53,
-    category:"Innovation",
-    name:"Radio cassette Bluetooth + MP3",
-    supplier:"JupiterGear",
-    price:59.90,
-    image:"https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?auto=format&fit=crop&w=900&q=80",
-    description:"Une radio au style rétro combinant lecture cassette et fonctionnalités audio modernes telles que Bluetooth et MP3.",
-    details:[
-      ["Type","Radio cassette"],
-      ["Fonctions annoncées","Bluetooth et MP3"],
-      ["Fournisseur","JupiterGear"]
-    ]
-  },
-
-  {
-    id:50,
-    category:"Innovation",
-    name:"Lampe frontale rechargeable 1400 lm",
-    supplier:"Southern Audio Services",
-    price:34.90,
-    image:"https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?auto=format&fit=crop&w=900&q=80",
-    description:"Une lampe frontale rechargeable conçue pour les activités nécessitant de garder les mains libres, à la maison comme en déplacement.",
-    details:[
-      ["Type","Lampe frontale rechargeable"],
-      ["Luminosité annoncée","1400 lm"],
-      ["Fournisseur","Southern Audio Services"]
-    ]
-  },
-
-  {
-    id:52,
-    category:"Innovation",
-    name:"Chauffage céramique portable",
-    supplier:"SMITH DISTRIBUTORS",
-    price:44.90,
-    image:"https://images.unsplash.com/photo-1601999109332-542b18dbec66?auto=format&fit=crop&w=900&q=80",
-    description:"Un chauffage d'appoint portable destiné à apporter rapidement davantage de confort dans un espace adapté.",
-    details:[
-      ["Type","Chauffage d'appoint"],
-      ["Technologie annoncée","Céramique"],
-      ["Fournisseur","SMITH DISTRIBUTORS"]
-    ]
-  },
-
-  {
-    id:47,
-    category:"Innovation",
-    name:"Étui passeport RFID",
-    supplier:"tag8",
-    price:19.90,
-    image:"https://images.unsplash.com/photo-1553531889-56d54a7c9d8c?auto=format&fit=crop&w=900&q=80",
-    description:"Un étui de voyage destiné à protéger et organiser un passeport lors des déplacements.",
-    details:[
-      ["Type","Étui pour passeport"],
-      ["Protection annoncée","RFID"],
-      ["Fournisseur","tag8"]
-    ]
-  },
-
-  {
-    id:58,
-    category:"Innovation",
-    name:"Cadenas Dolphin",
-    supplier:"tag8",
+    name:"Grand sac de rangement textile 50–75 L",
+    supplier:"Zhejiang Runjiang New Material Technology Co., Ltd.",
     price:14.90,
-    image:"https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=900&q=80",
-    description:"Un cadenas compact destiné à sécuriser bagages et effets personnels lors des déplacements.",
-    details:[
-      ["Type","Cadenas"],
-      ["Utilisation","Bagages et voyage"],
-      ["Fournisseur","tag8"]
-    ]
+    source:"https://www.alibaba.com/wholesale/technology-organizer.html",
+    description:
+      "Un grand sac textile zippé destiné au rangement de vêtements, linge de maison, couvertures ou accessoires."
   },
 
   {
-    id:55,
-    category:"Innovation",
-    name:"TV LED 32 pouces",
-    supplier:"JupiterGear",
-    price:149.90,
-    image:"https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?auto=format&fit=crop&w=900&q=80",
-    description:"Un téléviseur LED au format 32 pouces destiné aux espaces où un écran compact est préférable.",
-    details:[
-      ["Type","Téléviseur LED"],
-      ["Taille annoncée","32 pouces"],
-      ["Fournisseur","JupiterGear"]
-    ]
-  },
-
-  {
-    id:57,
-    category:"Innovation",
-    name:"Support plafond TV",
-    supplier:"SMITH DISTRIBUTORS",
-    price:49.90,
-    image:"https://images.unsplash.com/photo-1593784991095-a205069470b6?auto=format&fit=crop&w=900&q=80",
-    description:"Un support destiné aux installations où la fixation d'un téléviseur au plafond constitue une solution plus adaptée que la pose sur meuble.",
-    details:[
-      ["Type","Support TV"],
-      ["Installation","Plafond"],
-      ["Fournisseur","SMITH DISTRIBUTORS"]
-    ]
-  },
-
-  /* =========================
-     ANIMAUX — SÉLECTION
-     VOLONTAIREMENT PLUS VARIÉE
-  ========================= */
-
-  {
-    id:9,
-    category:"Animaux",
-    name:"Balle interactive à l'herbe à chat",
-    supplier:"Dog Hugs Cat",
+    id:103,
+    category:"Maison",
+    name:"Organiseur pliable pour vêtements et jeans",
+    supplier:"Huizhou Ledol Houseware Co., Ltd.",
     price:14.90,
-    image:"https://images.unsplash.com/photo-1574158622682-e40e69881006?auto=format&fit=crop&w=900&q=80",
-    description:"Un petit accessoire ludique destiné à stimuler la curiosité du chat et à enrichir ses moments de jeu.",
-    details:[
-      ["Animal","Chat"],
-      ["Type","Jouet interactif"],
-      ["Fournisseur","Dog Hugs Cat"]
-    ]
+    source:"https://www.alibaba.com/countrysearch/CN/collapsible-drawer-organizer.html",
+    description:
+      "Une solution pliable permettant de séparer et organiser vêtements, jeans ou accessoires dans un placard ou un tiroir."
   },
 
   {
-    id:7,
-    category:"Animaux",
-    name:"Kit de filtres éponge pour aquarium",
-    supplier:"Dog Hugs Cat",
-    price:14.90,
-    image:"https://images.unsplash.com/photo-1522069169874-c58ec4b76be5?auto=format&fit=crop&w=900&q=80",
-    description:"Un kit d'accessoires de filtration destiné à l'entretien d'un aquarium. La compatibilité exacte doit être vérifiée avec le modèle de filtration utilisé.",
-    details:[
-      ["Univers","Aquarium"],
-      ["Type","Filtres éponge"],
-      ["Fournisseur","Dog Hugs Cat"]
-    ]
-  },
-
-  {
-    id:12,
-    category:"Animaux",
-    name:"Décoration aquarium tête en résine",
-    supplier:"Dog Hugs Cat",
+    id:104,
+    category:"Maison",
+    name:"Organiseur rotatif 360°",
+    supplier:"Alibaba",
     price:19.90,
-    image:"https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=900&q=80",
-    description:"Une décoration destinée à personnaliser l'univers visuel d'un aquarium.",
-    details:[
-      ["Univers","Aquarium"],
-      ["Type","Décoration"],
-      ["Matière annoncée","Résine"],
-      ["Fournisseur","Dog Hugs Cat"]
-    ]
+    source:"https://www.alibaba.com/wholesale/storage-organizer.html",
+    description:
+      "Un plateau rotatif pratique pour rendre les petits objets, condiments ou accessoires plus accessibles."
   },
 
   {
-    id:6,
-    category:"Animaux",
-    name:"Balançoire colorée pour petits animaux",
-    supplier:"Dog Hugs Cat",
-    price:14.90,
-    image:"https://images.unsplash.com/photo-1425082661705-1834bfd09dca?auto=format&fit=crop&w=900&q=80",
-    description:"Un accessoire ludique destiné à enrichir l'environnement de certains petits animaux. Vérifiez les dimensions et la compatibilité avec l'espèce avant utilisation.",
-    details:[
-      ["Univers","Petits animaux"],
-      ["Type","Balançoire"],
-      ["Fournisseur","Dog Hugs Cat"]
-    ]
+    id:105,
+    category:"Maison",
+    name:"Support mural pour balai et accessoires",
+    supplier:"Alibaba",
+    price:12.90,
+    source:"https://www.alibaba.com/wholesale/mop-holder-wall-mount.html",
+    description:
+      "Un support compact permettant d'organiser balais, serpillières ou autres accessoires de ménage contre un mur."
   },
 
   {
-    id:5,
-    category:"Animaux",
-    name:"Bouteille d'eau portable pour animal",
-    supplier:"Dog Hugs Cat",
+    id:106,
+    category:"Maison",
+    name:"Panier de rangement pour évier",
+    supplier:"Alibaba",
+    price:12.90,
+    source:"https://www.alibaba.com/wholesale/sponge-holder-sink-basket.html",
+    description:
+      "Un petit panier pensé pour regrouper éponge, savon et accessoires à proximité de l'évier."
+  },
+
+  {
+    id:107,
+    category:"Maison",
+    name:"Organiseur rotatif pour salle de bain",
+    supplier:"Alibaba",
+    price:19.90,
+    source:"https://www.alibaba.com/wholesale/lazy-susan-cosmetic-organizer.html",
+    description:
+      "Un rangement rotatif pour garder parfums, cosmétiques et petits accessoires facilement accessibles."
+  },
+
+  {
+    id:108,
+    category:"Maison",
+    name:"Rangement pliable multi-usage",
+    supplier:"Alibaba",
+    price:19.90,
+    source:"https://www.alibaba.com/wholesale/travel-organizer.html",
+    description:
+      "Une solution de rangement compacte et polyvalente destinée à faciliter l'organisation du quotidien."
+  },
+
+  {
+    id:109,
+    category:"Innovation",
+    name:"Clip magnétique range-câbles",
+    supplier:"Dongguan Jia En Technology Co., Ltd.",
+    price:9.90,
+    source:"https://www.alibaba.com/pla/Magnetic-Cable-Clip-Adjustable-Cord-Holder_1601391820527.html",
+    description:
+      "Un clip magnétique adhésif permettant de maintenir les câbles de charge ou d'écouteurs accessibles sur un bureau ou une table de chevet."
+  },
+
+  {
+    id:110,
+    category:"Innovation",
+    name:"Support pliable pour ordinateur portable",
+    supplier:"Alibaba",
     price:24.90,
-    image:"https://images.unsplash.com/photo-1558788353-f76d92427f16?auto=format&fit=crop&w=900&q=80",
-    description:"Une bouteille portable pensée pour faciliter l'accès à l'eau pendant les promenades et déplacements avec un animal.",
-    details:[
-      ["Capacités annoncées","350 ml ou 550 ml selon variante"],
-      ["Commande","Bouton de débit d'eau"],
-      ["Matière annoncée","Plastique alimentaire"],
-      ["Fournisseur","Dog Hugs Cat"]
-    ]
+    source:"https://www.alibaba.com/wholesale/laptop-stand-foldable.html",
+    description:
+      "Un support compact et pliable destiné à surélever un ordinateur portable sur un bureau."
   },
 
   {
-    id:19,
-    category:"Animaux",
-    name:"Peignoir microfibre ultra-absorbant",
-    supplier:"Dog Hugs Cat",
-    price:29.90,
-    image:"https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=900&q=80",
-    description:"Un vêtement absorbant destiné à faciliter le séchage de l'animal après une promenade humide, un bain ou une sortie.",
-    details:[
-      ["Type","Peignoir pour animal"],
-      ["Matière annoncée","Microfibre"],
-      ["Fournisseur","Dog Hugs Cat"]
-    ]
+    id:111,
+    category:"Innovation",
+    name:"Support pliable pour smartphone",
+    supplier:"Alibaba",
+    price:12.90,
+    source:"https://www.alibaba.com/wholesale/cell-phone-stand-foldable.html",
+    description:
+      "Un petit support de téléphone réglable et pliable, utile pour regarder une vidéo, passer un appel ou poser son smartphone sur un bureau."
   },
 
   {
-    id:10,
-    category:"Animaux",
-    name:"Laisse corde CANNA",
-    supplier:"PAWSOME PETS NEW YORK",
-    price:39.90,
-    image:"https://cdn.shopify.com/s/files/1/0716/2789/9157/products/48011676652744_.pic.jpg?v=1677603639",
-    description:"Une laisse en corde de coton issue de la gamme PAWSOME PETS NEW YORK, conçue avec une corde épaisse et des finitions travaillées.",
-    details:[
-      ["Matière annoncée","100 % coton"],
-      ["Longueur","5 pieds · environ 1,52 m"],
-      ["Épaisseur corde","3/5 pouce · environ 1,52 cm"],
-      ["Fabrication","Corde épissée à la main"],
-      ["Entretien","Lavage manuel, eau froide et savon doux"],
-      ["Fournisseur","PAWSOME PETS NEW YORK"]
-    ]
-  },
-
-  /* =========================
-     CADEAUX / DÉCO
-  ========================= */
-
-  {
-    id:22,
-    category:"Cadeaux",
-    name:"Veilleuse céramique décorative",
-    supplier:"Caroline's Treasures",
-    price:24.90,
-    image:"https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=900&q=80",
-    description:"Une petite veilleuse décorative conçue pour apporter une lumière d'ambiance douce tout en participant à la décoration de la pièce.",
-    details:[
-      ["Type","Veilleuse décorative"],
-      ["Matière annoncée","Céramique"],
-      ["Fournisseur","Caroline's Treasures"]
-    ]
+    id:112,
+    category:"Innovation",
+    name:"Pochette organiseur pour câbles et accessoires tech",
+    supplier:"Guangzhou Maplestory Case Co., Ltd.",
+    price:19.90,
+    source:"https://www.alibaba.com/wholesale/electronic-accessories-pouch.html",
+    description:
+      "Une pochette permettant de regrouper câbles, chargeurs, écouteurs et petits accessoires électroniques pendant les déplacements."
   },
 
   {
-    id:30,
-    category:"Cadeaux",
-    name:"Miroir compact décoratif",
-    supplier:"Caroline's Treasures",
+    id:113,
+    category:"Voyage",
+    name:"Pèse-bagage portable",
+    supplier:"Alibaba",
     price:14.90,
-    image:"https://images.unsplash.com/photo-1526045478516-99145907023c?auto=format&fit=crop&w=900&q=80",
-    description:"Un miroir compact facile à transporter, pensé comme petit accessoire du quotidien ou idée cadeau.",
-    details:[
-      ["Type","Miroir compact"],
-      ["Utilisation","Accessoire nomade"],
-      ["Fournisseur","Caroline's Treasures"]
-    ]
+    source:"https://www.alibaba.com/category/luggage-scales_201222106.html",
+    description:
+      "Un accessoire compact permettant de contrôler le poids d'une valise avant un départ."
   },
 
   {
-    id:32,
-    category:"Cadeaux",
-    name:"Coussin décoratif tulipes",
-    supplier:"Caroline's Treasures",
+    id:114,
+    category:"Voyage",
+    name:"Trousse transparente de voyage",
+    supplier:"Alibaba",
+    price:12.90,
+    source:"https://www.alibaba.com/wholesale/cosmetic-bags-small.html",
+    description:
+      "Une petite trousse transparente zippée pour organiser produits de toilette et petits accessoires."
+  },
+
+  {
+    id:115,
+    category:"Voyage",
+    name:"Set de 7 organiseurs de valise",
+    supplier:"Wuhan Hothome Import&Export Co., Ltd.",
     price:24.90,
-    image:"https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?auto=format&fit=crop&w=900&q=80",
-    description:"Un coussin décoratif au motif floral destiné à apporter une touche colorée à un canapé, un fauteuil ou une chambre.",
-    details:[
-      ["Type","Coussin décoratif"],
-      ["Motif","Tulipes"],
-      ["Fournisseur","Caroline's Treasures"]
-    ]
+    source:"https://www.alibaba.com/wholesale/travel-cubes.html",
+    description:
+      "Un ensemble de pochettes de rangement destiné à séparer vêtements et accessoires à l'intérieur d'une valise."
   },
 
   {
-    id:36,
-    category:"Cadeaux",
-    name:"Poster encadré artistique",
-    supplier:"Good Doer by Gianneli",
-    price:29.90,
-    image:"https://images.unsplash.com/photo-1561214115-f2f134cc4912?auto=format&fit=crop&w=900&q=80",
-    description:"Une décoration murale encadrée permettant d'ajouter rapidement une touche artistique à un intérieur.",
-    details:[
-      ["Type","Poster encadré"],
-      ["Univers","Décoration"],
-      ["Fournisseur","Good Doer by Gianneli"]
-    ]
+    id:116,
+    category:"Voyage",
+    name:"Sac de voyage pliable grande capacité",
+    supplier:"Xiamen Saga Sports Co., Ltd.",
+    price:24.90,
+    source:"https://www.alibaba.com/wholesale/travel-organizer-big.html",
+    description:
+      "Un sac de voyage pliable conçu pour proposer une capacité supplémentaire tout en restant facile à ranger lorsqu'il n'est pas utilisé."
   },
 
   {
-    id:37,
-    category:"Cadeaux",
-    name:"Affiche voyage Rio",
-    supplier:"VintyArty",
+    id:117,
+    category:"Animaux",
+    name:"Gourde portable pour chien et chat",
+    supplier:"Yiwu Senye Import And Export Co., Ltd.",
     price:19.90,
-    image:"https://images.unsplash.com/photo-1483729558449-99ef09a8c325?auto=format&fit=crop&w=900&q=80",
-    description:"Une affiche décorative inspirée de Rio, adaptée aux amateurs de voyage et de décoration graphique.",
-    details:[
-      ["Type","Affiche"],
-      ["Thème","Voyage · Rio"],
-      ["Fournisseur","VintyArty"]
-    ]
+    source:"https://www.alibaba.com/wholesale/water-bottle-dog-cat.html",
+    description:
+      "Une gourde portable pensée pour proposer de l'eau à un animal pendant les promenades et déplacements."
   },
 
   {
-    id:42,
-    category:"Cadeaux",
-    name:"Tags sécurité bagage QR Suisse x2",
-    supplier:"tag8",
-    price:19.90,
-    image:"https://images.unsplash.com/photo-1553531889-56d54a7c9d8c?auto=format&fit=crop&w=900&q=80",
-    description:"Un lot de deux tags pour bagages avec système QR, destiné à faciliter l'identification des bagages pendant les déplacements.",
-    details:[
-      ["Quantité","Lot de 2"],
-      ["Type","Tag bagage QR"],
-      ["Thème","Suisse"],
-      ["Fournisseur","tag8"]
-    ]
-  },
-
-  {
-    id:54,
-    category:"Cadeaux",
-    name:"Tags sécurité bagage QR Mexique x2",
-    supplier:"tag8",
-    price:19.90,
-    image:"https://images.unsplash.com/photo-1553531889-56d54a7c9d8c?auto=format&fit=crop&w=900&q=80",
-    description:"Un lot de deux tags de bagage avec identification QR, dans une déclinaison inspirée du Mexique.",
-    details:[
-      ["Quantité","Lot de 2"],
-      ["Type","Tag bagage QR"],
-      ["Thème","Mexique"],
-      ["Fournisseur","tag8"]
-    ]
-  },
-
-  {
-    id:59,
-    category:"Cadeaux",
-    name:"Tags sécurité bagage Chicago x2",
-    supplier:"tag8",
-    price:19.90,
-    image:"https://images.unsplash.com/photo-1553531889-56d54a7c9d8c?auto=format&fit=crop&w=900&q=80",
-    description:"Deux accessoires d'identification pour bagages dans une déclinaison inspirée de Chicago.",
-    details:[
-      ["Quantité","Lot de 2"],
-      ["Type","Tags bagage"],
-      ["Thème","Chicago"],
-      ["Fournisseur","tag8"]
-    ]
-  },
-
-  {
-    id:17,
-    category:"Cadeaux",
-    name:"Porte-clés cadeau animal",
-    supplier:"Lifebeats Gifts",
+    id:118,
+    category:"Animaux",
+    name:"Peigne de toilettage pour chien et chat",
+    supplier:"Zhejiang Ouding Plastic Co., Ltd.",
     price:14.90,
-    image:"https://images.unsplash.com/photo-1583337130417-3346a1be7dee?auto=format&fit=crop&w=900&q=80",
-    description:"Un petit accessoire cadeau destiné aux personnes appréciant l'univers des animaux.",
-    details:[
-      ["Type","Porte-clés"],
-      ["Univers","Animaux"],
-      ["Fournisseur","Lifebeats Gifts"]
-    ]
+    source:"https://www.alibaba.com/countrysearch/CN/pet-grooming-accessories.html",
+    description:
+      "Un accessoire de toilettage manuel destiné à entretenir le pelage des chiens et des chats."
+  },
+
+  {
+    id:119,
+    category:"Animaux",
+    name:"Gamelle pliable de voyage",
+    supplier:"Alibaba",
+    price:14.90,
+    source:"https://www.alibaba.com/wholesale/silicone-pet-foldable-bowl.html",
+    description:
+      "Une gamelle pliable facile à transporter pour proposer de l'eau ou de la nourriture pendant les déplacements."
+  },
+
+  {
+    id:120,
+    category:"Animaux",
+    name:"Tapis de léchage en silicone",
+    supplier:"Alibaba",
+    price:14.90,
+    source:"https://www.alibaba.com/wholesale/lick-mat-dog.html",
+    description:
+      "Un tapis en silicone sur lequel une petite quantité de nourriture adaptée à l'animal peut être répartie."
   }
 
 ];
 
-/* ==========================================================
-   PRODUITS VOLONTAIREMENT NON AFFICHÉS
-========================================================== */
+/* =========================
+   ÉTAT DE LA BOUTIQUE
+========================= */
 
-/*
-Les anciennes références très répétitives consacrées principalement
-aux chiens ne sont plus affichées dans la vitrine principale.
+let activeCategory = "Tous";
 
-Cela évite de donner l'impression qu'ÉVIDA est une animalerie
-spécialisée chien et permet de conserver un positionnement beaucoup
-plus large :
+let cart = [];
 
-- Maison
-- Organisation
-- Innovation
-- Café
-- Voyage
-- Décoration
-- Cadeaux
-- Animaux variés
+try {
 
-Les produits non affichés pourront être remplacés progressivement
-par de nouvelles références dont le coût fournisseur et la livraison
-France auront été vérifiés.
-*/
+  cart =
+    JSON.parse(
+      localStorage.getItem("evida_cart") || "[]"
+    );
 
-/* ==========================================================
-   ORDRE D'AFFICHAGE
-========================================================== */
+} catch (error) {
 
-const categoryPriority = {
-  Maison:1,
-  Innovation:2,
-  Animaux:3,
-  Cadeaux:4
-};
+  cart = [];
 
-products.sort((a,b) => {
+}
 
-  const categoryDifference =
-    categoryPriority[a.category] -
-    categoryPriority[b.category];
+/* =========================
+   PRIX
+========================= */
 
-  if(categoryDifference !== 0) {
-    return categoryDifference;
-  }
-
-  return a.id - b.id;
-
-});
-
-/* ==========================================================
-   VARIABLES
-========================================================== */
-
-const grid =
-  document.getElementById("grid");
-
-const searchInput =
-  document.getElementById("search");
-
-const filterButtons =
-  document.querySelectorAll(".filter");
-
-let selectedCategory = "Tous";
-
-let selectedProduct = null;
-
-/* ==========================================================
-   FORMAT PRIX
-========================================================== */
-
-function euro(value) {
+function money(value) {
 
   return new Intl.NumberFormat(
     "fr-FR",
@@ -1614,304 +1190,140 @@ function euro(value) {
 
 }
 
-/* ==========================================================
+/* =========================
+   FILTRES
+========================= */
+
+function setCategory(category) {
+
+  activeCategory = category;
+
+  document
+    .querySelectorAll(".filter")
+    .forEach(button => {
+
+      button.classList.toggle(
+        "active",
+        button.dataset.category === category
+      );
+
+    });
+
+  renderProducts();
+
+}
+
+/* =========================
    AFFICHAGE PRODUITS
-========================================================== */
+========================= */
 
 function renderProducts() {
 
   const query =
-    searchInput.value
-      .trim()
-      .toLowerCase();
+    document
+      .getElementById("search")
+      .value
+      .toLowerCase()
+      .trim();
 
-  const filtered =
+  const visibleProducts =
     products.filter(product => {
 
       const categoryMatch =
-        selectedCategory === "Tous" ||
-        product.category === selectedCategory;
+        activeCategory === "Tous"
+        ||
+        product.category === activeCategory;
 
       const searchMatch =
-        !query ||
-        product.name.toLowerCase().includes(query) ||
-        product.category.toLowerCase().includes(query) ||
-        product.supplier.toLowerCase().includes(query) ||
-        product.description.toLowerCase().includes(query);
+        `${product.name} ${product.category} ${product.supplier}`
+          .toLowerCase()
+          .includes(query);
 
       return categoryMatch && searchMatch;
 
     });
 
-  grid.innerHTML = "";
+  document.getElementById("grid").innerHTML =
+    visibleProducts
+      .map(product => {
 
-  if(filtered.length === 0) {
+        return `
 
-    grid.innerHTML = `
-      <div
-        style="
-          grid-column:1/-1;
-          background:#fff;
-          border:1px solid var(--line);
-          border-radius:18px;
-          padding:30px;
-          text-align:center;
-        "
-      >
-        Aucun produit ne correspond à votre recherche.
-      </div>
-    `;
-
-    return;
-
-  }
-
-  filtered.forEach(product => {
-
-    const article =
-      document.createElement("article");
-
-    article.className = "product";
-
-    article.innerHTML = `
-
-      <div
-        class="visual"
-        onclick="openProductDetails(${product.id})"
-      >
-
-        <img
-          src="${product.image}"
-          alt="${escapeHtml(product.name)}"
-          loading="lazy"
-        >
-
-      </div>
-
-      <div class="body">
-
-        <div class="tag">
-          ${escapeHtml(product.category)}
-        </div>
-
-        <h3
-          onclick="openProductDetails(${product.id})"
-        >
-          ${escapeHtml(product.name)}
-        </h3>
-
-        <div class="supplier">
-          Sélection ÉVIDA
-        </div>
-
-        <div class="foot">
-
-          <span class="price">
-            ${euro(product.price)}
-          </span>
-
-          <button
-            class="add"
-            onclick="event.stopPropagation();addToCart(${product.id})"
+          <article
+            class="product"
+            onclick="openProductDetails(${product.id})"
           >
-            Ajouter
-          </button>
 
-        </div>
+            <div class="visual">
 
-        <button
-          class="productDetailsBtn"
-          onclick="event.stopPropagation();openProductDetails(${product.id})"
-        >
-          Voir le produit
-        </button>
+              <div class="visualInner">
 
-      </div>
+                ${product.name}
 
-    `;
+                <small>
+                  Sélection ÉVIDA · fiche produit disponible
+                </small>
 
-    grid.appendChild(article);
+              </div>
 
-  });
+            </div>
 
-}/* ==========================================================
-   FILTRES
-========================================================== */
+            <div class="body">
 
-filterButtons.forEach(button => {
+              <div class="tag">
+                ${product.category}
+              </div>
 
-  button.addEventListener("click", () => {
+              <h3>
+                ${product.name}
+              </h3>
 
-    filterButtons.forEach(btn => {
-      btn.classList.remove("active");
-    });
+              <div class="supplier">
+                Fournisseur : ${product.supplier}
+              </div>
 
-    button.classList.add("active");
+              <div class="foot">
 
-    selectedCategory =
-      button.dataset.category;
+                <span class="price">
+                  ${money(product.price)}
+                </span>
 
-    renderProducts();
+                <button
+                  class="add"
+                  onclick="
+                    event.stopPropagation();
+                    add(${product.id});
+                  "
+                >
+                  Ajouter
+                </button>
 
-  });
+              </div>
 
-});
+              <button
+                class="productDetailsBtn"
+                onclick="
+                  event.stopPropagation();
+                  openProductDetails(${product.id});
+                "
+              >
+                Voir les détails
+              </button>
 
-searchInput.addEventListener(
-  "input",
-  renderProducts
-);
+            </div>
 
-/* ==========================================================
-   FICHE PRODUIT
-========================================================== */
+          </article>
 
-function openProductDetails(productId) {
+        `;
 
-  const product =
-    products.find(p => p.id === productId);
-
-  if(!product) return;
-
-  selectedProduct = product;
-
-  document.getElementById(
-    "productModalImage"
-  ).src = product.image;
-
-  document.getElementById(
-    "productModalImage"
-  ).alt = product.name;
-
-  document.getElementById(
-    "productModalCategory"
-  ).textContent = product.category;
-
-  document.getElementById(
-    "productModalName"
-  ).textContent = product.name;
-
-  document.getElementById(
-    "productModalPrice"
-  ).textContent = euro(product.price);
-
-  document.getElementById(
-    "productModalDescription"
-  ).textContent = product.description;
-
-  const facts =
-    document.getElementById(
-      "productModalFacts"
-    );
-
-  facts.innerHTML = "";
-
-  if(
-    Array.isArray(product.details) &&
-    product.details.length > 0
-  ) {
-
-    product.details.forEach(detail => {
-
-      const row =
-        document.createElement("div");
-
-      row.className = "productFact";
-
-      row.innerHTML = `
-        <span>
-          ${escapeHtml(detail[0])}
-        </span>
-
-        <strong>
-          ${escapeHtml(detail[1])}
-        </strong>
-      `;
-
-      facts.appendChild(row);
-
-    });
-
-  }
-
-  const addButton =
-    document.getElementById(
-      "productModalAdd"
-    );
-
-  addButton.onclick = () => {
-
-    addToCart(product.id);
-
-  };
-
-  document.getElementById(
-    "productModalOverlay"
-  ).classList.add("show");
-
-  document.body.style.overflow =
-    "hidden";
+      })
+      .join("");
 
 }
 
-function closeProductDetails() {
-
-  document.getElementById(
-    "productModalOverlay"
-  ).classList.remove("show");
-
-  document.body.style.overflow = "";
-
-  selectedProduct = null;
-
-}
-
-function handleProductModalOverlay(event) {
-
-  if(
-    event.target.id ===
-    "productModalOverlay"
-  ) {
-
-    closeProductDetails();
-
-  }
-
-}
-
-/* ==========================================================
-   PROTECTION TEXTE HTML
-========================================================== */
-
-function escapeHtml(value) {
-
-  return String(value)
-    .replaceAll("&","&amp;")
-    .replaceAll("<","&lt;")
-    .replaceAll(">","&gt;")
-    .replaceAll('"',"&quot;")
-    .replaceAll("'","&#039;");
-
-}
-
-/* ==========================================================
+/* =========================
    PANIER
-========================================================== */
-
-let cart = [];
-
-try {
-
-  cart =
-    JSON.parse(
-      localStorage.getItem("evida_cart")
-    ) || [];
-
-} catch(error) {
-
-  cart = [];
-
-}
+========================= */
 
 function saveCart() {
 
@@ -1920,354 +1332,297 @@ function saveCart() {
     JSON.stringify(cart)
   );
 
+  renderCart();
+
 }
 
-function addToCart(productId) {
-
-  const product =
-    products.find(
-      p => p.id === productId
-    );
-
-  if(!product) return;
+function add(id) {
 
   const existing =
-    cart.find(
-      item => item.id === productId
-    );
+    cart.find(item => item.id === id);
 
-  if(existing) {
+  if (existing) {
 
-    if(existing.quantity < 10) {
-      existing.quantity += 1;
-    }
+    existing.quantity =
+      Math.min(
+        10,
+        (existing.quantity || 1) + 1
+      );
 
   } else {
 
     cart.push({
-      id:product.id,
+      id:id,
       quantity:1
     });
 
   }
 
   saveCart();
-
-  renderCart();
-
   openCart();
 
 }
 
-function removeFromCart(productId) {
+function removeItem(id) {
 
   cart =
     cart.filter(
-      item => item.id !== productId
+      item => item.id !== id
     );
 
   saveCart();
 
-  renderCart();
-
 }
-
-function changeQuantity(
-  productId,
-  delta
-) {
-
-  const item =
-    cart.find(
-      cartItem =>
-        cartItem.id === productId
-    );
-
-  if(!item) return;
-
-  item.quantity += delta;
-
-  if(item.quantity <= 0) {
-
-    removeFromCart(productId);
-
-    return;
-
-  }
-
-  if(item.quantity > 10) {
-    item.quantity = 10;
-  }
-
-  saveCart();
-
-  renderCart();
-
-}
-
-/* ==========================================================
-   AFFICHAGE PANIER
-========================================================== */
 
 function renderCart() {
 
-  const container =
-    document.getElementById(
-      "cartItems"
-    );
-
-  const count =
-    document.getElementById(
-      "cartCount"
-    );
-
-  const totalElement =
-    document.getElementById(
-      "cartTotal"
-    );
-
-  container.innerHTML = "";
-
   let total = 0;
+  let count = 0;
 
-  let totalQuantity = 0;
+  const html =
+    cart
+      .map(item => {
 
-  if(cart.length === 0) {
+        const product =
+          products.find(
+            product => product.id === item.id
+          );
 
-    container.innerHTML = `
-      <div
-        style="
-          padding:30px 0;
-          color:var(--muted);
-          text-align:center;
-        "
-      >
-        Votre panier est vide.
-      </div>
-    `;
+        if (!product) {
+          return "";
+        }
 
-  }
+        const quantity =
+          item.quantity || 1;
 
-  cart.forEach(item => {
+        total +=
+          product.price * quantity;
 
-    const product =
-      products.find(
-        p => p.id === item.id
-      );
+        count += quantity;
 
-    if(!product) return;
+        return `
 
-    const lineTotal =
-      product.price *
-      item.quantity;
+          <div class="cartItem">
 
-    total += lineTotal;
+            <div>
 
-    totalQuantity +=
-      item.quantity;
+              <strong>
+                ${product.name}
+              </strong>
 
-    const element =
-      document.createElement(
-        "div"
-      );
+              <br>
 
-    element.className =
-      "cartItem";
+              <small>
+                ${quantity} × ${money(product.price)}
+              </small>
 
-    element.innerHTML = `
+            </div>
 
-      <div>
+            <button
+              class="remove"
+              onclick="removeItem(${product.id})"
+            >
+              Retirer
+            </button>
 
-        <strong>
-          ${escapeHtml(product.name)}
-        </strong>
+          </div>
 
-        <br>
+        `;
 
-        <small>
-          ${euro(product.price)}
-          ×
-          ${item.quantity}
-        </small>
+      })
+      .join("");
 
-        <div
-          style="
-            display:flex;
-            gap:7px;
-            align-items:center;
-            margin-top:9px;
-          "
-        >
+  document.getElementById("cartItems").innerHTML =
+    html
+    ||
+    "<p style='color:#777'>Votre panier est vide.</p>";
 
-          <button
-            type="button"
-            onclick="changeQuantity(${product.id},-1)"
-            style="
-              width:30px;
-              height:30px;
-              border:1px solid var(--line);
-              background:#fff;
-              border-radius:8px;
-            "
-          >
-            −
-          </button>
+  document.getElementById("cartTotal").textContent =
+    money(total);
 
-          <strong>
-            ${item.quantity}
-          </strong>
-
-          <button
-            type="button"
-            onclick="changeQuantity(${product.id},1)"
-            style="
-              width:30px;
-              height:30px;
-              border:1px solid var(--line);
-              background:#fff;
-              border-radius:8px;
-            "
-          >
-            +
-          </button>
-
-        </div>
-
-      </div>
-
-      <div
-        style="
-          text-align:right;
-        "
-      >
-
-        <strong>
-          ${euro(lineTotal)}
-        </strong>
-
-        <br>
-
-        <button
-          class="remove"
-          onclick="removeFromCart(${product.id})"
-        >
-          Retirer
-        </button>
-
-      </div>
-
-    `;
-
-    container.appendChild(
-      element
-    );
-
-  });
-
-  count.textContent =
-    totalQuantity;
-
-  totalElement.textContent =
-    euro(total);
+  document.getElementById("cartCount").textContent =
+    count;
 
 }
 
-/* ==========================================================
-   OUVERTURE / FERMETURE PANIER
-========================================================== */
-
-const drawer =
-  document.getElementById(
-    "drawer"
-  );
-
-const overlay =
-  document.getElementById(
-    "overlay"
-  );
-
 function openCart() {
 
-  drawer.classList.add(
-    "open"
-  );
+  document
+    .getElementById("drawer")
+    .classList.add("open");
 
-  overlay.classList.add(
-    "show"
-  );
-
-  document.body.style.overflow =
-    "hidden";
+  document
+    .getElementById("overlay")
+    .classList.add("show");
 
 }
 
 function closeCart() {
 
-  drawer.classList.remove(
-    "open"
-  );
+  document
+    .getElementById("drawer")
+    .classList.remove("open");
 
-  overlay.classList.remove(
-    "show"
-  );
-
-  document.body.style.overflow =
-    "";
+  document
+    .getElementById("overlay")
+    .classList.remove("show");
 
 }
 
-document.getElementById(
-  "openCart"
-).addEventListener(
-  "click",
-  openCart
-);
+/* =========================
+   FICHE PRODUIT
+========================= */
 
-document.getElementById(
-  "closeCart"
-).addEventListener(
-  "click",
-  closeCart
-);
+function openProductDetails(id) {
 
-overlay.addEventListener(
-  "click",
-  closeCart
-);
+  const product =
+    products.find(
+      product => product.id === id
+    );
 
-/* ==========================================================
-   TOUCHE ÉCHAP
-========================================================== */
+  if (!product) {
+    return;
+  }
 
-document.addEventListener(
-  "keydown",
+  document
+    .getElementById("productModalCategory")
+    .textContent =
+    product.category;
+
+  document
+    .getElementById("productModalName")
+    .textContent =
+    product.name;
+
+  document
+    .getElementById("productModalVisualName")
+    .textContent =
+    product.name;
+
+  document
+    .getElementById("productModalPrice")
+    .textContent =
+    money(product.price);
+
+  document
+    .getElementById("productModalDescription")
+    .textContent =
+    product.description;
+
+  document
+    .getElementById("productModalFacts")
+    .innerHTML = `
+
+      <div class="productFact">
+        <span>Univers</span>
+        <strong>${product.category}</strong>
+      </div>
+
+      <div class="productFact">
+        <span>Fournisseur</span>
+        <strong>${product.supplier}</strong>
+      </div>
+
+      <div class="productFact">
+        <span>Référence ÉVIDA</span>
+        <strong>EVIDA-${product.id}</strong>
+      </div>
+
+    `;
+
+  document
+    .getElementById("productModalAdd")
+    .onclick =
+    () => add(product.id);
+
+  document
+    .getElementById("productAlibabaLink")
+    .href =
+    product.source;
+
+  document
+    .getElementById("productModalOverlay")
+    .classList.add("show");
+
+}
+
+function closeProductDetails() {
+
+  document
+    .getElementById("productModalOverlay")
+    .classList.remove("show");
+
+}
+
+/* =========================
+   ÉVÉNEMENTS
+========================= */
+
+document
+  .querySelectorAll(".filter")
+  .forEach(button => {
+
+    button.onclick =
+      () =>
+        setCategory(
+          button.dataset.category
+        );
+
+  });
+
+document
+  .getElementById("search")
+  .addEventListener(
+    "input",
+    renderProducts
+  );
+
+document
+  .getElementById("openCart")
+  .onclick =
+  openCart;
+
+document
+  .getElementById("closeCart")
+  .onclick =
+  closeCart;
+
+document
+  .getElementById("overlay")
+  .onclick =
+  closeCart;
+
+document
+  .getElementById("productModalClose")
+  .onclick =
+  closeProductDetails;
+
+document
+  .getElementById("productModalOverlay")
+  .onclick =
   event => {
 
-    if(event.key === "Escape") {
-
-      closeCart();
+    if (
+      event.target.id ===
+      "productModalOverlay"
+    ) {
 
       closeProductDetails();
 
     }
 
-  }
-);
+  };
 
-/* ==========================================================
-   CHECKOUT STRIPE
-========================================================== */
+/* =========================
+   STRIPE
+========================= */
 
-const checkoutButton =
-  document.getElementById(
-    "checkoutBtn"
-  );
-
-checkoutButton.addEventListener(
-  "click",
+document
+  .getElementById("checkoutBtn")
+  .onclick =
   async () => {
 
-    if(cart.length === 0) {
+    if (!cart.length) {
 
       alert(
         "Votre panier est vide."
@@ -2276,12 +1631,6 @@ checkoutButton.addEventListener(
       return;
 
     }
-
-    checkoutButton.disabled =
-      true;
-
-    checkoutButton.textContent =
-      "Redirection vers le paiement...";
 
     try {
 
@@ -2303,14 +1652,12 @@ checkoutButton.addEventListener(
       const data =
         await response.json();
 
-      if(
-        !response.ok ||
-        !data.url
-      ) {
+      if (!response.ok) {
 
         throw new Error(
-          data.error ||
-          "Impossible de créer la session de paiement."
+          data.error
+          ||
+          "Paiement indisponible"
         );
 
       }
@@ -2318,121 +1665,74 @@ checkoutButton.addEventListener(
       window.location.href =
         data.url;
 
-    } catch(error) {
-
-      console.error(error);
+    } catch (error) {
 
       alert(
-        "Le paiement ne peut pas être lancé pour le moment. Réessayez dans quelques instants."
+        error.message
+        +
+        "\n\nLe fichier Stripe doit maintenant être synchronisé avec les 20 nouveaux produits."
       );
-
-      checkoutButton.disabled =
-        false;
-
-      checkoutButton.textContent =
-        "Commander";
 
     }
 
-  }
-);
+  };
 
-/* ==========================================================
-   RETOUR DE STRIPE
-========================================================== */
+/* =========================
+   RETOUR STRIPE
+========================= */
 
-const urlParams =
+const params =
   new URLSearchParams(
     window.location.search
   );
 
-const orderStatus =
-  urlParams.get(
-    "commande"
-  );
-
-if(
-  orderStatus ===
+if (
+  params.get("commande")
+  ===
   "succes"
 ) {
 
   cart = [];
 
-  saveCart();
-
-  renderCart();
-
-  setTimeout(
-    () => {
-
-      alert(
-        "Paiement validé. Merci pour votre commande ÉVIDA."
-      );
-
-    },
-    300
+  localStorage.removeItem(
+    "evida_cart"
   );
 
-  const cleanUrl =
-    window.location.pathname;
-
-  window.history.replaceState(
+  history.replaceState(
     {},
     document.title,
-    cleanUrl
+    window.location.pathname
+  );
+
+  alert(
+    "Paiement test confirmé. Merci !"
   );
 
 }
 
-if(
-  orderStatus ===
+if (
+  params.get("commande")
+  ===
   "annulee"
 ) {
 
-  setTimeout(
-    () => {
-
-      alert(
-        "Le paiement a été annulé. Votre panier a été conservé."
-      );
-
-    },
-    300
-  );
-
-  const cleanUrl =
-    window.location.pathname;
-
-  window.history.replaceState(
+  history.replaceState(
     {},
     document.title,
-    cleanUrl
+    window.location.pathname
   );
 
 }
 
-/* ==========================================================
-   NETTOYAGE DU PANIER
-   SI ANCIENS PRODUITS RETIRÉS
-========================================================== */
-
-cart =
-  cart.filter(item =>
-    products.some(
-      product =>
-        product.id === item.id
-    )
-  );
-
-saveCart();
-
-/* ==========================================================
-   INITIALISATION
-========================================================== */
+/* =========================
+   DÉMARRAGE
+========================= */
 
 renderProducts();
+renderCart();
 
-renderCart();</script>
+</script>
 
 </body>
 </html>
+  
