@@ -3,33 +3,32 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-<!-- Limitation du cache navigateur -->
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
 
-<title>ÉVIDA — Découvrez l'évidence</title>
+<title>ÉVIDA — Boutique</title>
 
-<meta name="description" content="ÉVIDA sélectionne des produits utiles, ingénieux et tendance pour améliorer le quotidien.">
+<meta
+  name="description"
+  content="ÉVIDA — Découvrez une sélection de produits utiles, ingénieux et surprenants."
+>
 
 <style>
 
 :root {
-  --bg:#f7f6f2;
-  --surface:#ffffff;
+  --bg:#f6f3ed;
+  --card:#ffffff;
   --text:#151515;
-  --muted:#6f6b65;
-  --line:#e7e3dc;
-  --soft:#efebe4;
-  --shadow:0 18px 55px rgba(27,24,19,.08);
+  --muted:#777069;
+  --line:#e4dfd6;
+  --dark:#171717;
 }
 
 * {
   box-sizing:border-box;
-  margin:0;
-  padding:0;
 }
 
 html {
@@ -37,10 +36,10 @@ html {
 }
 
 body {
-  font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+  margin:0;
+  font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
   background:var(--bg);
   color:var(--text);
-  line-height:1.55;
 }
 
 a {
@@ -57,436 +56,186 @@ button {
   cursor:pointer;
 }
 
-.container {
-  width:min(1240px,calc(100% - 40px));
-  margin:auto;
-}
+/* =========================
+   BARRE SUPÉRIEURE
+========================= */
 
-/* BARRE SUPÉRIEURE */
-
-.announcement {
+.top {
   background:#171717;
-  color:white;
+  color:#fff;
   text-align:center;
-  padding:9px 18px;
+  padding:9px 16px;
   font-size:12px;
-  letter-spacing:.03em;
 }
 
-/* HEADER */
+/* =========================
+   NAVIGATION
+========================= */
 
 header {
   position:sticky;
   top:0;
-  z-index:100;
-  background:rgba(247,246,242,.90);
-  backdrop-filter:blur(16px);
-  border-bottom:1px solid rgba(231,227,220,.9);
+  z-index:50;
+  background:rgba(246,243,237,.94);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
 }
 
-.navbar {
-  min-height:76px;
+.nav {
+  max-width:1240px;
+  margin:auto;
+  padding:16px 20px;
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:24px;
+  gap:16px;
 }
 
 .logo {
   font-weight:900;
-  font-size:28px;
-  letter-spacing:.16em;
+  letter-spacing:.18em;
+  font-size:26px;
 }
 
 .navlinks {
   display:flex;
-  gap:28px;
-  align-items:center;
+  gap:22px;
   font-size:14px;
 }
 
-.navlinks a {
-  position:relative;
-}
-
-.navlinks a::after {
-  content:"";
-  position:absolute;
-  left:0;
-  right:100%;
-  bottom:-6px;
-  height:1px;
-  background:#171717;
-  transition:.2s;
-}
-
-.navlinks a:hover::after {
-  right:0;
-}
-
-.actions {
-  display:flex;
-  gap:10px;
-  align-items:center;
-}
-
-.icon-btn,
-.cart-btn {
-  border:1px solid var(--line);
-  background:#fff;
-  border-radius:999px;
-  padding:11px 14px;
-}
-
-.cart-btn {
+.cartBtn {
+  border:0;
   background:#171717;
   color:#fff;
-  border-color:#171717;
-  font-weight:700;
+  border-radius:999px;
+  padding:11px 16px;
+  font-weight:800;
 }
 
-/* HERO */
+/* =========================
+   HERO
+========================= */
 
 .hero {
-  padding:78px 0 60px;
-}
+  max-width:1240px;
+  margin:auto;
+  padding:72px 20px 38px;
 
-.hero-grid {
   display:grid;
-  grid-template-columns:1.05fr .95fr;
-  gap:48px;
+  grid-template-columns:1.1fr .9fr;
+  gap:28px;
   align-items:center;
 }
 
 .eyebrow {
-  font-size:12px;
   text-transform:uppercase;
   letter-spacing:.18em;
-  color:#7d766d;
-  font-weight:700;
+  font-size:11px;
+  color:var(--muted);
+  font-weight:800;
 }
 
 h1 {
-  font-size:clamp(54px,7vw,92px);
+  font-size:clamp(54px,7vw,94px);
   line-height:.93;
   letter-spacing:-.055em;
-  margin:16px 0 24px;
+  margin:12px 0 20px;
 }
 
 .hero p {
-  font-size:19px;
+  font-size:18px;
   color:var(--muted);
-  max-width:620px;
+  max-width:660px;
 }
 
-.cta-row {
-  display:flex;
-  gap:12px;
-  flex-wrap:wrap;
-  margin-top:30px;
-}
-
-.btn-primary,
-.btn-secondary {
-  border-radius:12px;
-  padding:14px 20px;
-  font-weight:800;
-  border:1px solid #171717;
-}
-
-.btn-primary {
-  background:#171717;
-  color:#fff;
-}
-
-.btn-secondary {
-  background:transparent;
-}
-
-.hero-card {
-  min-height:510px;
-  border-radius:32px;
-  background:linear-gradient(145deg,#eee8de,#fff 62%);
+.heroCard {
   border:1px solid var(--line);
-  box-shadow:var(--shadow);
-  padding:34px;
+  background:linear-gradient(145deg,#ede6dc,#fff);
+  border-radius:30px;
+  padding:30px;
+  min-height:380px;
+
   display:flex;
   flex-direction:column;
   justify-content:space-between;
 }
 
-.big-mark {
-  font-size:112px;
-  line-height:1;
-}
-
-.hero-card h3 {
-  font-size:30px;
+.heroCard strong {
+  font-size:34px;
   line-height:1.05;
-  max-width:380px;
 }
 
-.hero-card p {
-  font-size:14px;
-  margin-top:12px;
-  max-width:390px;
-}
-
-.mini-stats {
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:10px;
-  margin-top:24px;
-}
-
-.stat {
-  background:rgba(255,255,255,.75);
-  border:1px solid var(--line);
-  border-radius:16px;
-  padding:14px;
-}
-
-.stat strong {
-  display:block;
-  font-size:20px;
-}
-
-.stat span {
-  font-size:11px;
+.heroCard small {
   color:var(--muted);
 }
 
-/* BLOCS */
+/* =========================
+   CONTENU
+========================= */
 
-.trust {
-  padding:8px 0 48px;
-}
-
-.trust-grid {
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:12px;
-}
-
-.trust-item {
-  background:#fff;
-  border:1px solid var(--line);
-  border-radius:16px;
-  padding:17px;
-}
-
-.trust-item strong {
-  display:block;
-  font-size:13px;
-}
-
-.trust-item span {
-  font-size:12px;
-  color:var(--muted);
-}
-
-/* SECTIONS */
-
-.section {
-  padding:70px 0;
-}
-
-.section-head {
-  display:flex;
-  justify-content:space-between;
-  gap:24px;
-  align-items:end;
-  margin-bottom:28px;
-}
-
-.section-head h2 {
-  font-size:clamp(34px,4vw,54px);
-  line-height:1;
-}
-
-.section-head p {
-  color:var(--muted);
-  max-width:620px;
-  margin-top:10px;
-}
-
-/* UNIVERS */
-
-.categories {
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:16px;
-}
-
-.category {
-  min-height:250px;
-  background:#fff;
-  border:1px solid var(--line);
-  border-radius:24px;
-  padding:24px;
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
-  transition:.25s;
-  cursor:pointer;
-}
-
-.category:hover {
-  transform:translateY(-5px);
-  box-shadow:var(--shadow);
-}
-
-.category .icon {
-  font-size:46px;
-}
-
-.category h3 {
-  font-size:25px;
-  margin-bottom:6px;
-}
-
-.category p {
-  font-size:13px;
-  color:var(--muted);
-}
-
-/* SECTION NOIRE */
-
-.dark {
-  background:#171717;
-  color:#fff;
-}
-
-.promise-grid {
-  display:grid;
-  grid-template-columns:1.05fr .95fr;
-  gap:34px;
-  align-items:start;
-}
-
-.promise-copy h2 {
-  font-size:clamp(38px,5vw,64px);
-  line-height:1;
-}
-
-.promise-copy p {
-  color:#bdb9b3;
-  margin-top:18px;
-  max-width:600px;
-}
-
-.promise-list {
-  display:grid;
-  gap:12px;
-}
-
-.promise {
-  border:1px solid #383838;
-  border-radius:18px;
-  padding:20px;
-}
-
-.promise strong {
-  display:block;
-  margin-bottom:5px;
-}
-
-.promise span {
-  font-size:13px;
-  color:#aaa;
-}
-
-/* BOUTIQUE */
-
-.shop-shell {
-  display:grid;
-  grid-template-columns:240px 1fr;
-  gap:28px;
-}
-
-.sidebar {
-  position:sticky;
-  top:102px;
-  height:max-content;
-  background:#fff;
-  border:1px solid var(--line);
-  border-radius:20px;
-  padding:20px;
-}
-
-.sidebar h3 {
-  font-size:14px;
-  margin-bottom:12px;
-}
-
-.filter-list {
-  display:grid;
-  gap:8px;
-}
-
-.filter-btn {
-  border:0;
-  background:transparent;
-  text-align:left;
-  padding:10px 12px;
-  border-radius:10px;
-  color:var(--muted);
-}
-
-.filter-btn:hover {
-  background:#f3f0eb;
-}
-
-.filter-btn.active {
-  background:#171717;
-  color:#fff;
-  font-weight:700;
-}
-
-.sidebar-note {
-  margin-top:18px;
-  padding-top:16px;
-  border-top:1px solid var(--line);
-  font-size:11px;
-  color:var(--muted);
-}
-
-.shop-main {
-  min-width:0;
+.wrap {
+  max-width:1240px;
+  margin:auto;
+  padding:30px 20px 70px;
 }
 
 .toolbar {
   display:flex;
-  justify-content:space-between;
-  gap:12px;
+  gap:10px;
+  flex-wrap:wrap;
   align-items:center;
-  margin-bottom:18px;
+  margin:20px 0;
 }
 
 .search {
   flex:1;
-  max-width:480px;
+  min-width:220px;
   border:1px solid var(--line);
   background:#fff;
   border-radius:12px;
   padding:12px 14px;
-  outline:none;
 }
 
-.search:focus {
+.filters {
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+}
+
+.filter {
+  border:1px solid var(--line);
+  background:#fff;
+  border-radius:999px;
+  padding:10px 13px;
+}
+
+.filter.active {
+  background:#171717;
+  color:#fff;
   border-color:#171717;
 }
 
-.count {
-  font-size:13px;
+/* =========================
+   MESSAGE INFORMATION
+========================= */
+
+.notice {
+  background:#fff;
+  border:1px solid var(--line);
+  padding:16px 18px;
+  border-radius:14px;
   color:var(--muted);
+  font-size:13px;
+  margin-bottom:18px;
 }
 
-/* PRODUITS */
+/* =========================
+   PRODUITS
+========================= */
 
-.products {
+.grid {
   display:grid;
-  grid-template-columns:repeat(3,1fr);
+  grid-template-columns:repeat(4,1fr);
   gap:16px;
 }
 
@@ -495,91 +244,76 @@ h1 {
   border:1px solid var(--line);
   border-radius:20px;
   overflow:hidden;
+
   display:flex;
   flex-direction:column;
-  transition:.22s;
+
+  min-width:0;
+
+  transition:
+    transform .2s ease,
+    box-shadow .2s ease;
 }
 
 .product:hover {
   transform:translateY(-4px);
-  box-shadow:var(--shadow);
+  box-shadow:0 18px 45px rgba(0,0,0,.08);
 }
 
-/* IMAGE 4:3 */
-
-.product-visual {
-  aspect-ratio:4 / 3;
-  background:linear-gradient(145deg,#f1ede6,#fbfaf8);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  position:relative;
-  border-bottom:1px solid var(--line);
+.visual {
+  aspect-ratio:1/1;
+  background:#eee;
+  overflow:hidden;
 }
 
-.product-visual .emoji {
-  font-size:64px;
-  filter:drop-shadow(0 10px 12px rgba(0,0,0,.08));
+.visual img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
 }
 
-.product-visual .number {
-  position:absolute;
-  left:12px;
-  top:12px;
-  width:28px;
-  height:28px;
-  border-radius:9px;
-  background:#171717;
-  color:#fff;
-  font-size:12px;
-  font-weight:800;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
+.body {
+  padding:15px;
 
-.product-visual .tag {
-  position:absolute;
-  right:12px;
-  top:12px;
-  background:#fff;
-  border:1px solid var(--line);
-  border-radius:999px;
-  padding:6px 9px;
-  font-size:10px;
-  font-weight:700;
-}
-
-.product-body {
-  padding:16px;
   display:flex;
   flex-direction:column;
-  gap:9px;
+  gap:8px;
+
   flex:1;
 }
 
-.product-body h3 {
-  font-size:16px;
-  line-height:1.25;
-}
-
-.product-body p {
-  font-size:12px;
+.tag {
+  font-size:10px;
+  text-transform:uppercase;
+  letter-spacing:.1em;
   color:var(--muted);
 }
 
-.product-footer {
+.body h3 {
+  font-size:15px;
+  line-height:1.28;
+  margin:0;
+}
+
+.supplier {
+  font-size:11px;
+  color:var(--muted);
+}
+
+.foot {
   display:flex;
-  justify-content:space-between;
-  gap:12px;
   align-items:center;
+  justify-content:space-between;
+  gap:8px;
+
   margin-top:auto;
-  padding-top:6px;
+  padding-top:8px;
 }
 
 .price {
-  font-size:18px;
   font-weight:900;
+  font-size:18px;
 }
 
 .add {
@@ -587,83 +321,19 @@ h1 {
   background:#171717;
   color:#fff;
   border-radius:10px;
-  padding:10px 12px;
+  padding:9px 11px;
   font-weight:800;
 }
 
-.add:hover {
-  opacity:.88;
-}
-
-/* À PROPOS */
-
-.about-card {
-  background:#fff;
-  border:1px solid var(--line);
-  border-radius:28px;
-  padding:42px;
-  display:grid;
-  grid-template-columns:1fr .8fr;
-  gap:34px;
-  align-items:center;
-}
-
-.about-card h2 {
-  font-size:clamp(36px,4vw,56px);
-  line-height:1;
-}
-
-.about-card p {
-  color:var(--muted);
-  margin-top:14px;
-}
-
-.about-points {
-  display:grid;
-  gap:12px;
-}
-
-.about-point {
-  background:var(--soft);
-  border-radius:16px;
-  padding:16px;
-  font-size:13px;
-}
-
-/* FOOTER */
-
-footer {
-  padding:42px 0 48px;
-  border-top:1px solid var(--line);
-  margin-top:60px;
-}
-
-.footer-grid {
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:30px;
-}
-
-.footer-brand p {
-  color:var(--muted);
-  font-size:13px;
-  max-width:520px;
-  margin-top:12px;
-}
-
-.footer-meta {
-  text-align:right;
-  color:var(--muted);
-  font-size:12px;
-}
-
-/* PANIER */
+/* =========================
+   PANIER
+========================= */
 
 .overlay {
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,.28);
-  z-index:998;
+  background:rgba(0,0,0,.35);
+  z-index:90;
   display:none;
 }
 
@@ -671,1239 +341,1337 @@ footer {
   display:block;
 }
 
-.cart-panel {
+.drawer {
   position:fixed;
-  right:-440px;
+  right:-460px;
   top:0;
-  width:min(420px,92vw);
+
+  width:min(430px,94vw);
   height:100vh;
+
   background:#fff;
-  z-index:999;
-  box-shadow:-25px 0 60px rgba(0,0,0,.18);
-  transition:.25s;
+  z-index:100;
+
   padding:22px;
+
+  box-shadow:-20px 0 60px rgba(0,0,0,.2);
+
+  transition:.25s;
+
   display:flex;
   flex-direction:column;
 }
 
-.cart-panel.open {
+.drawer.open {
   right:0;
 }
 
-.cart-head {
+.drawerHead {
   display:flex;
   justify-content:space-between;
   align-items:center;
-  padding-bottom:16px;
+
   border-bottom:1px solid var(--line);
+  padding-bottom:14px;
 }
 
 .close {
+  border:0;
+  background:#eee;
+  border-radius:50%;
   width:38px;
   height:38px;
-  border:0;
-  border-radius:50%;
-  background:var(--soft);
   font-size:20px;
 }
 
-.cart-items {
-  flex:1;
+.cartItems {
   overflow:auto;
-  padding:8px 0;
+  flex:1;
 }
 
-.cart-item {
-  display:grid;
-  grid-template-columns:1fr auto;
-  gap:8px;
+.cartItem {
   padding:14px 0;
   border-bottom:1px solid var(--line);
+
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:10px;
 }
 
-.cart-item h4 {
-  font-size:14px;
-}
-
-.cart-item small {
+.cartItem small {
   color:var(--muted);
 }
 
 .remove {
   border:0;
   background:transparent;
-  color:#8a3c3c;
+  color:#9b3737;
   font-size:12px;
 }
 
-.cart-total {
-  border-top:1px solid var(--line);
-  padding-top:16px;
-}
-
-.total-line {
+.total {
   display:flex;
   justify-content:space-between;
-  font-size:18px;
+
+  font-size:20px;
   font-weight:900;
+
+  padding:16px 0;
 }
 
 .checkout {
   width:100%;
-  margin-top:12px;
+  border:0;
+
+  background:#171717;
+  color:#fff;
+
+  border-radius:12px;
+
+  padding:14px;
+
+  font-weight:900;
 }
 
-.empty {
-  text-align:center;
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+  border-top:1px solid var(--line);
+  padding:32px 20px;
+
   color:var(--muted);
-  padding:28px 0;
+
+  font-size:12px;
+  text-align:center;
 }
 
-/* TABLETTE */
+/* =========================
+   RESPONSIVE
+========================= */
 
 @media(max-width:1050px) {
 
-  .hero-grid,
-  .promise-grid,
-  .about-card {
+  .grid {
+    grid-template-columns:repeat(3,1fr);
+  }
+
+  .hero {
     grid-template-columns:1fr;
-  }
-
-  .hero-card {
-    min-height:360px;
-  }
-
-  .products {
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .categories {
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .trust-grid {
-    grid-template-columns:repeat(2,1fr);
   }
 
 }
 
-/* MOBILE */
-
 @media(max-width:760px) {
-
-  .container {
-    width:min(100% - 24px,1240px);
-  }
-
-  .announcement {
-    font-size:10px;
-  }
-
-  .navbar {
-    min-height:66px;
-  }
 
   .navlinks {
     display:none;
   }
 
-  .actions .icon-btn {
-    display:none;
+  .grid {
+    grid-template-columns:repeat(2,1fr);
   }
 
   .hero {
-    padding:48px 0 36px;
+    padding-top:45px;
   }
 
-  .hero-grid {
-    gap:24px;
-  }
+}
 
-  h1 {
-    font-size:54px;
-  }
+@media(max-width:480px) {
 
-  .mini-stats {
+  .grid {
     grid-template-columns:1fr;
-  }
-
-  .section {
-    padding:48px 0;
-  }
-
-  .categories,
-  .trust-grid,
-  .products {
-    grid-template-columns:1fr;
-  }
-
-  .shop-shell {
-    grid-template-columns:1fr;
-  }
-
-  .sidebar {
-    position:static;
-  }
-
-  .toolbar {
-    align-items:stretch;
-    flex-direction:column;
-  }
-
-  .search {
-    max-width:none;
-    width:100%;
-  }
-
-  .footer-grid {
-    grid-template-columns:1fr;
-  }
-
-  .footer-meta {
-    text-align:left;
   }
 
 }
 
 </style>
+
 </head>
 
 <body>
 
-<div class="announcement">
-ÉVIDA — une sélection de découvertes utiles, ingénieuses et surprenantes.
+<div class="top">
+  ÉVIDA — Découvrez l’évidence.
 </div>
 
 <header>
 
-<div class="container navbar">
+  <div class="nav">
 
-<a href="#" class="logo">ÉVIDA</a>
+    <a class="logo" href="#">
+      ÉVIDA
+    </a>
 
-<nav class="navlinks">
-<a href="#">Accueil</a>
-<a href="#boutique">Boutique</a>
-<a href="#univers">Univers</a>
-<a href="#apropos">À propos</a>
-</nav>
+    <nav class="navlinks">
 
-<div class="actions">
+      <a href="#boutique">
+        Boutique
+      </a>
 
-<button
-class="icon-btn"
-onclick="document.getElementById('search').focus(); document.getElementById('boutique').scrollIntoView({behavior:'smooth'});"
-aria-label="Rechercher">
-⌕
-</button>
+      <a href="#infos">
+        Informations
+      </a>
 
-<button class="cart-btn" id="openCart">
-Panier&nbsp;
-<span id="cartCount">0</span>
-</button>
+    </nav>
 
-</div>
+    <button
+      class="cartBtn"
+      id="openCart"
+    >
+      Panier
+      <span id="cartCount">0</span>
+    </button>
 
-</div>
+  </div>
 
 </header>
 
-<main>
 
 <section class="hero">
 
-<div class="container hero-grid">
+  <div>
 
-<div>
+    <div class="eyebrow">
+      Sélection ÉVIDA
+    </div>
 
-<div class="eyebrow">
-Sélection ÉVIDA
-</div>
+    <h1>
+      80 découvertes.<br>
+      4 univers.
+    </h1>
 
-<h1>
-Découvrez<br>
-l'évidence.
-</h1>
+    <p>
+      Une sélection de produits pour les animaux,
+      la maison, les innovations et les idées cadeaux.
+    </p>
 
-<p>
-Des produits utiles, ingénieux et tendance,
-choisis pour rendre le quotidien plus simple,
-plus agréable et plus intuitif.
-</p>
+  </div>
 
-<div class="cta-row">
+  <div class="heroCard">
 
-<a class="btn-primary" href="#boutique">
-Découvrir la boutique
-</a>
+    <div style="font-size:70px;">
+      ✨
+    </div>
 
-<a class="btn-secondary" href="#univers">
-Explorer les univers
-</a>
+    <strong>
+      Moins chercher.<br>
+      Mieux découvrir.
+    </strong>
 
-</div>
+    <small>
+      Animaux · Maison · Innovations · Cadeaux
+    </small>
 
-</div>
-
-<div class="hero-card">
-
-<div>
-
-<div class="big-mark">
-✨
-</div>
-
-<h3>
-Moins chercher.
-Mieux découvrir.
-</h3>
-
-<p>
-Une boutique pensée autour d'une sélection
-courte et lisible plutôt qu'un catalogue sans fin.
-</p>
-
-</div>
-
-<div class="mini-stats">
-
-<div class="stat">
-<strong>30</strong>
-<span>produits sélectionnés</span>
-</div>
-
-<div class="stat">
-<strong>4</strong>
-<span>univers principaux</span>
-</div>
-
-<div class="stat">
-<strong>1</strong>
-<span>expérience simple</span>
-</div>
-
-</div>
-
-</div>
-
-</div>
+  </div>
 
 </section>
 
 
-<section class="trust">
-
-<div class="container trust-grid">
-
-<div class="trust-item">
-<strong>🔎 Sélection claire</strong>
-<span>Des produits organisés par usage.</span>
-</div>
-
-<div class="trust-item">
-<strong>🛒 Panier simple</strong>
-<span>Ajoutez et retrouvez vos produits facilement.</span>
-</div>
-
-<div class="trust-item">
-<strong>📱 Pensé mobile</strong>
-<span>Une expérience adaptée aux smartphones.</span>
-</div>
-
-<div class="trust-item">
-<strong>🔐 Paiement à venir</strong>
-<span>Activation après validation des fournisseurs.</span>
-</div>
-
-</div>
-
-</section>
-
-
-<section id="univers" class="section">
-
-<div class="container">
-
-<div class="section-head">
-
-<div>
-
-<div class="eyebrow">
-Nos univers
-</div>
-
-<h2>
-Une sélection qui a du sens.
-</h2>
-
-<p>
-Quatre univers cohérents avec l'identité ÉVIDA :
-utile, pratique, moderne et facile à découvrir.
-</p>
-
-</div>
-
-</div>
-
-
-<div class="categories">
-
-<div class="category" data-jump="Animaux">
-
-<div class="icon">
-🐾
-</div>
-
-<div>
-
-<h3>
-Animaux
-</h3>
-
-<p>
-Des accessoires pratiques pour chats et chiens.
-</p>
-
-</div>
-
-</div>
-
-
-<div class="category" data-jump="Maison">
-
-<div class="icon">
-🏠
-</div>
-
-<div>
-
-<h3>
-Maison
-</h3>
-
-<p>
-Des solutions simples pour organiser et améliorer l'intérieur.
-</p>
-
-</div>
-
-</div>
-
-
-<div class="category" data-jump="Innovation">
-
-<div class="icon">
-💡
-</div>
-
-<div>
-
-<h3>
-Innovations
-</h3>
-
-<p>
-Des objets malins pour faciliter certaines tâches du quotidien.
-</p>
-
-</div>
-
-</div>
-
-
-<div class="category" data-jump="Cadeaux">
-
-<div class="icon">
-🎁
-</div>
-
-<div>
-
-<h3>
-Cadeaux
-</h3>
-
-<p>
-Des idées utiles, faciles à offrir et à découvrir.
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-
-<section class="section dark">
-
-<div class="container promise-grid">
-
-<div class="promise-copy">
-
-<div class="eyebrow" style="color:#aaa">
-L'idée ÉVIDA
-</div>
-
-<h2>
-Moins de bruit.<br>
-Plus de bonnes découvertes.
-</h2>
-
-<p>
-ÉVIDA ne cherche pas à afficher des milliers de références.
-L'objectif est de construire une sélection claire,
-visuelle et cohérente autour de produits
-qui ont une vraie utilité perçue.
-</p>
-
-</div>
-
-
-<div class="promise-list">
-
-<div class="promise">
-
-<strong>
-01 — Sélection
-</strong>
-
-<span>
-Une gamme volontairement maîtrisée.
-</span>
-
-</div>
-
-
-<div class="promise">
-
-<strong>
-02 — Présentation
-</strong>
-
-<span>
-Des fiches lisibles, des prix clairs
-et une navigation simple.
-</span>
-
-</div>
-
-
-<div class="promise">
-
-<strong>
-03 — Validation
-</strong>
-
-<span>
-Les fournisseurs et conditions réelles
-seront vérifiés avant ouverture des ventes.
-</span>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-
-<section id="boutique" class="section">
-
-<div class="container">
-
-<div class="section-head">
-
-<div>
-
-<div class="eyebrow">
-Boutique ÉVIDA
-</div>
-
-<h2>
-Nos 30 découvertes.
-</h2>
-
-<p>
-Le catalogue de préparation ÉVIDA,
-organisé par univers.
-</p>
-
-</div>
-
-<div class="count">
-<span id="visibleCount">30</span>
-produits affichés
-</div>
-
-</div>
-
-
-<div class="shop-shell">
-
-<aside class="sidebar">
-
-<h3>
-Catégories
-</h3>
-
-<div class="filter-list">
-
-<button class="filter-btn active" data-filter="Tous">
-Tous les produits
-</button>
-
-<button class="filter-btn" data-filter="Animaux">
-Animaux
-</button>
-
-<button class="filter-btn" data-filter="Maison">
-Maison
-</button>
-
-<button class="filter-btn" data-filter="Innovation">
-Innovations
-</button>
-
-<button class="filter-btn" data-filter="Cadeaux">
-Cadeaux
-</button>
-
-</div>
-
-<div class="sidebar-note">
-Les visuels exacts des fournisseurs seront intégrés
-après validation des références définitives.
-</div>
-
-</aside>
-
-
-<div class="shop-main">
-
-<div class="toolbar">
-
-<input
-id="search"
-class="search"
-type="search"
-placeholder="Rechercher un produit..."
-autocomplete="off">
-
-</div>
-
-<div class="products" id="productGrid"></div>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-
-<section id="apropos" class="section">
-
-<div class="container about-card">
-
-<div>
-
-<div class="eyebrow">
-À propos
-</div>
-
-<h2>
-Pourquoi ÉVIDA ?
-</h2>
-
-<p>
-Parce qu'il existe énormément de produits sur Internet,
-mais que trouver ceux qui valent vraiment le détour
-peut prendre du temps.
-</p>
-
-<p>
-ÉVIDA veut simplifier cette recherche grâce à une sélection
-claire, organisée et agréable à parcourir.
-</p>
-
-</div>
-
-
-<div class="about-points">
-
-<div class="about-point">
-<strong>Clarté</strong><br>
-Une boutique simple à comprendre.
-</div>
-
-<div class="about-point">
-<strong>Cohérence</strong><br>
-Des univers sélectionnés plutôt qu'un catalogue générique.
-</div>
-
-<div class="about-point">
-<strong>Évolution</strong><br>
-Les références seront reliées aux fournisseurs réels
-au fur et à mesure.
-</div>
-
-</div>
-
-</div>
-
-</section>
+<main
+  class="wrap"
+  id="boutique"
+>
+
+  <div class="toolbar">
+
+    <input
+      class="search"
+      id="search"
+      type="search"
+      placeholder="Rechercher un produit…"
+      autocomplete="off"
+    >
+
+    <div
+      class="filters"
+      id="filters"
+    ></div>
+
+  </div>
+
+  <div
+    class="grid"
+    id="grid"
+  ></div>
 
 </main>
 
 
+<section
+  class="wrap"
+  id="infos"
+>
+
+  <div class="notice">
+
+    ÉVIDA prépare actuellement la mise en vente
+    de sa sélection.
+
+    Les informations définitives concernant
+    la livraison, les retours et les conditions
+    de vente seront affichées avant
+    l'ouverture commerciale.
+
+  </div>
+
+</section>
+
+
 <footer>
 
-<div class="container footer-grid">
-
-<div class="footer-brand">
-
-<div class="logo">
-ÉVIDA
-</div>
-
-<p>
-Découvrez l'évidence.
-Des produits utiles, ingénieux et surprenants
-pour améliorer le quotidien.
-</p>
-
-</div>
-
-
-<div class="footer-meta">
-
-Catalogue en cours de préparation.<br>
-
-Les fournisseurs, délais de livraison,
-retours, moyens de paiement et mentions légales
-seront précisés avant l'ouverture officielle des ventes.
-
-</div>
-
-</div>
+  © ÉVIDA — Découvrez l’évidence.
 
 </footer>
 
 
-<!-- PANIER -->
+<div
+  class="overlay"
+  id="overlay"
+></div>
 
-<div class="overlay" id="overlay"></div>
 
-<aside class="cart-panel" id="cartPanel">
+<aside
+  class="drawer"
+  id="drawer"
+>
 
-<div class="cart-head">
+  <div class="drawerHead">
 
-<div>
-<strong>Votre panier</strong><br>
-<small>ÉVIDA</small>
-</div>
+    <div>
 
-<button class="close" id="closeCart" aria-label="Fermer">
-×
-</button>
+      <strong>
+        Votre panier
+      </strong>
 
-</div>
+      <br>
 
-<div class="cart-items" id="cartItems"></div>
+      <small>
+        ÉVIDA
+      </small>
 
-<div class="cart-total">
+    </div>
 
-<div class="total-line">
+    <button
+      class="close"
+      id="close"
+    >
+      ×
+    </button>
 
-<span>
-Total
-</span>
+  </div>
 
-<span id="cartTotal">
-0,00 €
-</span>
 
-</div>
+  <div
+    class="cartItems"
+    id="cartItems"
+  ></div>
 
-<button class="btn-primary checkout" id="checkoutBtn">
-Continuer
-</button>
 
-</div>
+  <div class="total">
+
+    <span>
+      Total
+    </span>
+
+    <span id="total">
+      0,00 €
+    </span>
+
+  </div>
+
+
+  <button
+    class="checkout"
+    id="checkout"
+  >
+    Paiement sécurisé
+  </button>
 
 </aside>
 
 
 <script>
 
-/* ==========================
-   PRODUITS ÉVIDA
-========================== */
+/* ============================================
+   CATALOGUE ÉVIDA
+   PARTIE 2 À COLLER DIRECTEMENT SOUS CETTE LIGNE
+============================================ */
 
-const products = [
+const PRODUCTS = [
+/* =========================
+   🐾 ANIMAUX — 20 PRODUITS
+========================= */
 
 {
-id:1,
-name:"Fontaine à eau pour chat",
-category:"Animaux",
-price:29.90,
-emoji:"⛲",
-desc:"Une fontaine compacte pensée pour le quotidien de votre chat."
+  id:1,
+  category:"Animaux",
+  name:"Porte-sacs à déjections design",
+  price:19.90,
+  image:"https://cdn.shopify.com/s/files/1/0716/2789/9157/products/48461676990086_.pic.jpg?v=1677602812",
+  supplier:"PAWSOME PETS NEW YORK"
 },
 
 {
-id:2,
-name:"Rouleau anti-poils réutilisable",
-category:"Animaux",
-price:19.90,
-emoji:"🧹",
-desc:"Pour retirer rapidement les poils sur tissus, canapé et vêtements."
+  id:2,
+  category:"Animaux",
+  name:"Gilet d’hiver pour chien",
+  price:34.90,
+  image:"https://cdn.shopify.com/s/files/1/0576/2459/2467/files/cozycanine-winter-warmer-vest-279672.jpg?v=1738827879",
+  supplier:"Dog Hugs Cat"
 },
 
 {
-id:3,
-name:"Nettoyeur de pattes pour chien",
-category:"Animaux",
-price:19.90,
-emoji:"🐾",
-desc:"Un accessoire simple à utiliser après les promenades."
+  id:3,
+  category:"Animaux",
+  name:"Imperméable pour chien",
+  price:39.90,
+  image:"https://cdn.shopify.com/s/files/1/0576/2459/2467/products/1080959587960.jpg?v=1738826571",
+  supplier:"Dog Hugs Cat"
 },
 
 {
-id:4,
-name:"Bouteille d'eau portable pour chien",
-category:"Animaux",
-price:19.90,
-emoji:"💧",
-desc:"Pratique pour les sorties, balades et déplacements."
+  id:4,
+  category:"Animaux",
+  name:"Friandises croustillantes pour chien",
+  price:19.90,
+  image:"https://cdn.shopify.com/s/files/1/0663/6575/1431/files/IMG_3055_3.jpg?v=1763693571",
+  supplier:"BeyondWhiskers"
 },
 
 {
-id:5,
-name:"Gamelle anti-glouton",
-category:"Animaux",
-price:19.90,
-emoji:"🥣",
-desc:"Une gamelle à relief conçue pour ralentir la prise de nourriture."
+  id:5,
+  category:"Animaux",
+  name:"Bouteille d’eau portable pour chien",
+  price:24.90,
+  image:"https://cdn.shopify.com/s/files/1/0576/2459/2467/products/293765629003.jpg?v=1738817673",
+  supplier:"Dog Hugs Cat"
 },
 
 {
-id:6,
-name:"Gamelle de voyage pliable",
-category:"Animaux",
-price:14.90,
-emoji:"👜",
-desc:"Compacte, légère et facile à emporter."
+  id:6,
+  category:"Animaux",
+  name:"Balançoire colorée pour petits animaux",
+  price:24.90,
+  image:"https://cdn.shopify.com/s/files/1/0576/2459/2467/products/1013977952131.jpg?v=1738870482",
+  supplier:"Dog Hugs Cat"
 },
 
 {
-id:7,
-name:"Gant de toilettage",
-category:"Animaux",
-price:14.90,
-emoji:"🧤",
-desc:"Pour brosser votre animal pendant un moment de soin."
+  id:7,
+  category:"Animaux",
+  name:"Kit de filtres éponge pour aquarium",
+  price:24.90,
+  image:"https://cdn.shopify.com/s/files/1/0576/2459/2467/products/aquarium-sponge-filter-kit-10-pack-biochemical-filtration-system-for-fish-tanks-821575.jpg?v=1738868771",
+  supplier:"Dog Hugs Cat"
 },
 
 {
-id:8,
-name:"Brosse anti-poils chat & chien",
-category:"Animaux",
-price:19.90,
-emoji:"🐕",
-desc:"Une brosse pratique pour l'entretien régulier du pelage."
+  id:8,
+  category:"Animaux",
+  name:"Vêtement polaire abeille pour animal",
+  price:29.90,
+  image:"https://cdn.shopify.com/s/files/1/0576/2459/2467/products/buzzing-bee-pet-apparel-soft-fleece-clothes-for-dogs-and-cats-963170.jpg?v=1738831428",
+  supplier:"Dog Hugs Cat"
 },
 
 {
-id:9,
-name:"Jouet interactif pour chat",
-category:"Animaux",
-price:19.90,
-emoji:"🐈",
-desc:"Un accessoire ludique pour occuper votre chat."
+  id:9,
+  category:"Animaux",
+  name:"Balle interactive à l’herbe à chat",
+  price:19.90,
+  image:"https://cdn.shopify.com/s/files/1/0576/2459/2467/products/1620476707691.jpg?v=1738862117",
+  supplier:"Dog Hugs Cat"
 },
 
 {
-id:10,
-name:"Housse de siège auto pour animaux",
-category:"Animaux",
-price:29.90,
-emoji:"🚗",
-desc:"Pour protéger plus facilement les sièges pendant les trajets."
+  id:10,
+  category:"Animaux",
+  name:"Laisse corde pour chien",
+  price:24.90,
+  image:"https://cdn.shopify.com/s/files/1/0716/2789/9157/products/48011676652744_.pic.jpg?v=1677603639",
+  supplier:"PAWSOME PETS NEW YORK"
 },
 
 {
-id:11,
-name:"Lampe LED à détecteur de mouvement",
-category:"Maison",
-price:24.90,
-emoji:"💡",
-desc:"Un éclairage d'appoint pratique pour les zones de passage."
+  id:11,
+  category:"Animaux",
+  name:"Jouet peluche sonore pour chien",
+  price:24.90,
+  image:"https://cdn.shopify.com/s/files/1/0576/2459/2467/products/556790e1-460e-415c-9e95-0155a692f1e6.jpg?v=1738846326",
+  supplier:"Dog Hugs Cat"
 },
 
 {
-id:12,
-name:"Mini aspirateur de bureau",
-category:"Maison",
-price:24.90,
-emoji:"🌀",
-desc:"Pour retirer rapidement miettes et petites poussières."
+  id:12,
+  category:"Animaux",
+  name:"Décoration aquarium tête en résine",
+  price:24.90,
+  image:"https://cdn.shopify.com/s/files/1/0576/2459/2467/products/bodhisattva-head-resin-aquarium-decoration-stunning-reptile-tank-ornament-720835.jpg?v=1738872103",
+  supplier:"Dog Hugs Cat"
 },
 
 {
-id:13,
-name:"Organisateur d'évier",
-category:"Maison",
-price:19.90,
-emoji:"🧽",
-desc:"Pour garder éponges et accessoires mieux rangés."
+  id:13,
+  category:"Animaux",
+  name:"Porte-sacs à déjections Wonderland",
+  price:19.90,
+  image:"https://cdn.shopify.com/s/files/1/0716/2789/9157/products/48591676991359_.pic.jpg?v=1677602566",
+  supplier:"PAWSOME PETS NEW YORK"
 },
 
 {
-id:14,
-name:"Mini scelleuse pour sachets",
-category:"Maison",
-price:14.90,
-emoji:"📦",
-desc:"Un petit accessoire pour refermer certains emballages souples."
+  id:14,
+  category:"Animaux",
+  name:"Costume pour animal",
+  price:29.90,
+  image:"https://cdn.shopify.com/s/files/1/0576/2459/2467/products/618371130615.jpg?v=1738819753",
+  supplier:"Dog Hugs Cat"
 },
 
 {
-id:15,
-name:"Organisateur de câbles",
-category:"Maison",
-price:14.90,
-emoji:"🔌",
-desc:"Pour mieux organiser les câbles sur le bureau."
+  id:15,
+  category:"Animaux",
+  name:"Chaussures imperméables pour animal",
+  price:29.90,
+  image:"https://cdn.shopify.com/s/files/1/0576/2459/2467/products/2696284793135.jpg?v=1738829747",
+  supplier:"Dog Hugs Cat"
 },
 
 {
-id:16,
-name:"Boîte cache-câbles",
-category:"Maison",
-price:19.90,
-emoji:"🗃️",
-desc:"Une solution simple pour dissimuler multiprises et câbles."
+  id:16,
+  category:"Animaux",
+  name:"Friandises souples pour chien",
+  price:19.90,
+  image:"https://cdn.shopify.com/s/files/1/0663/6575/1431/files/Screenshot_297.png?v=1779993370",
+  supplier:"BeyondWhiskers"
 },
 
 {
-id:17,
-name:"Veilleuse rechargeable",
-category:"Maison",
-price:19.90,
-emoji:"🌙",
-desc:"Une petite lumière d'ambiance facile à placer."
+  id:17,
+  category:"Animaux",
+  name:"Porte-clés cadeau animal",
+  price:14.90,
+  image:"https://cdn.shopify.com/s/files/1/0088/5941/8705/files/AIMD206pBG1.jpg?v=1748038106",
+  supplier:"Lifebeats Gifts"
 },
 
 {
-id:18,
-name:"Brosse de nettoyage multifonction",
-category:"Maison",
-price:14.90,
-emoji:"🧼",
-desc:"Pour différentes petites tâches de nettoyage du quotidien."
+  id:18,
+  category:"Animaux",
+  name:"Harnais camouflage pour chien",
+  price:29.90,
+  image:"https://cdn.shopify.com/s/files/1/0576/2459/2467/products/camouflage-dog-chest-harness-set-with-printed-polyester-strap-853257.jpg?v=1738838287",
+  supplier:"Dog Hugs Cat"
 },
 
 {
-id:19,
-name:"Organisateur de tiroir modulable",
-category:"Maison",
-price:24.90,
-emoji:"🗄️",
-desc:"Pour structurer plus facilement le rangement des tiroirs."
+  id:19,
+  category:"Animaux",
+  name:"Peignoir microfibre ultra-absorbant",
+  price:34.90,
+  image:"https://cdn.shopify.com/s/files/1/0576/2459/2467/products/2de9f5d4-d4e7-4970-b935-67a54bca35b0.jpg?v=1738876487",
+  supplier:"Dog Hugs Cat"
 },
 
 {
-id:20,
-name:"Support mural adhésif multifonction",
-category:"Maison",
-price:14.90,
-emoji:"🧷",
-desc:"Un support compact pour organiser de petits objets."
+  id:20,
+  category:"Animaux",
+  name:"Jouet corde dentaire pour chien",
+  price:19.90,
+  image:"https://cdn.shopify.com/s/files/1/0576/2459/2467/products/7962014f-9a88-49fa-ab99-84b19bb2640c.jpg?v=1738845917",
+  supplier:"Dog Hugs Cat"
+},
+
+
+/* =========================
+   🏠 MAISON — 20 PRODUITS
+========================= */
+
+{
+  id:21,
+  category:"Maison",
+  name:"Affiche aquarelle décorative",
+  price:24.90,
+  image:"https://cdn.shopify.com/s/files/1/0756/6118/1216/files/d6f72321-dcd9-423e-9884-1762c06174aa.jpg?v=1691542622",
+  supplier:"Barbara Cleary Designs"
 },
 
 {
-id:21,
-name:"Support téléphone pliable",
-category:"Innovation",
-price:19.90,
-emoji:"📱",
-desc:"Un support compact pour poser son téléphone au quotidien."
+  id:22,
+  category:"Maison",
+  name:"Veilleuse céramique décorative",
+  price:29.90,
+  image:"https://cdn.shopify.com/s/files/1/0888/7674/5018/files/DAC6350CNL.jpg?v=1721853960",
+  supplier:"Caroline's Treasures"
 },
 
 {
-id:22,
-name:"Balance numérique pour bagages",
-category:"Innovation",
-price:19.90,
-emoji:"⚖️",
-desc:"Pour contrôler le poids d'un bagage avant le départ."
+  id:23,
+  category:"Maison",
+  name:"Tapis artisanal vintage",
+  price:89.90,
+  image:"https://cdn.shopify.com/s/files/1/0611/4531/7573/files/canvello-handmade-antique-american-hooked-rug-27-x-28-944681.jpg?v=1725235433",
+  supplier:"Canvello"
 },
 
 {
-id:23,
-name:"Lampe de lecture rechargeable",
-category:"Innovation",
-price:19.90,
-emoji:"📖",
-desc:"Une lumière d'appoint compacte pour la lecture."
+  id:24,
+  category:"Maison",
+  name:"Tapis Azra jute & laine",
+  price:99.90,
+  image:"https://cdn.shopify.com/s/files/1/0670/5391/2317/files/azr-576.jpg?v=1771040984",
+  supplier:"ROY's HOME"
 },
 
 {
-id:24,
-name:"Mini humidificateur USB",
-category:"Innovation",
-price:24.90,
-emoji:"🌫️",
-desc:"Un petit appareil d'ambiance pour bureau ou espace personnel."
+  id:25,
+  category:"Maison",
+  name:"Décoration abstraite Ninye",
+  price:49.90,
+  image:"https://cdn.shopify.com/s/files/1/0518/0993/products/NinyeAbstractSculpture09_400.jpg?v=1619636235",
+  supplier:"Luangisa African Gallery"
 },
 
 {
-id:25,
-name:"Lampe rechargeable pour placard",
-category:"Innovation",
-price:19.90,
-emoji:"🔦",
-desc:"Un éclairage d'appoint pour placards et petits espaces."
+  id:26,
+  category:"Maison",
+  name:"Drapeau décoratif extérieur",
+  price:24.90,
+  image:"https://cdn.shopify.com/s/files/1/0888/7674/5018/files/DAC5319CHF.jpg?v=1721558208",
+  supplier:"Caroline's Treasures"
 },
 
 {
-id:26,
-name:"Support téléphone voiture",
-category:"Innovation",
-price:19.90,
-emoji:"🚘",
-desc:"Pour maintenir le téléphone en position lors des trajets."
+  id:27,
+  category:"Maison",
+  name:"Grand miroir arche noir",
+  price:119.90,
+  image:"https://cdn11.bigcommerce.com/s-u7s6b66c/products/181944/images/1466383/FENEAMBL69485831_102339457__51279.1777654557.1280.1280.jpg?c=2",
+  supplier:"SMITH DISTRIBUTORS"
 },
 
 {
-id:27,
-name:"Organisateur électronique de voyage",
-category:"Cadeaux",
-price:19.90,
-emoji:"🎒",
-desc:"Pour regrouper câbles, chargeurs et petits accessoires."
+  id:28,
+  category:"Maison",
+  name:"Affiche déco ville",
+  price:24.90,
+  image:"https://cdn.shopify.com/s/files/1/0688/5743/0229/files/7f6122dfeb9611c4fbef7b21618d5fb003f8a708_36b16642-bc8f-4a32-aac8-b27b59c67eb8.jpg?v=1727110512",
+  supplier:"MapYourDreams"
 },
 
 {
-id:28,
-name:"Trousse de voyage compartimentée",
-category:"Cadeaux",
-price:24.90,
-emoji:"🧳",
-desc:"Une trousse pratique avec plusieurs espaces de rangement."
+  id:29,
+  category:"Maison",
+  name:"Cocotte en fonte émaillée 2,7 L",
+  price:69.90,
+  image:"https://cdn11.bigcommerce.com/s-u7s6b66c/products/181508/images/1464453/MC-CR20F-BLUE__91680.1773069291.1280.1280.jpg?c=2",
+  supplier:"SMITH DISTRIBUTORS"
 },
 
 {
-id:29,
-name:"Mini lampe d'ambiance rechargeable",
-category:"Cadeaux",
-price:24.90,
-emoji:"✨",
-desc:"Une petite lumière décorative facile à déplacer."
+  id:30,
+  category:"Maison",
+  name:"Miroir compact décoratif",
+  price:19.90,
+  image:"https://cdn.shopify.com/s/files/1/0888/7674/5018/files/DAC6361SCM.jpg?v=1721843927",
+  supplier:"Caroline's Treasures"
 },
 
 {
-id:30,
-name:"Sac de voyage cabine compact",
-category:"Cadeaux",
-price:39.90,
-emoji:"✈️",
-desc:"Un format pratique pour les courts déplacements."
+  id:31,
+  category:"Maison",
+  name:"Tapis oriental turquoise & gris",
+  price:119.90,
+  image:"https://cdn.shopify.com/s/files/1/0670/5391/2317/files/A18189_20ebay_6852eeba-bec5-42aa-b7f5-58fd642aedd7.jpg?v=1745702697",
+  supplier:"ROY's HOME"
+},
+
+{
+  id:32,
+  category:"Maison",
+  name:"Coussin décoratif tulipes",
+  price:34.90,
+  image:"https://cdn.shopify.com/s/files/1/0888/7674/5018/files/DAC1462PW1216.jpg?v=1722708276",
+  supplier:"Caroline's Treasures"
+},
+
+{
+  id:33,
+  category:"Maison",
+  name:"Petit lustre cristal doré",
+  price:89.90,
+  image:"https://cdn.shopify.com/s/files/1/0743/1746/3862/files/c93e6b10c01c7c625cd6b6f56374695f.jpg?v=1782237056",
+  supplier:"ShipItFurniture"
+},
+
+{
+  id:34,
+  category:"Maison",
+  name:"Tapis moderne beige",
+  price:129.90,
+  image:"https://cdn.shopify.com/s/files/1/0611/4531/7573/files/canvello-beige-color-hand-knotted-modern-gabbeh-rug-85-x-98-796629.jpg?v=1725233125",
+  supplier:"Canvello"
+},
+
+{
+  id:35,
+  category:"Maison",
+  name:"Barre magnétique couteaux & outils",
+  price:29.90,
+  image:"https://cdn.shopify.com/s/files/1/0994/0820/products/6141qD368_2BL._SL1000.jpg?v=1783043384",
+  supplier:"SiliSlick"
+},
+
+{
+  id:36,
+  category:"Maison",
+  name:"Poster encadré artistique",
+  price:39.90,
+  image:"https://static.wixstatic.com/media/441922_580d3073f1f7455c9b67bdff9d7c326a~mv2.jpg/v1/fit/w_1000,h_1000,q_90/file.jpg",
+  supplier:"Good Doer by Gianneli"
+},
+
+{
+  id:37,
+  category:"Maison",
+  name:"Affiche voyage Rio",
+  price:24.90,
+  image:"https://cdn.shopify.com/s/files/1/0777/0757/5630/products/il_fullxfull.5249217050_31qe.jpg?v=1697938118",
+  supplier:"VintyArty"
+},
+
+{
+  id:38,
+  category:"Maison",
+  name:"Lot de chaises velours noir",
+  price:149.90,
+  image:"https://cdn.shopify.com/s/files/1/0670/5391/2317/files/46fbebd0098114cc74eed93ca80609b0_44a395e9-4406-4014-9b90-e48f722d168a.jpg?v=1779326521",
+  supplier:"ROY's HOME"
+},
+
+{
+  id:39,
+  category:"Maison",
+  name:"Poster encadré Hestia",
+  price:39.90,
+  image:"https://static.wixstatic.com/media/441922_21435f48ce404234bdfe46d445c057c0~mv2.jpg/v1/fit/w_1000,h_1000,q_90/file.jpg",
+  supplier:"Good Doer by Gianneli"
+},
+
+{
+  id:40,
+  category:"Maison",
+  name:"Commode avec portant et LED",
+  price:139.90,
+  image:"https://cdn.shopify.com/s/files/1/0670/5391/2317/files/4c7e6c647b6418ff87124dadc9fc4a1c.jpg?v=1779329831",
+  supplier:"ROY's HOME"
+},/* =========================
+   💡 INNOVATIONS — 20 PRODUITS
+========================= */
+
+{
+  id:41,
+  category:"Innovation",
+  name:"Radio Bluetooth 9 bandes",
+  price:49.90,
+  image:"https://cdn.shopify.com/s/files/1/2075/4743/products/87096290f023c81419d60ebda2885f94-sw.png?v=1647592079",
+  supplier:"JupiterGear"
+},
+
+{
+  id:42,
+  category:"Innovation",
+  name:"Tags sécurité bagage QR Suisse x2",
+  price:19.90,
+  image:"https://cdn.shopify.com/s/files/1/0834/0691/3857/files/switzerland-qr-bag-tag-tag8.jpg_1.webp?v=1742449841",
+  supplier:"tag8"
+},
+
+{
+  id:43,
+  category:"Innovation",
+  name:"Accessoire flottant audio",
+  price:24.90,
+  image:"https://cdn.shopify.com/s/files/1/0556/4134/2158/files/FullSizeRender_9438139b-e637-4668-a4f1-99a46fb70de7.jpg?v=1778775047",
+  supplier:"Southern Audio Services"
+},
+
+{
+  id:44,
+  category:"Innovation",
+  name:"Moulin à café électrique Timemore",
+  price:149.90,
+  image:"https://cdn.shopify.com/s/files/1/0642/9153/7138/files/SSP2.jpg?v=1737360520",
+  supplier:"Timemore"
+},
+
+{
+  id:45,
+  category:"Innovation",
+  name:"Tags bagage initiale Z x2",
+  price:19.90,
+  image:"https://cdn.shopify.com/s/files/1/0834/0691/3857/files/initial-bag-qr-tag-Z.jpg_1.webp?v=1742626266",
+  supplier:"tag8"
+},
+
+{
+  id:46,
+  category:"Innovation",
+  name:"Tags sécurité bagage QR Pays-Bas x2",
+  price:19.90,
+  image:"https://cdn.shopify.com/s/files/1/0834/0691/3857/files/netherlands-qr-bag-tag-tag8.jpg_1.webp?v=1742442408",
+  supplier:"tag8"
+},
+
+{
+  id:47,
+  category:"Innovation",
+  name:"Étui passeport RFID",
+  price:29.90,
+  image:"https://cdn.shopify.com/s/files/1/0834/0691/3857/files/Vegan_-_RFID_black_passport_vegan_leather_listing_image.webp?v=1762585716",
+  supplier:"tag8"
+},
+
+{
+  id:48,
+  category:"Innovation",
+  name:"Tags bagage initiale H x2",
+  price:19.90,
+  image:"https://cdn.shopify.com/s/files/1/0834/0691/3857/files/initial-bag-qr-tag-H.jpg_1.webp?v=1742577748",
+  supplier:"tag8"
+},
+
+{
+  id:49,
+  category:"Innovation",
+  name:"Accessoire audio édition limitée",
+  price:39.90,
+  image:"https://cdn.shopify.com/s/files/1/0556/4134/2158/files/DSC01769.jpg?v=1775150701",
+  supplier:"Southern Audio Services"
+},
+
+{
+  id:50,
+  category:"Innovation",
+  name:"Lampe frontale rechargeable 1400 lm",
+  price:59.90,
+  image:"https://cdn.shopify.com/s/files/1/0556/4134/2158/files/LBP1400HD-L34C_Right_Side_Perspective.png?v=1782224786",
+  supplier:"Southern Audio Services"
+},
+
+{
+  id:51,
+  category:"Innovation",
+  name:"Tasseur café auto-nivelant Timemore",
+  price:49.90,
+  image:"https://cdn.shopify.com/s/files/1/0642/9153/7138/files/Frame2062151904.png?v=1773293791",
+  supplier:"Timemore"
+},
+
+{
+  id:52,
+  category:"Innovation",
+  name:"Chauffage céramique portable",
+  price:59.90,
+  image:"https://cdn11.bigcommerce.com/s-u7s6b66c/products/162746/images/1401969/VA-708B__83167.1694715186.1280.1280.jpg?c=2",
+  supplier:"SMITH DISTRIBUTORS"
+},
+
+{
+  id:53,
+  category:"Innovation",
+  name:"Radio cassette Bluetooth + MP3",
+  price:79.90,
+  image:"https://cdn.shopify.com/s/files/1/2075/4743/files/SC-3201BT_Combo.png?v=1758548599",
+  supplier:"JupiterGear"
+},
+
+{
+  id:54,
+  category:"Innovation",
+  name:"Tags sécurité bagage QR Mexique x2",
+  price:19.90,
+  image:"https://cdn.shopify.com/s/files/1/0834/0691/3857/files/mexico-qr-bag-tag-tag8.jpg_1.webp?v=1742466086",
+  supplier:"tag8"
+},
+
+{
+  id:55,
+  category:"Innovation",
+  name:"TV LED 32 pouces",
+  price:149.90,
+  image:"https://cdn.shopify.com/s/files/1/2075/4743/products/1531ac40340d465bf7b811df917628d4-sw.jpg?v=1647590854",
+  supplier:"JupiterGear"
+},
+
+{
+  id:56,
+  category:"Innovation",
+  name:"Tags bagage initiale Q x2",
+  price:19.90,
+  image:"https://cdn.shopify.com/s/files/1/0834/0691/3857/files/initial-bag-qr-tag-Q.jpg_1.webp?v=1742623739",
+  supplier:"tag8"
+},
+
+{
+  id:57,
+  category:"Innovation",
+  name:"Support plafond TV",
+  price:89.90,
+  image:"https://cdn11.bigcommerce.com/s-u7s6b66c/products/162685/images/1401908/CMC-348-BNDL__68133.1694658273.1280.1280.jpg?c=2",
+  supplier:"SMITH DISTRIBUTORS"
+},
+
+{
+  id:58,
+  category:"Innovation",
+  name:"Cadenas Dolphin",
+  price:24.90,
+  image:"https://cdn.shopify.com/s/files/1/0834/0691/3857/files/tag8-dolphin-padlock.jpg_1.webp?v=1743666922",
+  supplier:"tag8"
+},
+
+{
+  id:59,
+  category:"Innovation",
+  name:"Tags sécurité bagage Chicago x2",
+  price:19.90,
+  image:"https://cdn.shopify.com/s/files/1/0834/0691/3857/files/tag8-chicago-bag-tag.jpg_1.webp?v=1744629110",
+  supplier:"tag8"
+},
+
+{
+  id:60,
+  category:"Innovation",
+  name:"Moulin manuel Timemore C5",
+  price:69.90,
+  image:"https://cdn.shopify.com/s/files/1/0642/9153/7138/files/C5pro-6.png?v=1752829455",
+  supplier:"Timemore"
+},
+
+
+/* =========================
+   🎁 CADEAUX — 20 PRODUITS
+========================= */
+
+{
+  id:61,
+  category:"Cadeaux",
+  name:"Drapeau maison Saint-Valentin",
+  price:24.90,
+  image:"https://cdn.shopify.com/s/files/1/0888/7674/5018/files/DAC5319CHF.jpg?v=1721558208",
+  supplier:"Caroline's Treasures"
+},
+
+{
+  id:62,
+  category:"Cadeaux",
+  name:"Cartes de vœux chien x8",
+  price:19.90,
+  image:"https://cdn.shopify.com/s/files/1/0888/7674/5018/files/DAC1737GCA7P.jpg?v=1721702572",
+  supplier:"Caroline's Treasures"
+},
+
+{
+  id:63,
+  category:"Cadeaux",
+  name:"Miroir compact Basset Hound",
+  price:19.90,
+  image:"https://cdn.shopify.com/s/files/1/0888/7674/5018/files/DAC6361SCM.jpg?v=1721843927",
+  supplier:"Caroline's Treasures"
+},
+
+{
+  id:64,
+  category:"Cadeaux",
+  name:"Cartes de Noël Boxer x8",
+  price:19.90,
+  image:"https://cdn.shopify.com/s/files/1/0888/7674/5018/files/DAC2620GCA7P.jpg?v=1721708789",
+  supplier:"Caroline's Treasures"
+},
+
+{
+  id:65,
+  category:"Cadeaux",
+  name:"Coussin décoratif Tulipes",
+  price:34.90,
+  image:"https://cdn.shopify.com/s/files/1/0888/7674/5018/files/DAC1462PW1216.jpg?v=1722708276",
+  supplier:"Caroline's Treasures"
+},
+
+{
+  id:66,
+  category:"Cadeaux",
+  name:"Cartes Noël Bull Terrier x8",
+  price:19.90,
+  image:"https://cdn.shopify.com/s/files/1/0888/7674/5018/files/DAC7774GCA7P.jpg?v=1731530245",
+  supplier:"Caroline's Treasures"
+},
+
+{
+  id:67,
+  category:"Cadeaux",
+  name:"Coussin Collie Hippie",
+  price:34.90,
+  image:"https://cdn.shopify.com/s/files/1/0888/7674/5018/files/DAC2494PW1818.jpg?v=1721791296",
+  supplier:"Caroline's Treasures"
+},
+
+{
+  id:68,
+  category:"Cadeaux",
+  name:"Coussin Belgian Malinois",
+  price:34.90,
+  image:"https://cdn.shopify.com/s/files/1/0888/7674/5018/files/DAC6366PW1414.jpg?v=1721816800",
+  supplier:"Caroline's Treasures"
+},
+
+{
+  id:69,
+  category:"Cadeaux",
+  name:"Cartes Noël chat Sphynx x8",
+  price:19.90,
+  image:"https://cdn.shopify.com/s/files/1/0888/7674/5018/files/DAC7262GCA7P.jpg?v=1723843029",
+  supplier:"Caroline's Treasures"
+},
+
+{
+  id:70,
+  category:"Cadeaux",
+  name:"Cartes Saint-Valentin Berger Allemand",
+  price:19.90,
+  image:"https://cdn.shopify.com/s/files/1/0888/7674/5018/files/DAC5345GCA7P.jpg?v=1721731519",
+  supplier:"Caroline's Treasures"
+},
+
+{
+  id:71,
+  category:"Cadeaux",
+  name:"Tablier poisson Katy Red",
+  price:29.90,
+  image:"https://cdn.shopify.com/s/files/1/0888/7674/5018/files/MW2085APRON.jpg?v=1727810645",
+  supplier:"Caroline's Treasures"
+},
+
+{
+  id:72,
+  category:"Cadeaux",
+  name:"Torchons cuisine chien x2",
+  price:24.90,
+  image:"https://cdn.shopify.com/s/files/1/0888/7674/5018/files/CK2867WTKT.jpg?v=1722888403",
+  supplier:"Caroline's Treasures"
+},
+
+{
+  id:73,
+  category:"Cadeaux",
+  name:"Cartes Mardi Gras Berger Allemand",
+  price:19.90,
+  image:"https://cdn.shopify.com/s/files/1/0888/7674/5018/files/DAC4795GCA7P.jpg?v=1721726982",
+  supplier:"Caroline's Treasures"
+},
+
+{
+  id:74,
+  category:"Cadeaux",
+  name:"Coussin Airedale Terrier",
+  price:34.90,
+  image:"https://cdn.shopify.com/s/files/1/0888/7674/5018/files/DAC6347PW1414.jpg?v=1721816088",
+  supplier:"Caroline's Treasures"
+},
+
+{
+  id:75,
+  category:"Cadeaux",
+  name:"Torchons Chow Chow x2",
+  price:24.90,
+  image:"https://cdn.shopify.com/s/files/1/0888/7674/5018/files/DAC2120WTKT.jpg?v=1727815673",
+  supplier:"Caroline's Treasures"
+},
+
+{
+  id:76,
+  category:"Cadeaux",
+  name:"Cartes Golden Retriever Angel x8",
+  price:19.90,
+  image:"https://cdn.shopify.com/s/files/1/0888/7674/5018/files/DAC7009GCA7P.jpg?v=1721744650",
+  supplier:"Caroline's Treasures"
+},
+
+{
+  id:77,
+  category:"Cadeaux",
+  name:"Coussin Corgi Christmas",
+  price:34.90,
+  image:"https://cdn.shopify.com/s/files/1/0888/7674/5018/files/DAC2348PW1414.jpg?v=1721785836",
+  supplier:"Caroline's Treasures"
+},
+
+{
+  id:78,
+  category:"Cadeaux",
+  name:"Drapeau Alaskan Klee Kai",
+  price:24.90,
+  image:"https://cdn.shopify.com/s/files/1/0888/7674/5018/files/DAC4717GF.jpg?v=1721429818",
+  supplier:"Caroline's Treasures"
+},
+
+{
+  id:79,
+  category:"Cadeaux",
+  name:"Cartes Scottish Deerhound x8",
+  price:19.90,
+  image:"https://cdn.shopify.com/s/files/1/0888/7674/5018/files/DAC3641GCA7P.jpg?v=1721717761",
+  supplier:"Caroline's Treasures"
+},
+
+{
+  id:80,
+  category:"Cadeaux",
+  name:"Drapeau German Wirehaired Pointer",
+  price:24.90,
+  image:"https://cdn.shopify.com/s/files/1/0888/7674/5018/files/DAC5545GF.jpg?v=1721440009",
+  supplier:"Caroline's Treasures"
 }
 
-];
+];/* =========================
+   FONCTIONS BOUTIQUE
+========================= */
+
+let activeCategory = "Tous";
+
+let cart = JSON.parse(
+  localStorage.getItem("evida-cart") || "[]"
+);
+
+const money = value =>
+  value.toLocaleString("fr-FR", {
+    style:"currency",
+    currency:"EUR"
+  });
 
 
-/* ==========================
-   ÉTAT
-========================== */
+/* =========================
+   CATÉGORIES
+========================= */
 
-let currentFilter = "Tous";
+function renderFilters() {
 
-let cart = [];
+  const categories = [
+    "Tous",
+    ...new Set(
+      PRODUCTS.map(product => product.category)
+    )
+  ];
 
-try {
+  document.getElementById("filters").innerHTML =
+    categories
+      .map(category => {
 
-  cart = JSON.parse(
-    localStorage.getItem("evida-cart") || "[]"
-  );
+        const active =
+          category === activeCategory
+            ? "active"
+            : "";
 
-  if (!Array.isArray(cart)) {
-    cart = [];
-  }
+        return `
+          <button
+            class="filter ${active}"
+            onclick="setCategory('${category}')"
+          >
+            ${category}
+          </button>
+        `;
 
-} catch(error) {
-
-  cart = [];
+      })
+      .join("");
 
 }
 
 
-/* ==========================
-   PRIX
-========================== */
+function setCategory(category) {
 
-function money(value) {
+  activeCategory = category;
 
-  return value.toLocaleString(
-    "fr-FR",
-    {
-      style:"currency",
-      currency:"EUR"
-    }
-  );
+  renderFilters();
+  renderProducts();
 
 }
 
 
-/* ==========================
-   PRODUITS
-========================== */
+/* =========================
+   AFFICHAGE PRODUITS
+========================= */
 
 function renderProducts() {
 
-  const search =
-    document.getElementById("search");
-
   const query =
-    search.value.trim().toLowerCase();
+    document
+      .getElementById("search")
+      .value
+      .toLowerCase()
+      .trim();
 
-
-  const filtered =
-    products.filter(product => {
+  const filteredProducts =
+    PRODUCTS.filter(product => {
 
       const categoryMatch =
-        currentFilter === "Tous" ||
-        product.category === currentFilter;
+        activeCategory === "Tous"
+        ||
+        product.category === activeCategory;
 
       const searchMatch =
-        product.name.toLowerCase().includes(query) ||
-        product.desc.toLowerCase().includes(query);
+        `${product.name} ${product.category}`
+          .toLowerCase()
+          .includes(query);
 
       return categoryMatch && searchMatch;
 
     });
 
+  document.getElementById("grid").innerHTML =
+    filteredProducts
+      .map(product => {
 
-  document.getElementById(
-    "visibleCount"
-  ).textContent = filtered.length;
+        return `
 
+          <article class="product">
 
-  document.getElementById(
-    "productGrid"
-  ).innerHTML = filtered.map(product => `
+            <div class="visual">
 
-    <article class="product">
+              <img
+                src="${product.image}"
+                alt="${product.name}"
+                loading="lazy"
+                onerror="
+                  this.onerror=null;
+                  this.src='https://placehold.co/700x700/f1ede6/171717?text=ÉVIDA';
+                "
+              >
 
-      <div class="product-visual">
+            </div>
 
-        <div class="number">
-          ${String(product.id).padStart(2,"0")}
-        </div>
+            <div class="body">
 
-        <div class="tag">
-          ${product.category}
-        </div>
+              <div class="tag">
+                ${product.category}
+              </div>
 
-        <div class="emoji">
-          ${product.emoji}
-        </div>
+              <h3>
+                ${product.name}
+              </h3>
 
-      </div>
+              <div class="foot">
 
-      <div class="product-body">
+                <span class="price">
+                  ${money(product.price)}
+                </span>
 
-        <h3>
-          ${product.name}
-        </h3>
+                <button
+                  class="add"
+                  onclick="addToCart(${product.id})"
+                >
+                  Ajouter
+                </button>
 
-        <p>
-          ${product.desc}
-        </p>
+              </div>
 
-        <div class="product-footer">
+            </div>
 
-          <div class="price">
-            ${money(product.price)}
-          </div>
+          </article>
 
-          <button
-            class="add"
-            onclick="addToCart(${product.id})"
-          >
-            Ajouter
-          </button>
+        `;
 
-        </div>
-
-      </div>
-
-    </article>
-
-  `).join("");
+      })
+      .join("");
 
 }
 
 
-/* ==========================
-   AJOUTER AU PANIER
-========================== */
+/* =========================
+   PANIER
+========================= */
 
-function addToCart(id) {
+function addToCart(productId) {
 
   const item =
     cart.find(
-      element => element.id === id
+      item => item.id === productId
     );
 
+  if (item) {
 
-  if(item) {
-
-    item.qty += 1;
+    item.quantity++;
 
   } else {
 
     cart.push({
-      id:id,
-      qty:1
+      id:productId,
+      quantity:1
     });
 
   }
 
-
   saveCart();
-
   openCart();
 
 }
 
 
-/* ==========================
-   RETIRER
-========================== */
+function increaseQuantity(productId) {
 
-function removeFromCart(id) {
-
-  cart =
-    cart.filter(
-      item => item.id !== id
+  const item =
+    cart.find(
+      item => item.id === productId
     );
+
+  if (!item) return;
+
+  item.quantity++;
 
   saveCart();
 
 }
 
 
-/* ==========================
-   SAUVEGARDER
-========================== */
+function decreaseQuantity(productId) {
+
+  const item =
+    cart.find(
+      item => item.id === productId
+    );
+
+  if (!item) return;
+
+  item.quantity--;
+
+  if (item.quantity <= 0) {
+
+    cart =
+      cart.filter(
+        item => item.id !== productId
+      );
+
+  }
+
+  saveCart();
+
+}
+
+
+function removeFromCart(productId) {
+
+  cart =
+    cart.filter(
+      item => item.id !== productId
+    );
+
+  saveCart();
+
+}
+
 
 function saveCart() {
 
@@ -1917,122 +1685,165 @@ function saveCart() {
 }
 
 
-/* ==========================
+/* =========================
    AFFICHAGE PANIER
-========================== */
+========================= */
 
 function renderCart() {
 
-  const count =
-    cart.reduce(
-      (total,item) =>
-        total + item.qty,
-      0
-    );
-
-
-  document.getElementById(
-    "cartCount"
-  ).textContent = count;
-
-
-  const cartItems =
-    document.getElementById(
-      "cartItems"
-    );
-
-
-  if(!cart.length) {
-
-    cartItems.innerHTML =
-      '<div class="empty">Votre panier est vide.</div>';
-
-
-    document.getElementById(
-      "cartTotal"
-    ).textContent = money(0);
-
-
-    return;
-
-  }
-
+  const container =
+    document.getElementById("cartItems");
 
   let total = 0;
+  let totalQuantity = 0;
 
+  const html =
+    cart
+      .map(item => {
 
-  cartItems.innerHTML =
-    cart.map(item => {
+        const product =
+          PRODUCTS.find(
+            product => product.id === item.id
+          );
 
+        if (!product) return "";
 
-      const product =
-        products.find(
-          product =>
-            product.id === item.id
-        );
+        const lineTotal =
+          product.price * item.quantity;
 
+        total += lineTotal;
+        totalQuantity += item.quantity;
 
-      if(!product) {
-        return "";
-      }
+        return `
 
+          <div class="cartItem">
 
-      total +=
-        product.price * item.qty;
+            <div>
 
+              <strong>
+                ${product.name}
+              </strong>
 
-      return `
+              <br>
 
-        <div class="cart-item">
+              <small>
+                ${money(product.price)}
+                ×
+                ${item.quantity}
+              </small>
 
-          <div>
+              <div
+                style="
+                  display:flex;
+                  align-items:center;
+                  gap:8px;
+                  margin-top:8px;
+                "
+              >
 
-            <h4>
-              ${product.name}
-            </h4>
+                <button
+                  onclick="decreaseQuantity(${product.id})"
+                  style="
+                    border:1px solid #ddd;
+                    background:#fff;
+                    width:30px;
+                    height:30px;
+                    border-radius:8px;
+                  "
+                >
+                  −
+                </button>
 
-            <small>
-              ${item.qty} × ${money(product.price)}
-            </small>
+                <strong>
+                  ${item.quantity}
+                </strong>
+
+                <button
+                  onclick="increaseQuantity(${product.id})"
+                  style="
+                    border:1px solid #ddd;
+                    background:#fff;
+                    width:30px;
+                    height:30px;
+                    border-radius:8px;
+                  "
+                >
+                  +
+                </button>
+
+              </div>
+
+            </div>
+
+            <div
+              style="
+                text-align:right;
+              "
+            >
+
+              <strong>
+                ${money(lineTotal)}
+              </strong>
+
+              <br>
+
+              <button
+                class="remove"
+                onclick="removeFromCart(${product.id})"
+              >
+                Retirer
+              </button>
+
+            </div>
 
           </div>
 
-          <button
-            class="remove"
-            onclick="removeFromCart(${product.id})"
-          >
-            Retirer
-          </button>
+        `;
 
-        </div>
+      })
+      .join("");
 
-      `;
+  container.innerHTML =
+    html ||
+    `
+      <p
+        style="
+          color:#777;
+          padding:20px 0;
+        "
+      >
+        Votre panier est vide.
+      </p>
+    `;
 
-    }).join("");
+  document
+    .getElementById("total")
+    .textContent =
+      money(total);
 
-
-  document.getElementById(
-    "cartTotal"
-  ).textContent =
-    money(total);
+  document
+    .getElementById("cartCount")
+    .textContent =
+      totalQuantity;
 
 }
 
 
-/* ==========================
-   OUVRIR / FERMER PANIER
-========================== */
+/* =========================
+   OUVERTURE / FERMETURE PANIER
+========================= */
 
 function openCart() {
 
   document
-    .getElementById("cartPanel")
-    .classList.add("open");
-
+    .getElementById("drawer")
+    .classList
+    .add("open");
 
   document
     .getElementById("overlay")
-    .classList.add("show");
+    .classList
+    .add("show");
 
 }
 
@@ -2040,167 +1851,157 @@ function openCart() {
 function closeCart() {
 
   document
-    .getElementById("cartPanel")
-    .classList.remove("open");
-
+    .getElementById("drawer")
+    .classList
+    .remove("open");
 
   document
     .getElementById("overlay")
-    .classList.remove("show");
+    .classList
+    .remove("show");
 
 }
 
 
-/* ==========================
-   RECHERCHE
-========================== */
+/* =========================
+   PAIEMENT
+========================= */
 
-document
-.getElementById("search")
-.addEventListener(
-  "input",
-  renderProducts
-);
+async function checkout() {
 
-
-/* ==========================
-   FILTRES
-========================== */
-
-document
-.querySelectorAll(".filter-btn")
-.forEach(button => {
-
-  button.addEventListener(
-    "click",
-    () => {
-
-      document
-      .querySelectorAll(".filter-btn")
-      .forEach(item => {
-
-        item.classList.remove("active");
-
-      });
-
-
-      button.classList.add("active");
-
-      currentFilter =
-        button.dataset.filter;
-
-      renderProducts();
-
-    }
-  );
-
-});
-
-
-/* ==========================
-   CARTES UNIVERS
-========================== */
-
-document
-.querySelectorAll("[data-jump]")
-.forEach(card => {
-
-  card.addEventListener(
-    "click",
-    () => {
-
-      currentFilter =
-        card.dataset.jump;
-
-
-      document
-      .querySelectorAll(".filter-btn")
-      .forEach(button => {
-
-        button.classList.toggle(
-          "active",
-          button.dataset.filter === currentFilter
-        );
-
-      });
-
-
-      renderProducts();
-
-
-      document
-      .getElementById("boutique")
-      .scrollIntoView({
-        behavior:"smooth"
-      });
-
-    }
-  );
-
-});
-
-
-/* ==========================
-   PANIER
-========================== */
-
-document
-.getElementById("openCart")
-.addEventListener(
-  "click",
-  openCart
-);
-
-
-document
-.getElementById("closeCart")
-.addEventListener(
-  "click",
-  closeCart
-);
-
-
-document
-.getElementById("overlay")
-.addEventListener(
-  "click",
-  closeCart
-);
-
-
-/* ==========================
-   CONTINUER
-========================== */
-
-document
-.getElementById("checkoutBtn")
-.addEventListener(
-  "click",
-  () => {
-
-    if(!cart.length) {
-
-      alert(
-        "Votre panier est vide."
-      );
-
-      return;
-
-    }
-
+  if (cart.length === 0) {
 
     alert(
-      "Le paiement réel sera activé après validation des fournisseurs et configuration du prestataire de paiement."
+      "Votre panier est vide."
     );
 
+    return;
+
   }
-);
+
+  /*
+    IMPORTANT :
+
+    Le site GitHub Pages ne peut pas contenir
+    directement ta clé secrète Stripe.
+
+    Quand le backend Stripe sera connecté,
+    cette fonction pourra envoyer le panier
+    au serveur sécurisé.
+
+    Ne mets JAMAIS une clé Stripe secrète
+    directement dans ce fichier HTML.
+  */
+
+  try {
+
+    const response =
+      await fetch(
+        "/.netlify/functions/create-checkout-session",
+        {
+          method:"POST",
+
+          headers:{
+            "Content-Type":"application/json"
+          },
+
+          body:JSON.stringify({
+            items:cart.map(item => ({
+              id:item.id,
+              qty:item.quantity
+            }))
+          })
+        }
+      );
+
+    const data =
+      await response.json();
+
+    if (!response.ok) {
+
+      throw new Error(
+        data.error ||
+        "Paiement actuellement indisponible."
+      );
+
+    }
+
+    if (!data.url) {
+
+      throw new Error(
+        "Lien de paiement introuvable."
+      );
+
+    }
+
+    window.location.href =
+      data.url;
+
+  }
+
+  catch(error) {
+
+    alert(
+      "Le terminal de paiement n'est pas encore activé.\n\n" +
+      "Le panier fonctionne normalement, mais Stripe doit être connecté à un backend sécurisé avant de recevoir de vraies commandes."
+    );
+
+    console.error(error);
+
+  }
+
+}
 
 
-/* ==========================
+/* =========================
+   ÉVÉNEMENTS
+========================= */
+
+document
+  .getElementById("search")
+  .addEventListener(
+    "input",
+    renderProducts
+  );
+
+
+document
+  .getElementById("openCart")
+  .addEventListener(
+    "click",
+    openCart
+  );
+
+
+document
+  .getElementById("close")
+  .addEventListener(
+    "click",
+    closeCart
+  );
+
+
+document
+  .getElementById("overlay")
+  .addEventListener(
+    "click",
+    closeCart
+  );
+
+
+document
+  .getElementById("checkout")
+  .addEventListener(
+    "click",
+    checkout
+  );
+
+
+/* =========================
    INITIALISATION
-========================== */
+========================= */
 
+renderFilters();
 renderProducts();
 renderCart();
 
