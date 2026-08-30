@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<!-- Limitation du cache navigateur -->
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+
 <title>ÉVIDA — Découvrez l'évidence</title>
 
-<meta
-  name="description"
-  content="ÉVIDA sélectionne des produits utiles, ingénieux et tendance pour améliorer le quotidien."
->
+<meta name="description" content="ÉVIDA sélectionne des produits utiles, ingénieux et tendance pour améliorer le quotidien.">
 
 <style>
 
@@ -20,8 +23,6 @@
   --muted:#6f6b65;
   --line:#e7e3dc;
   --soft:#efebe4;
-  --accent:#171717;
-  --radius:22px;
   --shadow:0 18px 55px rgba(27,24,19,.08);
 }
 
@@ -36,15 +37,7 @@ html {
 }
 
 body {
-  font-family:
-    Inter,
-    ui-sans-serif,
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Arial,
-    sans-serif;
-
+  font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
   background:var(--bg);
   color:var(--text);
   line-height:1.55;
@@ -56,8 +49,7 @@ a {
 }
 
 button,
-input,
-select {
+input {
   font:inherit;
 }
 
@@ -66,47 +58,37 @@ button {
 }
 
 .container {
-  width:min(1240px, calc(100% - 40px));
+  width:min(1240px,calc(100% - 40px));
   margin:auto;
 }
 
-
-/* ==========================================================
-   BARRE SUPÉRIEURE
-========================================================== */
+/* BARRE SUPÉRIEURE */
 
 .announcement {
   background:#171717;
-  color:#fff;
+  color:white;
   text-align:center;
   padding:9px 18px;
   font-size:12px;
   letter-spacing:.03em;
 }
 
-
-/* ==========================================================
-   HEADER
-========================================================== */
+/* HEADER */
 
 header {
   position:sticky;
   top:0;
   z-index:100;
-
-  background:rgba(247,246,242,.88);
+  background:rgba(247,246,242,.90);
   backdrop-filter:blur(16px);
-
-  border-bottom:1px solid rgba(231,227,220,.85);
+  border-bottom:1px solid rgba(231,227,220,.9);
 }
 
 .navbar {
   min-height:76px;
-
   display:flex;
   align-items:center;
   justify-content:space-between;
-
   gap:24px;
 }
 
@@ -127,23 +109,18 @@ header {
   position:relative;
 }
 
-.navlinks a:after {
+.navlinks a::after {
   content:"";
-
   position:absolute;
-
   left:0;
   right:100%;
   bottom:-6px;
-
   height:1px;
-
   background:#171717;
-
   transition:.2s;
 }
 
-.navlinks a:hover:after {
+.navlinks a:hover::after {
   right:0;
 }
 
@@ -157,25 +134,18 @@ header {
 .cart-btn {
   border:1px solid var(--line);
   background:#fff;
-
   border-radius:999px;
-
   padding:11px 14px;
 }
 
 .cart-btn {
   background:#171717;
   color:#fff;
-
   border-color:#171717;
-
   font-weight:700;
 }
 
-
-/* ==========================================================
-   HERO
-========================================================== */
+/* HERO */
 
 .hero {
   padding:78px 0 60px;
@@ -183,62 +153,44 @@ header {
 
 .hero-grid {
   display:grid;
-
   grid-template-columns:1.05fr .95fr;
-
   gap:48px;
-
   align-items:center;
 }
 
 .eyebrow {
   font-size:12px;
-
   text-transform:uppercase;
-
   letter-spacing:.18em;
-
   color:#7d766d;
-
   font-weight:700;
 }
 
 h1 {
   font-size:clamp(54px,7vw,92px);
-
   line-height:.93;
-
   letter-spacing:-.055em;
-
   margin:16px 0 24px;
 }
 
 .hero p {
   font-size:19px;
-
   color:var(--muted);
-
   max-width:620px;
 }
 
 .cta-row {
   display:flex;
-
   gap:12px;
-
   flex-wrap:wrap;
-
   margin-top:30px;
 }
 
 .btn-primary,
 .btn-secondary {
   border-radius:12px;
-
   padding:14px 20px;
-
   font-weight:800;
-
   border:1px solid #171717;
 }
 
@@ -253,86 +205,58 @@ h1 {
 
 .hero-card {
   min-height:510px;
-
   border-radius:32px;
-
-  background:
-    linear-gradient(
-      145deg,
-      #eee8de,
-      #fff 62%
-    );
-
+  background:linear-gradient(145deg,#eee8de,#fff 62%);
   border:1px solid var(--line);
-
   box-shadow:var(--shadow);
-
   padding:34px;
-
   display:flex;
-
   flex-direction:column;
-
   justify-content:space-between;
 }
 
-.hero-card .big-mark {
+.big-mark {
   font-size:112px;
   line-height:1;
 }
 
 .hero-card h3 {
   font-size:30px;
-
   line-height:1.05;
-
   max-width:380px;
 }
 
 .hero-card p {
   font-size:14px;
-
   margin-top:12px;
-
   max-width:390px;
 }
 
 .mini-stats {
   display:grid;
-
   grid-template-columns:repeat(3,1fr);
-
   gap:10px;
-
   margin-top:24px;
 }
 
 .stat {
   background:rgba(255,255,255,.75);
-
   border:1px solid var(--line);
-
   border-radius:16px;
-
   padding:14px;
 }
 
 .stat strong {
   display:block;
-
   font-size:20px;
 }
 
 .stat span {
   font-size:11px;
-
   color:var(--muted);
 }
 
-
-/* ==========================================================
-   MINI BLOCS
-========================================================== */
+/* BLOCS */
 
 .trust {
   padding:8px 0 48px;
@@ -340,38 +264,28 @@ h1 {
 
 .trust-grid {
   display:grid;
-
   grid-template-columns:repeat(4,1fr);
-
   gap:12px;
 }
 
 .trust-item {
   background:#fff;
-
   border:1px solid var(--line);
-
   border-radius:16px;
-
   padding:17px;
 }
 
 .trust-item strong {
   display:block;
-
   font-size:13px;
 }
 
 .trust-item span {
   font-size:12px;
-
   color:var(--muted);
 }
 
-
-/* ==========================================================
-   SECTIONS
-========================================================== */
+/* SECTIONS */
 
 .section {
   padding:70px 0;
@@ -379,68 +293,46 @@ h1 {
 
 .section-head {
   display:flex;
-
   justify-content:space-between;
-
   gap:24px;
-
   align-items:end;
-
   margin-bottom:28px;
 }
 
 .section-head h2 {
   font-size:clamp(34px,4vw,54px);
-
   line-height:1;
 }
 
 .section-head p {
   color:var(--muted);
-
   max-width:620px;
-
   margin-top:10px;
 }
 
-
-/* ==========================================================
-   UNIVERS
-========================================================== */
+/* UNIVERS */
 
 .categories {
   display:grid;
-
   grid-template-columns:repeat(4,1fr);
-
   gap:16px;
 }
 
 .category {
   min-height:250px;
-
   background:#fff;
-
   border:1px solid var(--line);
-
   border-radius:24px;
-
   padding:24px;
-
   display:flex;
-
   flex-direction:column;
-
   justify-content:space-between;
-
   transition:.25s;
-
   cursor:pointer;
 }
 
 .category:hover {
   transform:translateY(-5px);
-
   box-shadow:var(--shadow);
 }
 
@@ -450,129 +342,94 @@ h1 {
 
 .category h3 {
   font-size:25px;
-
   margin-bottom:6px;
 }
 
 .category p {
   font-size:13px;
-
   color:var(--muted);
 }
 
-
-/* ==========================================================
-   SECTION NOIRE
-========================================================== */
+/* SECTION NOIRE */
 
 .dark {
   background:#171717;
-
   color:#fff;
 }
 
 .promise-grid {
   display:grid;
-
   grid-template-columns:1.05fr .95fr;
-
   gap:34px;
-
   align-items:start;
 }
 
 .promise-copy h2 {
   font-size:clamp(38px,5vw,64px);
-
   line-height:1;
 }
 
 .promise-copy p {
   color:#bdb9b3;
-
   margin-top:18px;
-
   max-width:600px;
 }
 
 .promise-list {
   display:grid;
-
   gap:12px;
 }
 
 .promise {
   border:1px solid #383838;
-
   border-radius:18px;
-
   padding:20px;
 }
 
 .promise strong {
   display:block;
-
   margin-bottom:5px;
 }
 
 .promise span {
   font-size:13px;
-
   color:#aaa;
 }
 
-
-/* ==========================================================
-   BOUTIQUE
-========================================================== */
+/* BOUTIQUE */
 
 .shop-shell {
   display:grid;
-
   grid-template-columns:240px 1fr;
-
   gap:28px;
 }
 
 .sidebar {
   position:sticky;
-
   top:102px;
-
   height:max-content;
-
   background:#fff;
-
   border:1px solid var(--line);
-
   border-radius:20px;
-
   padding:20px;
 }
 
 .sidebar h3 {
   font-size:14px;
-
   margin-bottom:12px;
 }
 
 .filter-list {
   display:grid;
-
   gap:8px;
 }
 
 .filter-btn {
   border:0;
-
   background:transparent;
-
   text-align:left;
-
   padding:10px 12px;
-
   border-radius:10px;
-
   color:var(--muted);
 }
 
@@ -582,21 +439,15 @@ h1 {
 
 .filter-btn.active {
   background:#171717;
-
   color:#fff;
-
   font-weight:700;
 }
 
 .sidebar-note {
   margin-top:18px;
-
   padding-top:16px;
-
   border-top:1px solid var(--line);
-
   font-size:11px;
-
   color:var(--muted);
 }
 
@@ -606,29 +457,19 @@ h1 {
 
 .toolbar {
   display:flex;
-
   justify-content:space-between;
-
   gap:12px;
-
   align-items:center;
-
   margin-bottom:18px;
 }
 
 .search {
   flex:1;
-
   max-width:480px;
-
   border:1px solid var(--line);
-
   background:#fff;
-
   border-radius:12px;
-
   padding:12px 14px;
-
   outline:none;
 }
 
@@ -638,181 +479,115 @@ h1 {
 
 .count {
   font-size:13px;
-
   color:var(--muted);
 }
 
-
-/* ==========================================================
-   PRODUITS
-========================================================== */
+/* PRODUITS */
 
 .products {
   display:grid;
-
   grid-template-columns:repeat(3,1fr);
-
   gap:16px;
 }
 
 .product {
   background:#fff;
-
   border:1px solid var(--line);
-
   border-radius:20px;
-
   overflow:hidden;
-
   display:flex;
-
   flex-direction:column;
-
   transition:.22s;
 }
 
 .product:hover {
   transform:translateY(-4px);
-
   box-shadow:var(--shadow);
 }
 
-
-/* FORMAT IMAGE 4:3 */
+/* IMAGE 4:3 */
 
 .product-visual {
   aspect-ratio:4 / 3;
-
-  background:
-    linear-gradient(
-      145deg,
-      #f1ede6,
-      #fbfaf8
-    );
-
+  background:linear-gradient(145deg,#f1ede6,#fbfaf8);
   display:flex;
-
   align-items:center;
-
   justify-content:center;
-
   position:relative;
-
   border-bottom:1px solid var(--line);
 }
 
 .product-visual .emoji {
   font-size:64px;
-
-  filter:
-    drop-shadow(
-      0 10px 12px rgba(0,0,0,.08)
-    );
+  filter:drop-shadow(0 10px 12px rgba(0,0,0,.08));
 }
 
 .product-visual .number {
   position:absolute;
-
   left:12px;
-
   top:12px;
-
   width:28px;
-
   height:28px;
-
   border-radius:9px;
-
   background:#171717;
-
   color:#fff;
-
   font-size:12px;
-
   font-weight:800;
-
   display:flex;
-
   align-items:center;
-
   justify-content:center;
 }
 
 .product-visual .tag {
   position:absolute;
-
   right:12px;
-
   top:12px;
-
   background:#fff;
-
   border:1px solid var(--line);
-
   border-radius:999px;
-
   padding:6px 9px;
-
   font-size:10px;
-
   font-weight:700;
 }
 
 .product-body {
   padding:16px;
-
   display:flex;
-
   flex-direction:column;
-
   gap:9px;
-
   flex:1;
 }
 
 .product-body h3 {
   font-size:16px;
-
   line-height:1.25;
 }
 
 .product-body p {
   font-size:12px;
-
   color:var(--muted);
 }
 
 .product-footer {
   display:flex;
-
   justify-content:space-between;
-
   gap:12px;
-
   align-items:center;
-
   margin-top:auto;
-
   padding-top:6px;
 }
 
 .price {
   font-size:18px;
-
   font-weight:900;
 }
 
 .add {
   border:0;
-
   background:#171717;
-
   color:#fff;
-
   border-radius:10px;
-
   padding:10px 12px;
-
   font-weight:800;
 }
 
@@ -820,110 +595,75 @@ h1 {
   opacity:.88;
 }
 
-
-/* ==========================================================
-   À PROPOS
-========================================================== */
+/* À PROPOS */
 
 .about-card {
   background:#fff;
-
   border:1px solid var(--line);
-
   border-radius:28px;
-
   padding:42px;
-
   display:grid;
-
   grid-template-columns:1fr .8fr;
-
   gap:34px;
-
   align-items:center;
 }
 
 .about-card h2 {
   font-size:clamp(36px,4vw,56px);
-
   line-height:1;
 }
 
 .about-card p {
   color:var(--muted);
-
   margin-top:14px;
 }
 
 .about-points {
   display:grid;
-
   gap:12px;
 }
 
 .about-point {
   background:var(--soft);
-
   border-radius:16px;
-
   padding:16px;
-
   font-size:13px;
 }
 
-
-/* ==========================================================
-   FOOTER
-========================================================== */
+/* FOOTER */
 
 footer {
   padding:42px 0 48px;
-
   border-top:1px solid var(--line);
-
   margin-top:60px;
 }
 
 .footer-grid {
   display:grid;
-
   grid-template-columns:1fr 1fr;
-
   gap:30px;
 }
 
 .footer-brand p {
   color:var(--muted);
-
   font-size:13px;
-
   max-width:520px;
-
   margin-top:12px;
 }
 
 .footer-meta {
   text-align:right;
-
   color:var(--muted);
-
   font-size:12px;
 }
 
-
-/* ==========================================================
-   PANIER
-========================================================== */
+/* PANIER */
 
 .overlay {
   position:fixed;
-
   inset:0;
-
   background:rgba(0,0,0,.28);
-
   z-index:998;
-
   display:none;
 }
 
@@ -933,28 +673,16 @@ footer {
 
 .cart-panel {
   position:fixed;
-
   right:-440px;
-
   top:0;
-
   width:min(420px,92vw);
-
   height:100vh;
-
   background:#fff;
-
   z-index:999;
-
-  box-shadow:
-    -25px 0 60px rgba(0,0,0,.18);
-
+  box-shadow:-25px 0 60px rgba(0,0,0,.18);
   transition:.25s;
-
   padding:22px;
-
   display:flex;
-
   flex-direction:column;
 }
 
@@ -964,47 +692,32 @@ footer {
 
 .cart-head {
   display:flex;
-
   justify-content:space-between;
-
   align-items:center;
-
   padding-bottom:16px;
-
   border-bottom:1px solid var(--line);
 }
 
 .close {
   width:38px;
-
   height:38px;
-
   border:0;
-
   border-radius:50%;
-
   background:var(--soft);
-
   font-size:20px;
 }
 
 .cart-items {
   flex:1;
-
   overflow:auto;
-
   padding:8px 0;
 }
 
 .cart-item {
   display:grid;
-
   grid-template-columns:1fr auto;
-
   gap:8px;
-
   padding:14px 0;
-
   border-bottom:1px solid var(--line);
 }
 
@@ -1018,48 +731,35 @@ footer {
 
 .remove {
   border:0;
-
   background:transparent;
-
   color:#8a3c3c;
-
   font-size:12px;
 }
 
 .cart-total {
   border-top:1px solid var(--line);
-
   padding-top:16px;
 }
 
 .total-line {
   display:flex;
-
   justify-content:space-between;
-
   font-size:18px;
-
   font-weight:900;
 }
 
 .checkout {
   width:100%;
-
   margin-top:12px;
 }
 
 .empty {
   text-align:center;
-
   color:var(--muted);
-
   padding:28px 0;
 }
 
-
-/* ==========================================================
-   TABLETTE
-========================================================== */
+/* TABLETTE */
 
 @media(max-width:1050px) {
 
@@ -1087,10 +787,7 @@ footer {
 
 }
 
-
-/* ==========================================================
-   MOBILE
-========================================================== */
+/* MOBILE */
 
 @media(max-width:760px) {
 
@@ -1150,13 +847,11 @@ footer {
 
   .toolbar {
     align-items:stretch;
-
     flex-direction:column;
   }
 
   .search {
     max-width:none;
-
     width:100%;
   }
 
@@ -1176,1099 +871,883 @@ footer {
 <body>
 
 <div class="announcement">
-  ÉVIDA — une sélection de découvertes utiles, ingénieuses et surprenantes.
+ÉVIDA — une sélection de découvertes utiles, ingénieuses et surprenantes.
 </div>
-
 
 <header>
 
-  <div class="container navbar">
+<div class="container navbar">
 
-    <a href="#" class="logo">
-      ÉVIDA
-    </a>
+<a href="#" class="logo">ÉVIDA</a>
 
-    <nav class="navlinks">
+<nav class="navlinks">
+<a href="#">Accueil</a>
+<a href="#boutique">Boutique</a>
+<a href="#univers">Univers</a>
+<a href="#apropos">À propos</a>
+</nav>
 
-      <a href="#">
-        Accueil
-      </a>
+<div class="actions">
 
-      <a href="#boutique">
-        Boutique
-      </a>
+<button
+class="icon-btn"
+onclick="document.getElementById('search').focus(); document.getElementById('boutique').scrollIntoView({behavior:'smooth'});"
+aria-label="Rechercher">
+⌕
+</button>
 
-      <a href="#univers">
-        Univers
-      </a>
+<button class="cart-btn" id="openCart">
+Panier&nbsp;
+<span id="cartCount">0</span>
+</button>
 
-      <a href="#apropos">
-        À propos
-      </a>
+</div>
 
-    </nav>
-
-    <div class="actions">
-
-      <button
-        class="icon-btn"
-        onclick="document.getElementById('search').focus()"
-        aria-label="Rechercher"
-      >
-        ⌕
-      </button>
-
-      <button
-        class="cart-btn"
-        id="openCart"
-      >
-        Panier
-        <span id="cartCount">
-          0
-        </span>
-      </button>
-
-    </div>
-
-  </div>
+</div>
 
 </header>
 
-
 <main>
-
-
-<!-- =======================================================
-     HERO
-======================================================= -->
 
 <section class="hero">
 
-  <div class="container hero-grid">
+<div class="container hero-grid">
 
-    <div>
+<div>
 
-      <div class="eyebrow">
-        Sélection ÉVIDA
-      </div>
+<div class="eyebrow">
+Sélection ÉVIDA
+</div>
 
-      <h1>
-        Découvrez<br>
-        l'évidence.
-      </h1>
+<h1>
+Découvrez<br>
+l'évidence.
+</h1>
 
-      <p>
-        Des produits utiles, ingénieux et tendance,
-        choisis pour rendre le quotidien plus simple,
-        plus agréable et plus intuitif.
-      </p>
+<p>
+Des produits utiles, ingénieux et tendance,
+choisis pour rendre le quotidien plus simple,
+plus agréable et plus intuitif.
+</p>
 
-      <div class="cta-row">
+<div class="cta-row">
 
-        <a
-          class="btn-primary"
-          href="#boutique"
-        >
-          Découvrir la boutique
-        </a>
+<a class="btn-primary" href="#boutique">
+Découvrir la boutique
+</a>
 
-        <a
-          class="btn-secondary"
-          href="#univers"
-        >
-          Explorer les univers
-        </a>
+<a class="btn-secondary" href="#univers">
+Explorer les univers
+</a>
 
-      </div>
+</div>
 
-    </div>
+</div>
 
+<div class="hero-card">
 
-    <div class="hero-card">
+<div>
 
-      <div>
+<div class="big-mark">
+✨
+</div>
 
-        <div class="big-mark">
-          ✨
-        </div>
+<h3>
+Moins chercher.
+Mieux découvrir.
+</h3>
 
-        <h3>
-          Moins chercher.
-          Mieux découvrir.
-        </h3>
+<p>
+Une boutique pensée autour d'une sélection
+courte et lisible plutôt qu'un catalogue sans fin.
+</p>
 
-        <p>
-          Une boutique pensée autour d'une sélection
-          courte et lisible plutôt qu'un catalogue
-          sans fin.
-        </p>
+</div>
 
-      </div>
+<div class="mini-stats">
 
+<div class="stat">
+<strong>30</strong>
+<span>produits sélectionnés</span>
+</div>
 
-      <div class="mini-stats">
+<div class="stat">
+<strong>4</strong>
+<span>univers principaux</span>
+</div>
 
-        <div class="stat">
-          <strong>30</strong>
-          <span>produits sélectionnés</span>
-        </div>
+<div class="stat">
+<strong>1</strong>
+<span>expérience simple</span>
+</div>
 
-        <div class="stat">
-          <strong>4</strong>
-          <span>univers principaux</span>
-        </div>
+</div>
 
-        <div class="stat">
-          <strong>1</strong>
-          <span>expérience simple</span>
-        </div>
+</div>
 
-      </div>
-
-    </div>
-
-  </div>
+</div>
 
 </section>
 
-
-<!-- =======================================================
-     BLOCS
-======================================================= -->
 
 <section class="trust">
 
-  <div class="container trust-grid">
+<div class="container trust-grid">
 
-    <div class="trust-item">
+<div class="trust-item">
+<strong>🔎 Sélection claire</strong>
+<span>Des produits organisés par usage.</span>
+</div>
 
-      <strong>
-        🔎 Sélection claire
-      </strong>
+<div class="trust-item">
+<strong>🛒 Panier simple</strong>
+<span>Ajoutez et retrouvez vos produits facilement.</span>
+</div>
 
-      <span>
-        Des produits choisis par usage.
-      </span>
+<div class="trust-item">
+<strong>📱 Pensé mobile</strong>
+<span>Une expérience adaptée aux smartphones.</span>
+</div>
 
-    </div>
+<div class="trust-item">
+<strong>🔐 Paiement à venir</strong>
+<span>Activation après validation des fournisseurs.</span>
+</div>
 
-
-    <div class="trust-item">
-
-      <strong>
-        🛒 Panier simple
-      </strong>
-
-      <span>
-        Ajoutez et retrouvez vos produits facilement.
-      </span>
-
-    </div>
-
-
-    <div class="trust-item">
-
-      <strong>
-        📱 Pensé mobile
-      </strong>
-
-      <span>
-        Une expérience adaptée aux smartphones.
-      </span>
-
-    </div>
-
-
-    <div class="trust-item">
-
-      <strong>
-        🔐 Paiement à venir
-      </strong>
-
-      <span>
-        Activation après validation fournisseurs.
-      </span>
-
-    </div>
-
-  </div>
+</div>
 
 </section>
 
 
-<!-- =======================================================
-     UNIVERS
-======================================================= -->
+<section id="univers" class="section">
 
-<section
-  id="univers"
-  class="section"
->
+<div class="container">
 
-  <div class="container">
+<div class="section-head">
 
-    <div class="section-head">
+<div>
 
-      <div>
+<div class="eyebrow">
+Nos univers
+</div>
 
-        <div class="eyebrow">
-          Nos univers
-        </div>
+<h2>
+Une sélection qui a du sens.
+</h2>
 
-        <h2>
-          Une sélection qui a du sens.
-        </h2>
+<p>
+Quatre univers cohérents avec l'identité ÉVIDA :
+utile, pratique, moderne et facile à découvrir.
+</p>
 
-        <p>
-          Quatre univers cohérents avec l'identité ÉVIDA :
-          utile, pratique, moderne et facile à découvrir.
-        </p>
+</div>
 
-      </div>
-
-    </div>
+</div>
 
 
-    <div class="categories">
+<div class="categories">
+
+<div class="category" data-jump="Animaux">
+
+<div class="icon">
+🐾
+</div>
+
+<div>
+
+<h3>
+Animaux
+</h3>
+
+<p>
+Des accessoires pratiques pour chats et chiens.
+</p>
+
+</div>
+
+</div>
 
 
-      <div
-        class="category"
-        data-jump="Animaux"
-      >
+<div class="category" data-jump="Maison">
 
-        <div class="icon">
-          🐾
-        </div>
+<div class="icon">
+🏠
+</div>
 
-        <div>
+<div>
 
-          <h3>
-            Animaux
-          </h3>
+<h3>
+Maison
+</h3>
 
-          <p>
-            Des accessoires pratiques pour chats et chiens.
-          </p>
+<p>
+Des solutions simples pour organiser et améliorer l'intérieur.
+</p>
 
-        </div>
+</div>
 
-      </div>
+</div>
 
 
-      <div
-        class="category"
-        data-jump="Maison"
-      >
+<div class="category" data-jump="Innovation">
 
-        <div class="icon">
-          🏠
-        </div>
+<div class="icon">
+💡
+</div>
 
-        <div>
+<div>
 
-          <h3>
-            Maison
-          </h3>
+<h3>
+Innovations
+</h3>
 
-          <p>
-            Des solutions simples pour organiser
-            et améliorer l'intérieur.
-          </p>
+<p>
+Des objets malins pour faciliter certaines tâches du quotidien.
+</p>
 
-        </div>
+</div>
 
-      </div>
+</div>
 
 
-      <div
-        class="category"
-        data-jump="Innovation"
-      >
+<div class="category" data-jump="Cadeaux">
 
-        <div class="icon">
-          💡
-        </div>
+<div class="icon">
+🎁
+</div>
 
-        <div>
+<div>
 
-          <h3>
-            Innovations
-          </h3>
+<h3>
+Cadeaux
+</h3>
 
-          <p>
-            Des objets malins qui facilitent certaines
-            tâches du quotidien.
-          </p>
+<p>
+Des idées utiles, faciles à offrir et à découvrir.
+</p>
 
-        </div>
+</div>
 
-      </div>
+</div>
 
+</div>
 
-      <div
-        class="category"
-        data-jump="Cadeaux"
-      >
-
-        <div class="icon">
-          🎁
-        </div>
-
-        <div>
-
-          <h3>
-            Cadeaux
-          </h3>
-
-          <p>
-            Des idées utiles, faciles à offrir
-            et à découvrir.
-          </p>
-
-        </div>
-
-      </div>
-
-
-    </div>
-
-  </div>
+</div>
 
 </section>
 
-
-<!-- =======================================================
-     IDENTITÉ
-======================================================= -->
 
 <section class="section dark">
 
-  <div class="container promise-grid">
+<div class="container promise-grid">
 
-    <div class="promise-copy">
+<div class="promise-copy">
 
-      <div
-        class="eyebrow"
-        style="color:#aaa"
-      >
-        L'idée ÉVIDA
-      </div>
+<div class="eyebrow" style="color:#aaa">
+L'idée ÉVIDA
+</div>
 
-      <h2>
-        Moins de bruit.<br>
-        Plus de bonnes découvertes.
-      </h2>
+<h2>
+Moins de bruit.<br>
+Plus de bonnes découvertes.
+</h2>
 
-      <p>
-        ÉVIDA ne cherche pas à afficher des milliers
-        de références. L'objectif est de construire
-        une sélection claire, visuelle et cohérente
-        autour de produits qui ont une vraie utilité perçue.
-      </p>
+<p>
+ÉVIDA ne cherche pas à afficher des milliers de références.
+L'objectif est de construire une sélection claire,
+visuelle et cohérente autour de produits
+qui ont une vraie utilité perçue.
+</p>
 
-    </div>
+</div>
 
 
-    <div class="promise-list">
+<div class="promise-list">
 
-      <div class="promise">
+<div class="promise">
 
-        <strong>
-          01 — Sélection
-        </strong>
+<strong>
+01 — Sélection
+</strong>
 
-        <span>
-          Une gamme volontairement maîtrisée.
-        </span>
+<span>
+Une gamme volontairement maîtrisée.
+</span>
 
-      </div>
-
-
-      <div class="promise">
-
-        <strong>
-          02 — Présentation
-        </strong>
-
-        <span>
-          Des fiches lisibles,
-          des prix clairs
-          et une navigation simple.
-        </span>
-
-      </div>
+</div>
 
 
-      <div class="promise">
+<div class="promise">
 
-        <strong>
-          03 — Validation
-        </strong>
+<strong>
+02 — Présentation
+</strong>
 
-        <span>
-          Les fournisseurs et conditions réelles
-          seront vérifiés avant ouverture des ventes.
-        </span>
+<span>
+Des fiches lisibles, des prix clairs
+et une navigation simple.
+</span>
 
-      </div>
+</div>
 
-    </div>
 
-  </div>
+<div class="promise">
+
+<strong>
+03 — Validation
+</strong>
+
+<span>
+Les fournisseurs et conditions réelles
+seront vérifiés avant ouverture des ventes.
+</span>
+
+</div>
+
+</div>
+
+</div>
 
 </section>
 
 
-<!-- =======================================================
-     BOUTIQUE
-======================================================= -->
+<section id="boutique" class="section">
 
-<section
-  id="boutique"
-  class="section"
->
+<div class="container">
 
-  <div class="container">
+<div class="section-head">
 
-    <div class="section-head">
+<div>
 
-      <div>
+<div class="eyebrow">
+Boutique ÉVIDA
+</div>
 
-        <div class="eyebrow">
-          Boutique ÉVIDA
-        </div>
+<h2>
+Nos 30 découvertes.
+</h2>
 
-        <h2>
-          Nos 30 découvertes.
-        </h2>
+<p>
+Le catalogue de préparation ÉVIDA,
+organisé par univers.
+</p>
 
-        <p>
-          Le catalogue de préparation ÉVIDA,
-          organisé par univers.
-        </p>
+</div>
 
-      </div>
+<div class="count">
+<span id="visibleCount">30</span>
+produits affichés
+</div>
 
-
-      <div class="count">
-
-        <span id="visibleCount">
-          30
-        </span>
-
-        produits affichés
-
-      </div>
-
-    </div>
+</div>
 
 
-    <div class="shop-shell">
+<div class="shop-shell">
+
+<aside class="sidebar">
+
+<h3>
+Catégories
+</h3>
+
+<div class="filter-list">
+
+<button class="filter-btn active" data-filter="Tous">
+Tous les produits
+</button>
+
+<button class="filter-btn" data-filter="Animaux">
+Animaux
+</button>
+
+<button class="filter-btn" data-filter="Maison">
+Maison
+</button>
+
+<button class="filter-btn" data-filter="Innovation">
+Innovations
+</button>
+
+<button class="filter-btn" data-filter="Cadeaux">
+Cadeaux
+</button>
+
+</div>
+
+<div class="sidebar-note">
+Les visuels exacts des fournisseurs seront intégrés
+après validation des références définitives.
+</div>
+
+</aside>
 
 
-      <!-- FILTRES -->
+<div class="shop-main">
 
-      <aside class="sidebar">
+<div class="toolbar">
 
-        <h3>
-          Catégories
-        </h3>
+<input
+id="search"
+class="search"
+type="search"
+placeholder="Rechercher un produit..."
+autocomplete="off">
 
+</div>
 
-        <div class="filter-list">
+<div class="products" id="productGrid"></div>
 
-          <button
-            class="filter-btn active"
-            data-filter="Tous"
-          >
-            Tous les produits
-          </button>
+</div>
 
-          <button
-            class="filter-btn"
-            data-filter="Animaux"
-          >
-            Animaux
-          </button>
+</div>
 
-          <button
-            class="filter-btn"
-            data-filter="Maison"
-          >
-            Maison
-          </button>
-
-          <button
-            class="filter-btn"
-            data-filter="Innovation"
-          >
-            Innovations
-          </button>
-
-          <button
-            class="filter-btn"
-            data-filter="Cadeaux"
-          >
-            Cadeaux
-          </button>
-
-        </div>
-
-
-        <div class="sidebar-note">
-
-          Les visuels exacts des fournisseurs
-          seront intégrés après validation
-          des références définitives.
-
-        </div>
-
-      </aside>
-
-
-      <!-- PRODUITS -->
-
-      <div class="shop-main">
-
-
-        <div class="toolbar">
-
-          <input
-            id="search"
-            class="search"
-            type="search"
-            placeholder="Rechercher un produit..."
-          >
-
-        </div>
-
-
-        <div
-          class="products"
-          id="productGrid"
-        >
-        </div>
-
-
-      </div>
-
-
-    </div>
-
-  </div>
+</div>
 
 </section>
 
 
-<!-- =======================================================
-     À PROPOS
-======================================================= -->
+<section id="apropos" class="section">
 
-<section
-  id="apropos"
-  class="section"
->
+<div class="container about-card">
 
-  <div class="container about-card">
+<div>
 
+<div class="eyebrow">
+À propos
+</div>
 
-    <div>
+<h2>
+Pourquoi ÉVIDA ?
+</h2>
 
-      <div class="eyebrow">
-        À propos
-      </div>
+<p>
+Parce qu'il existe énormément de produits sur Internet,
+mais que trouver ceux qui valent vraiment le détour
+peut prendre du temps.
+</p>
 
-      <h2>
-        Pourquoi ÉVIDA ?
-      </h2>
+<p>
+ÉVIDA veut simplifier cette recherche grâce à une sélection
+claire, organisée et agréable à parcourir.
+</p>
 
-      <p>
-        Parce qu'il existe énormément de produits
-        sur Internet, mais que trouver ceux qui valent
-        vraiment le détour peut prendre du temps.
-      </p>
-
-      <p>
-        ÉVIDA veut simplifier cette recherche
-        grâce à une sélection claire,
-        organisée et agréable à parcourir.
-      </p>
-
-    </div>
+</div>
 
 
-    <div class="about-points">
+<div class="about-points">
 
-      <div class="about-point">
+<div class="about-point">
+<strong>Clarté</strong><br>
+Une boutique simple à comprendre.
+</div>
 
-        <strong>
-          Clarté
-        </strong>
+<div class="about-point">
+<strong>Cohérence</strong><br>
+Des univers sélectionnés plutôt qu'un catalogue générique.
+</div>
 
-        <br>
+<div class="about-point">
+<strong>Évolution</strong><br>
+Les références seront reliées aux fournisseurs réels
+au fur et à mesure.
+</div>
 
-        Une boutique simple à comprendre.
+</div>
 
-      </div>
-
-
-      <div class="about-point">
-
-        <strong>
-          Cohérence
-        </strong>
-
-        <br>
-
-        Des univers sélectionnés plutôt
-        qu'un catalogue générique.
-
-      </div>
-
-
-      <div class="about-point">
-
-        <strong>
-          Évolution
-        </strong>
-
-        <br>
-
-        Les références seront reliées
-        aux fournisseurs réels au fur et à mesure.
-
-      </div>
-
-    </div>
-
-
-  </div>
+</div>
 
 </section>
-
 
 </main>
 
 
-<!-- =======================================================
-     FOOTER
-======================================================= -->
-
 <footer>
 
-  <div class="container footer-grid">
+<div class="container footer-grid">
+
+<div class="footer-brand">
+
+<div class="logo">
+ÉVIDA
+</div>
+
+<p>
+Découvrez l'évidence.
+Des produits utiles, ingénieux et surprenants
+pour améliorer le quotidien.
+</p>
+
+</div>
 
 
-    <div class="footer-brand">
+<div class="footer-meta">
 
-      <div class="logo">
-        ÉVIDA
-      </div>
+Catalogue en cours de préparation.<br>
 
-      <p>
-        Découvrez l'évidence.
-        Des produits utiles,
-        ingénieux et surprenants
-        pour améliorer le quotidien.
-      </p>
+Les fournisseurs, délais de livraison,
+retours, moyens de paiement et mentions légales
+seront précisés avant l'ouverture officielle des ventes.
 
-    </div>
+</div>
 
-
-    <div class="footer-meta">
-
-      Catalogue en cours de préparation.
-
-      <br>
-
-      Les fournisseurs,
-      délais de livraison,
-      retours,
-      moyens de paiement
-      et mentions légales
-      seront précisés avant
-      l'ouverture officielle des ventes.
-
-    </div>
-
-
-  </div>
+</div>
 
 </footer>
 
 
-<!-- =======================================================
-     PANIER
-======================================================= -->
+<!-- PANIER -->
 
-<div
-  class="overlay"
-  id="overlay"
->
+<div class="overlay" id="overlay"></div>
+
+<aside class="cart-panel" id="cartPanel">
+
+<div class="cart-head">
+
+<div>
+<strong>Votre panier</strong><br>
+<small>ÉVIDA</small>
 </div>
 
+<button class="close" id="closeCart" aria-label="Fermer">
+×
+</button>
 
-<aside
-  class="cart-panel"
-  id="cartPanel"
->
+</div>
 
-  <div class="cart-head">
+<div class="cart-items" id="cartItems"></div>
 
-    <div>
+<div class="cart-total">
 
-      <strong>
-        Votre panier
-      </strong>
+<div class="total-line">
 
-      <br>
+<span>
+Total
+</span>
 
-      <small>
-        ÉVIDA
-      </small>
+<span id="cartTotal">
+0,00 €
+</span>
 
-    </div>
+</div>
 
-    <button
-      class="close"
-      id="closeCart"
-    >
-      ×
-    </button>
+<button class="btn-primary checkout" id="checkoutBtn">
+Continuer
+</button>
 
-  </div>
-
-
-  <div
-    class="cart-items"
-    id="cartItems"
-  >
-  </div>
-
-
-  <div class="cart-total">
-
-    <div class="total-line">
-
-      <span>
-        Total
-      </span>
-
-      <span id="cartTotal">
-        0,00 €
-      </span>
-
-    </div>
-
-
-    <button
-      class="btn-primary checkout"
-      id="checkoutBtn"
-    >
-      Continuer
-    </button>
-
-  </div>
+</div>
 
 </aside>
 
 
 <script>
 
-/* ==========================================================
-   30 PRODUITS ÉVIDA
-========================================================== */
+/* ==========================
+   PRODUITS ÉVIDA
+========================== */
 
 const products = [
 
 {
-  id:1,
-  name:"Fontaine à eau pour chat",
-  category:"Animaux",
-  price:29.90,
-  emoji:"⛲",
-  desc:"Une fontaine compacte pensée pour le quotidien de votre chat."
+id:1,
+name:"Fontaine à eau pour chat",
+category:"Animaux",
+price:29.90,
+emoji:"⛲",
+desc:"Une fontaine compacte pensée pour le quotidien de votre chat."
 },
 
 {
-  id:2,
-  name:"Rouleau anti-poils réutilisable",
-  category:"Animaux",
-  price:19.90,
-  emoji:"🧹",
-  desc:"Pour retirer rapidement les poils sur tissus, canapé et vêtements."
+id:2,
+name:"Rouleau anti-poils réutilisable",
+category:"Animaux",
+price:19.90,
+emoji:"🧹",
+desc:"Pour retirer rapidement les poils sur tissus, canapé et vêtements."
 },
 
 {
-  id:3,
-  name:"Nettoyeur de pattes pour chien",
-  category:"Animaux",
-  price:19.90,
-  emoji:"🐾",
-  desc:"Un accessoire simple à utiliser après les promenades."
+id:3,
+name:"Nettoyeur de pattes pour chien",
+category:"Animaux",
+price:19.90,
+emoji:"🐾",
+desc:"Un accessoire simple à utiliser après les promenades."
 },
 
 {
-  id:4,
-  name:"Bouteille d'eau portable pour chien",
-  category:"Animaux",
-  price:19.90,
-  emoji:"💧",
-  desc:"Pratique pour les sorties, balades et déplacements."
+id:4,
+name:"Bouteille d'eau portable pour chien",
+category:"Animaux",
+price:19.90,
+emoji:"💧",
+desc:"Pratique pour les sorties, balades et déplacements."
 },
 
 {
-  id:5,
-  name:"Gamelle anti-glouton",
-  category:"Animaux",
-  price:19.90,
-  emoji:"🥣",
-  desc:"Une gamelle à relief pour ralentir la prise de nourriture."
+id:5,
+name:"Gamelle anti-glouton",
+category:"Animaux",
+price:19.90,
+emoji:"🥣",
+desc:"Une gamelle à relief conçue pour ralentir la prise de nourriture."
 },
 
 {
-  id:6,
-  name:"Gamelle de voyage pliable",
-  category:"Animaux",
-  price:14.90,
-  emoji:"👜",
-  desc:"Compacte, légère et facile à emporter."
+id:6,
+name:"Gamelle de voyage pliable",
+category:"Animaux",
+price:14.90,
+emoji:"👜",
+desc:"Compacte, légère et facile à emporter."
 },
 
 {
-  id:7,
-  name:"Gant de toilettage",
-  category:"Animaux",
-  price:14.90,
-  emoji:"🧤",
-  desc:"Pour brosser votre animal pendant un moment de soin."
+id:7,
+name:"Gant de toilettage",
+category:"Animaux",
+price:14.90,
+emoji:"🧤",
+desc:"Pour brosser votre animal pendant un moment de soin."
 },
 
 {
-  id:8,
-  name:"Brosse anti-poils chat & chien",
-  category:"Animaux",
-  price:19.90,
-  emoji:"🐕",
-  desc:"Une brosse pratique pour l'entretien régulier du pelage."
+id:8,
+name:"Brosse anti-poils chat & chien",
+category:"Animaux",
+price:19.90,
+emoji:"🐕",
+desc:"Une brosse pratique pour l'entretien régulier du pelage."
 },
 
 {
-  id:9,
-  name:"Jouet interactif pour chat",
-  category:"Animaux",
-  price:19.90,
-  emoji:"🐈",
-  desc:"Un accessoire ludique pour occuper votre chat."
+id:9,
+name:"Jouet interactif pour chat",
+category:"Animaux",
+price:19.90,
+emoji:"🐈",
+desc:"Un accessoire ludique pour occuper votre chat."
 },
 
 {
-  id:10,
-  name:"Housse de siège auto pour animaux",
-  category:"Animaux",
-  price:29.90,
-  emoji:"🚗",
-  desc:"Pour protéger plus facilement les sièges pendant les trajets."
+id:10,
+name:"Housse de siège auto pour animaux",
+category:"Animaux",
+price:29.90,
+emoji:"🚗",
+desc:"Pour protéger plus facilement les sièges pendant les trajets."
 },
 
 {
-  id:11,
-  name:"Lampe LED à détecteur de mouvement",
-  category:"Maison",
-  price:24.90,
-  emoji:"💡",
-  desc:"Un éclairage d'appoint pratique pour les zones de passage."
+id:11,
+name:"Lampe LED à détecteur de mouvement",
+category:"Maison",
+price:24.90,
+emoji:"💡",
+desc:"Un éclairage d'appoint pratique pour les zones de passage."
 },
 
 {
-  id:12,
-  name:"Mini aspirateur de bureau",
-  category:"Maison",
-  price:24.90,
-  emoji:"🌀",
-  desc:"Pour retirer rapidement miettes et petites poussières."
+id:12,
+name:"Mini aspirateur de bureau",
+category:"Maison",
+price:24.90,
+emoji:"🌀",
+desc:"Pour retirer rapidement miettes et petites poussières."
 },
 
 {
-  id:13,
-  name:"Organisateur d'évier",
-  category:"Maison",
-  price:19.90,
-  emoji:"🧽",
-  desc:"Pour garder éponges et accessoires mieux rangés."
+id:13,
+name:"Organisateur d'évier",
+category:"Maison",
+price:19.90,
+emoji:"🧽",
+desc:"Pour garder éponges et accessoires mieux rangés."
 },
 
 {
-  id:14,
-  name:"Mini scelleuse pour sachets",
-  category:"Maison",
-  price:14.90,
-  emoji:"📦",
-  desc:"Un petit accessoire pour refermer certains emballages souples."
+id:14,
+name:"Mini scelleuse pour sachets",
+category:"Maison",
+price:14.90,
+emoji:"📦",
+desc:"Un petit accessoire pour refermer certains emballages souples."
 },
 
 {
-  id:15,
-  name:"Organisateur de câbles",
-  category:"Maison",
-  price:14.90,
-  emoji:"🔌",
-  desc:"Pour réduire les câbles qui traînent sur le bureau."
+id:15,
+name:"Organisateur de câbles",
+category:"Maison",
+price:14.90,
+emoji:"🔌",
+desc:"Pour mieux organiser les câbles sur le bureau."
 },
 
 {
-  id:16,
-  name:"Boîte cache-câbles",
-  category:"Maison",
-  price:19.90,
-  emoji:"🗃️",
-  desc:"Une solution simple pour dissimuler multiprises et câbles."
+id:16,
+name:"Boîte cache-câbles",
+category:"Maison",
+price:19.90,
+emoji:"🗃️",
+desc:"Une solution simple pour dissimuler multiprises et câbles."
 },
 
 {
-  id:17,
-  name:"Veilleuse rechargeable",
-  category:"Maison",
-  price:19.90,
-  emoji:"🌙",
-  desc:"Une petite lumière d'ambiance facile à placer."
+id:17,
+name:"Veilleuse rechargeable",
+category:"Maison",
+price:19.90,
+emoji:"🌙",
+desc:"Une petite lumière d'ambiance facile à placer."
 },
 
 {
-  id:18,
-  name:"Brosse de nettoyage multifonction",
-  category:"Maison",
-  price:14.90,
-  emoji:"🧼",
-  desc:"Pour différentes petites tâches de nettoyage du quotidien."
+id:18,
+name:"Brosse de nettoyage multifonction",
+category:"Maison",
+price:14.90,
+emoji:"🧼",
+desc:"Pour différentes petites tâches de nettoyage du quotidien."
 },
 
 {
-  id:19,
-  name:"Organisateur de tiroir modulable",
-  category:"Maison",
-  price:24.90,
-  emoji:"🗄️",
-  desc:"Pour structurer plus facilement le rangement des tiroirs."
+id:19,
+name:"Organisateur de tiroir modulable",
+category:"Maison",
+price:24.90,
+emoji:"🗄️",
+desc:"Pour structurer plus facilement le rangement des tiroirs."
 },
 
 {
-  id:20,
-  name:"Support mural adhésif multifonction",
-  category:"Maison",
-  price:14.90,
-  emoji:"🧷",
-  desc:"Un support compact pour organiser de petits objets."
+id:20,
+name:"Support mural adhésif multifonction",
+category:"Maison",
+price:14.90,
+emoji:"🧷",
+desc:"Un support compact pour organiser de petits objets."
 },
 
 {
-  id:21,
-  name:"Support téléphone pliable",
-  category:"Innovation",
-  price:19.90,
-  emoji:"📱",
-  desc:"Un support compact pour poser son téléphone au quotidien."
+id:21,
+name:"Support téléphone pliable",
+category:"Innovation",
+price:19.90,
+emoji:"📱",
+desc:"Un support compact pour poser son téléphone au quotidien."
 },
 
 {
-  id:22,
-  name:"Balance numérique pour bagages",
-  category:"Innovation",
-  price:19.90,
-  emoji:"⚖️",
-  desc:"Pour contrôler le poids d'un bagage avant le départ."
+id:22,
+name:"Balance numérique pour bagages",
+category:"Innovation",
+price:19.90,
+emoji:"⚖️",
+desc:"Pour contrôler le poids d'un bagage avant le départ."
 },
 
 {
-  id:23,
-  name:"Lampe de lecture rechargeable",
-  category:"Innovation",
-  price:19.90,
-  emoji:"📖",
-  desc:"Une lumière d'appoint compacte pour la lecture."
+id:23,
+name:"Lampe de lecture rechargeable",
+category:"Innovation",
+price:19.90,
+emoji:"📖",
+desc:"Une lumière d'appoint compacte pour la lecture."
 },
 
 {
-  id:24,
-  name:"Mini humidificateur USB",
-  category:"Innovation",
-  price:24.90,
-  emoji:"🌫️",
-  desc:"Un petit appareil d'ambiance pour bureau ou espace personnel."
+id:24,
+name:"Mini humidificateur USB",
+category:"Innovation",
+price:24.90,
+emoji:"🌫️",
+desc:"Un petit appareil d'ambiance pour bureau ou espace personnel."
 },
 
 {
-  id:25,
-  name:"Lampe rechargeable pour placard",
-  category:"Innovation",
-  price:19.90,
-  emoji:"🔦",
-  desc:"Un éclairage d'appoint pour placards et petits espaces."
+id:25,
+name:"Lampe rechargeable pour placard",
+category:"Innovation",
+price:19.90,
+emoji:"🔦",
+desc:"Un éclairage d'appoint pour placards et petits espaces."
 },
 
 {
-  id:26,
-  name:"Support téléphone voiture",
-  category:"Innovation",
-  price:19.90,
-  emoji:"🚘",
-  desc:"Pour maintenir le téléphone en position lors des trajets."
+id:26,
+name:"Support téléphone voiture",
+category:"Innovation",
+price:19.90,
+emoji:"🚘",
+desc:"Pour maintenir le téléphone en position lors des trajets."
 },
 
 {
-  id:27,
-  name:"Organisateur électronique de voyage",
-  category:"Cadeaux",
-  price:19.90,
-  emoji:"🎒",
-  desc:"Pour regrouper câbles, chargeurs et petits accessoires."
+id:27,
+name:"Organisateur électronique de voyage",
+category:"Cadeaux",
+price:19.90,
+emoji:"🎒",
+desc:"Pour regrouper câbles, chargeurs et petits accessoires."
 },
 
 {
-  id:28,
-  name:"Trousse de voyage compartimentée",
-  category:"Cadeaux",
-  price:24.90,
-  emoji:"🧳",
-  desc:"Une trousse pratique avec plusieurs espaces de rangement."
+id:28,
+name:"Trousse de voyage compartimentée",
+category:"Cadeaux",
+price:24.90,
+emoji:"🧳",
+desc:"Une trousse pratique avec plusieurs espaces de rangement."
 },
 
 {
-  id:29,
-  name:"Mini lampe d'ambiance rechargeable",
-  category:"Cadeaux",
-  price:24.90,
-  emoji:"✨",
-  desc:"Une petite lumière décorative facile à déplacer."
+id:29,
+name:"Mini lampe d'ambiance rechargeable",
+category:"Cadeaux",
+price:24.90,
+emoji:"✨",
+desc:"Une petite lumière décorative facile à déplacer."
 },
 
 {
-  id:30,
-  name:"Sac de voyage cabine compact",
-  category:"Cadeaux",
-  price:39.90,
-  emoji:"✈️",
-  desc:"Un format pratique pour les courts déplacements."
+id:30,
+name:"Sac de voyage cabine compact",
+category:"Cadeaux",
+price:39.90,
+emoji:"✈️",
+desc:"Un format pratique pour les courts déplacements."
 }
 
 ];
 
 
-/* ==========================================================
-   PANIER
-========================================================== */
+/* ==========================
+   ÉTAT
+========================== */
 
 let currentFilter = "Tous";
 
-let cart = JSON.parse(
-  localStorage.getItem("evida-cart") || "[]"
-);
+let cart = [];
+
+try {
+
+  cart = JSON.parse(
+    localStorage.getItem("evida-cart") || "[]"
+  );
+
+  if (!Array.isArray(cart)) {
+    cart = [];
+  }
+
+} catch(error) {
+
+  cart = [];
+
+}
 
 
-/* ==========================================================
+/* ==========================
    PRIX
-========================================================== */
+========================== */
 
 function money(value) {
 
@@ -2283,19 +1762,17 @@ function money(value) {
 }
 
 
-/* ==========================================================
-   AFFICHAGE PRODUITS
-========================================================== */
+/* ==========================
+   PRODUITS
+========================== */
 
 function renderProducts() {
 
-  const searchInput =
+  const search =
     document.getElementById("search");
 
   const query =
-    searchInput.value
-      .trim()
-      .toLowerCase();
+    search.value.trim().toLowerCase();
 
 
   const filtered =
@@ -2306,16 +1783,8 @@ function renderProducts() {
         product.category === currentFilter;
 
       const searchMatch =
-        product.name
-          .toLowerCase()
-          .includes(query)
-
-        ||
-
-        product.desc
-          .toLowerCase()
-          .includes(query);
-
+        product.name.toLowerCase().includes(query) ||
+        product.desc.toLowerCase().includes(query);
 
       return categoryMatch && searchMatch;
 
@@ -2349,7 +1818,6 @@ function renderProducts() {
 
       </div>
 
-
       <div class="product-body">
 
         <h3>
@@ -2359,7 +1827,6 @@ function renderProducts() {
         <p>
           ${product.desc}
         </p>
-
 
         <div class="product-footer">
 
@@ -2385,9 +1852,9 @@ function renderProducts() {
 }
 
 
-/* ==========================================================
-   AJOUT PANIER
-========================================================== */
+/* ==========================
+   AJOUTER AU PANIER
+========================== */
 
 function addToCart(id) {
 
@@ -2401,16 +1868,12 @@ function addToCart(id) {
 
     item.qty += 1;
 
-  }
+  } else {
 
-  else {
-
-    cart.push(
-      {
-        id:id,
-        qty:1
-      }
-    );
+    cart.push({
+      id:id,
+      qty:1
+    });
 
   }
 
@@ -2422,9 +1885,9 @@ function addToCart(id) {
 }
 
 
-/* ==========================================================
-   SUPPRIMER PANIER
-========================================================== */
+/* ==========================
+   RETIRER
+========================== */
 
 function removeFromCart(id) {
 
@@ -2438,9 +1901,9 @@ function removeFromCart(id) {
 }
 
 
-/* ==========================================================
-   SAUVEGARDE PANIER
-========================================================== */
+/* ==========================
+   SAUVEGARDER
+========================== */
 
 function saveCart() {
 
@@ -2454,9 +1917,9 @@ function saveCart() {
 }
 
 
-/* ==========================================================
+/* ==========================
    AFFICHAGE PANIER
-========================================================== */
+========================== */
 
 function renderCart() {
 
@@ -2509,9 +1972,13 @@ function renderCart() {
         );
 
 
+      if(!product) {
+        return "";
+      }
+
+
       total +=
-        product.price *
-        item.qty;
+        product.price * item.qty;
 
 
       return `
@@ -2525,13 +1992,10 @@ function renderCart() {
             </h4>
 
             <small>
-              ${item.qty}
-              ×
-              ${money(product.price)}
+              ${item.qty} × ${money(product.price)}
             </small>
 
           </div>
-
 
           <button
             class="remove"
@@ -2555,218 +2019,189 @@ function renderCart() {
 }
 
 
-/* ==========================================================
-   OUVRIR PANIER
-========================================================== */
+/* ==========================
+   OUVRIR / FERMER PANIER
+========================== */
 
 function openCart() {
 
   document
     .getElementById("cartPanel")
-    .classList
-    .add("open");
+    .classList.add("open");
 
 
   document
     .getElementById("overlay")
-    .classList
-    .add("show");
+    .classList.add("show");
 
 }
 
-
-/* ==========================================================
-   FERMER PANIER
-========================================================== */
 
 function closeCart() {
 
   document
     .getElementById("cartPanel")
-    .classList
-    .remove("open");
+    .classList.remove("open");
 
 
   document
     .getElementById("overlay")
-    .classList
-    .remove("show");
+    .classList.remove("show");
 
 }
 
 
-/* ==========================================================
+/* ==========================
    RECHERCHE
-========================================================== */
+========================== */
 
 document
-  .getElementById("search")
-  .addEventListener(
-    "input",
-    renderProducts
-  );
+.getElementById("search")
+.addEventListener(
+  "input",
+  renderProducts
+);
 
 
-/* ==========================================================
+/* ==========================
    FILTRES
-========================================================== */
+========================== */
 
 document
-  .querySelectorAll(".filter-btn")
-  .forEach(button => {
+.querySelectorAll(".filter-btn")
+.forEach(button => {
 
-
-    button.addEventListener(
-      "click",
-      () => {
-
-
-        document
-          .querySelectorAll(".filter-btn")
-          .forEach(item => {
-
-            item
-              .classList
-              .remove("active");
-
-          });
-
-
-        button
-          .classList
-          .add("active");
-
-
-        currentFilter =
-          button.dataset.filter;
-
-
-        renderProducts();
-
-      }
-    );
-
-
-  });
-
-
-/* ==========================================================
-   UNIVERS
-========================================================== */
-
-document
-  .querySelectorAll("[data-jump]")
-  .forEach(card => {
-
-
-    card.addEventListener(
-      "click",
-      () => {
-
-
-        currentFilter =
-          card.dataset.jump;
-
-
-        document
-          .querySelectorAll(".filter-btn")
-          .forEach(button => {
-
-
-            button
-              .classList
-              .toggle(
-                "active",
-                button.dataset.filter === currentFilter
-              );
-
-
-          });
-
-
-        renderProducts();
-
-
-        document
-          .getElementById("boutique")
-          .scrollIntoView(
-            {
-              behavior:"smooth"
-            }
-          );
-
-      }
-    );
-
-
-  });
-
-
-/* ==========================================================
-   BOUTONS PANIER
-========================================================== */
-
-document
-  .getElementById("openCart")
-  .addEventListener(
-    "click",
-    openCart
-  );
-
-
-document
-  .getElementById("closeCart")
-  .addEventListener(
-    "click",
-    closeCart
-  );
-
-
-document
-  .getElementById("overlay")
-  .addEventListener(
-    "click",
-    closeCart
-  );
-
-
-/* ==========================================================
-   COMMANDER
-========================================================== */
-
-document
-  .getElementById("checkoutBtn")
-  .addEventListener(
+  button.addEventListener(
     "click",
     () => {
 
+      document
+      .querySelectorAll(".filter-btn")
+      .forEach(item => {
 
-      if(!cart.length) {
+        item.classList.remove("active");
 
-        alert(
-          "Votre panier est vide."
-        );
-
-        return;
-
-      }
+      });
 
 
-      alert(
-        "Le paiement réel sera activé après validation des fournisseurs et configuration du prestataire de paiement."
-      );
+      button.classList.add("active");
 
+      currentFilter =
+        button.dataset.filter;
+
+      renderProducts();
 
     }
   );
 
+});
 
-/* ==========================================================
-   DÉMARRAGE
-========================================================== */
+
+/* ==========================
+   CARTES UNIVERS
+========================== */
+
+document
+.querySelectorAll("[data-jump]")
+.forEach(card => {
+
+  card.addEventListener(
+    "click",
+    () => {
+
+      currentFilter =
+        card.dataset.jump;
+
+
+      document
+      .querySelectorAll(".filter-btn")
+      .forEach(button => {
+
+        button.classList.toggle(
+          "active",
+          button.dataset.filter === currentFilter
+        );
+
+      });
+
+
+      renderProducts();
+
+
+      document
+      .getElementById("boutique")
+      .scrollIntoView({
+        behavior:"smooth"
+      });
+
+    }
+  );
+
+});
+
+
+/* ==========================
+   PANIER
+========================== */
+
+document
+.getElementById("openCart")
+.addEventListener(
+  "click",
+  openCart
+);
+
+
+document
+.getElementById("closeCart")
+.addEventListener(
+  "click",
+  closeCart
+);
+
+
+document
+.getElementById("overlay")
+.addEventListener(
+  "click",
+  closeCart
+);
+
+
+/* ==========================
+   CONTINUER
+========================== */
+
+document
+.getElementById("checkoutBtn")
+.addEventListener(
+  "click",
+  () => {
+
+    if(!cart.length) {
+
+      alert(
+        "Votre panier est vide."
+      );
+
+      return;
+
+    }
+
+
+    alert(
+      "Le paiement réel sera activé après validation des fournisseurs et configuration du prestataire de paiement."
+    );
+
+  }
+);
+
+
+/* ==========================
+   INITIALISATION
+========================== */
 
 renderProducts();
-
 renderCart();
 
 </script>
