@@ -1,0 +1,172 @@
+name: EVIDA SIGNED V2 - GOOGLE PLAY
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build-signed-aab:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Install Android 36
+        shell: bash
+        run: |
+          yes | sdkmanager --licenses >/dev/null || true
+          sdkmanager "platforms;android-36" "build-tools;36.0.0"
+
+      - name: Set up Gradle 8.9
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.9'
+
+      - name: Force EVIDA Google Play application id
+        shell: bash
+        run: |
+          cat > app/build.gradle <<'EOF'
+          plugins {
+              id 'com.android.application'
+              id 'org.jetbrains.kotlin.android'
+          }
+
+          android {
+              namespace 'com.evida.app'
+              compileSdk 36
+
+              defaultConfig {
+                  applicationId 'com.evida.france'
+                  minSdk 24
+                  targetSdk 36
+                  versionCode 5
+                  versionName '0.5.0'
+              }
+
+              buildTypes {
+                  release {
+                      minifyEnabled false
+                  }
+              }
+
+              compileOptions {
+                  sourceCompatibility JavaVersion.VERSION_17
+                  targetCompatibility JavaVersion.VERSION_17
+              }
+
+              kotlinOptions {
+                  jvmTarget = '17'
+              }
+          }
+          EOF
+
+      - name: Build release AAB
+        run: gradle :app:clean :app:bundleRelease --stacktrace
+
+      - name: Create permanent upload key for first accepted Play upload
+        id: key
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          STORE_PASS="$(openssl rand -hex 24)"
+          KEY_PASS="$(openssl rand -hex 24)"
+
+          echo "::add-mask::$STORE_PASS"
+          echo "::add-mask::$KEY_PASS"
+
+          keytool -genkeypair \
+            -storetype JKS \
+            -keystore "$GITHUB_WORKSPACE/evida-upload-key.jks" \
+            -storepass "$STORE_PASS" \
+            -keypass "$KEY_PASS" \
+            -alias evida-upload \
+            -keyalg RSA \
+            -keysize 4096 \
+            -sigalg SHA256withRSA \
+            -validity 10000 \
+            -dname "CN=EVIDA, OU=Android, O=EVIDA, L=Paris, C=FR"
+
+          {
+            echo "EVIDA - CREDENTIALS CLE D'UPLOAD GOOGLE PLAY"
+            echo "IMPORTANT: conserver ce fichier ET evida-upload-key.jks en lieu sûr."
+            echo "Alias: evida-upload"
+            echo "Store password: $STORE_PASS"
+            echo "Key password: $KEY_PASS"
+          } > "$GITHUB_WORKSPACE/evida-key-credentials.txt"
+
+          echo "STORE_PASS=$STORE_PASS" >> "$GITHUB_ENV"
+          echo "KEY_PASS=$KEY_PASS" >> "$GITHUB_ENV"
+
+      - name: Explicitly sign the AAB with jarsigner
+        shell: bash
+        run: |
+          set -euo pipefail
+          AAB="$GITHUB_WORKSPACE/app/build/outputs/bundle/release/app-release.aab"
+
+          test -f "$AAB"
+
+          jarsigner \
+            -keystore "$GITHUB_WORKSPACE/evida-upload-key.jks" \
+            -storepass "$STORE_PASS" \
+            -keypass "$KEY_PASS" \
+            -sigalg SHA256withRSA \
+            -digestalg SHA-256 \
+            "$AAB" \
+            evida-upload
+
+      - name: Verify signature and fail if unsigned
+        shell: bash
+        run: |
+          set -euo pipefail
+          AAB="$GITHUB_WORKSPACE/app/build/outputs/bundle/release/app-release.aab"
+
+          jarsigner -verify -verbose -certs "$AAB" | tee "$GITHUB_WORKSPACE/signature-check.txt"
+
+          if ! grep -qi "jar verified" "$GITHUB_WORKSPACE/signature-check.txt"; then
+            echo "ERROR: AAB signature verification failed"
+            exit 1
+          fi
+
+          keytool -printcert -jarfile "$AAB" > "$GITHUB_WORKSPACE/aab-certificate.txt"
+
+      - name: Prepare exact Google Play file
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$GITHUB_WORKSPACE/google-play-output"
+
+          cp "$GITHUB_WORKSPACE/app/build/outputs/bundle/release/app-release.aab" \
+             "$GITHUB_WORKSPACE/google-play-output/EVIDA-0.5.0-PLAY-SIGNED.aab"
+
+          cp "$GITHUB_WORKSPACE/evida-upload-key.jks" \
+             "$GITHUB_WORKSPACE/google-play-output/evida-upload-key.jks"
+
+          cp "$GITHUB_WORKSPACE/evida-key-credentials.txt" \
+             "$GITHUB_WORKSPACE/google-play-output/evida-key-credentials.txt"
+
+          cp "$GITHUB_WORKSPACE/signature-check.txt" \
+             "$GITHUB_WORKSPACE/google-play-output/signature-check.txt"
+
+          cp "$GITHUB_WORKSPACE/aab-certificate.txt" \
+             "$GITHUB_WORKSPACE/google-play-output/aab-certificate.txt"
+
+          sha256sum "$GITHUB_WORKSPACE/google-play-output/EVIDA-0.5.0-PLAY-SIGNED.aab" \
+            > "$GITHUB_WORKSPACE/google-play-output/AAB-SHA256.txt"
+
+      - name: Upload signed Google Play bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: EVIDA-V2-SIGNED-GOOGLE-PLAY
+          path: google-play-output/
+          retention-days: 1
+          if-no-files-found: error
