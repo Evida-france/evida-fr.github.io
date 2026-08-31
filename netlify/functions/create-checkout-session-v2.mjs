@@ -24,16 +24,15 @@ const PRODUCTS = {
   119: { name: "Gamelle pliable de voyage", unit_amount: 1490 },
   120: { name: "Tapis de léchage en silicone", unit_amount: 1490 },
   121: { name: "Pointeur laser vert de présentation <1 mW", unit_amount: 2000 },
-  122: { name: "Balance électronique de précision 0,01 g", unit_amount: 2000 }
+  122: { name: "Balance électronique de précision 0,01 g", unit_amount: 2000 },
+  123: { name: "Fontaine à eau pour chat 2 L", unit_amount: 2990 }
 };
 
 export async function handler(event) {
   if (event.httpMethod !== "POST") {
     return {
       statusCode: 405,
-      headers: {
-        "Content-Type": "application/json"
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         error: "Méthode non autorisée."
       })
@@ -51,9 +50,7 @@ export async function handler(event) {
     if (!items.length) {
       return {
         statusCode: 400,
-        headers: {
-          "Content-Type": "application/json"
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           error: "Votre panier est vide."
         })
@@ -69,9 +66,7 @@ export async function handler(event) {
       }
 
       const rawQuantity = Number(
-        item.quantity ??
-        item.qty ??
-        1
+        item.quantity ?? item.qty ?? 1
       );
 
       const quantity = Math.max(
@@ -86,11 +81,15 @@ export async function handler(event) {
 
       return {
         quantity,
+
         price_data: {
           currency: "eur",
+
           unit_amount: product.unit_amount,
+
           product_data: {
             name: product.name,
+
             metadata: {
               evida_product_id: String(id)
             }
@@ -104,36 +103,40 @@ export async function handler(event) {
       process.env.URL ||
       "https://evida-france.netlify.app";
 
-    const session = await stripe.checkout.sessions.create({
-      mode: "payment",
-      line_items,
+    const session =
+      await stripe.checkout.sessions.create({
+        mode: "payment",
 
-      billing_address_collection: "required",
+        line_items,
 
-      shipping_address_collection: {
-        allowed_countries: [
-          "FR",
-          "BE",
-          "LU",
-          "DE",
-          "ES",
-          "IT",
-          "NL"
-        ]
-      },
+        billing_address_collection: "required",
 
-      success_url:
-        `${origin}/?commande=succes&session_id={CHECKOUT_SESSION_ID}`,
+        shipping_address_collection: {
+          allowed_countries: [
+            "FR",
+            "BE",
+            "LU",
+            "DE",
+            "ES",
+            "IT",
+            "NL"
+          ]
+        },
 
-      cancel_url:
-        `${origin}/?commande=annulee`
-    });
+        success_url:
+          `${origin}/?commande=succes&session_id={CHECKOUT_SESSION_ID}`,
+
+        cancel_url:
+          `${origin}/?commande=annulee`
+      });
 
     return {
       statusCode: 200,
+
       headers: {
         "Content-Type": "application/json"
       },
+
       body: JSON.stringify({
         url: session.url
       })
@@ -147,9 +150,11 @@ export async function handler(event) {
 
     return {
       statusCode: 500,
+
       headers: {
         "Content-Type": "application/json"
       },
+
       body: JSON.stringify({
         error:
           error?.message ||
