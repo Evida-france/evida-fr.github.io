@@ -8,7 +8,8 @@ pay.addEventListener("click",async()=>{
   pay.disabled=true;
   payStatus.textContent="Ouverture du paiement sécurisé…";
   try{
-    const r=await fetch("/.netlify/functions/create-checkout-session-v2",{
+    const CHECKOUT_API="https://evida-france.netlify.app/.netlify/functions/create-checkout-session-v2";
+    const r=await fetch(CHECKOUT_API,{
       method:"POST",
       headers:{"Content-Type":"application/json"},
       body:JSON.stringify({items:cart.map(p=>({id:p.id,quantity:p.qty}))})
