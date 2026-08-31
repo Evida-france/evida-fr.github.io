@@ -28,11 +28,42 @@ const PRODUCTS = {
   123: { name: "Fontaine à eau pour chat 2 L", unit_amount: 2990 }
 };
 
+const ALLOWED_ORIGINS = [
+  "https://evida-france.github.io",
+  "https://evida-france.netlify.app"
+];
+
+function corsHeaders(origin = "") {
+  const allowedOrigin = ALLOWED_ORIGINS.includes(origin)
+    ? origin
+    : "https://evida-france.github.io";
+
+  return {
+    "Access-Control-Allow-Origin": allowedOrigin,
+    "Access-Control-Allow-Headers": "Content-Type",
+    "Access-Control-Allow-Methods": "POST, OPTIONS",
+    "Content-Type": "application/json"
+  };
+}
+
 export async function handler(event) {
+  const requestOrigin = event.headers?.origin || "";
+
+  const headers = corsHeaders(requestOrigin);
+
+  // Autorise le navigateur à appeler Netlify depuis GitHub Pages
+  if (event.httpMethod === "OPTIONS") {
+    return {
+      statusCode: 204,
+      headers,
+      body: ""
+    };
+  }
+
   if (event.httpMethod !== "POST") {
     return {
       statusCode: 405,
-      headers: { "Content-Type": "application/json" },
+      headers,
       body: JSON.stringify({
         error: "Méthode non autorisée."
       })
@@ -45,12 +76,15 @@ export async function handler(event) {
     }
 
     const body = JSON.parse(event.body || "{}");
-    const items = Array.isArray(body.items) ? body.items : [];
+
+    const items = Array.isArray(body.items)
+      ? body.items
+      : [];
 
     if (!items.length) {
       return {
         statusCode: 400,
-        headers: { "Content-Type": "application/json" },
+        headers,
         body: JSON.stringify({
           error: "Votre panier est vide."
         })
@@ -59,10 +93,13 @@ export async function handler(event) {
 
     const line_items = items.map(item => {
       const id = Number(item.id);
+
       const product = PRODUCTS[id];
 
       if (!product) {
-        throw new Error(`Produit ÉVIDA invalide : ${id}`);
+        throw new Error(
+          `Produit ÉVIDA invalide : ${id}`
+        );
       }
 
       const rawQuantity = Number(
@@ -98,10 +135,8 @@ export async function handler(event) {
       };
     });
 
-    const origin =
-      event.headers?.origin ||
-      process.env.URL ||
-      "https://evida-france.netlify.app";
+    const FRONTEND_URL =
+      "https://evida-france.github.io/evida-fr.github.io/";
 
     const session =
       await stripe.checkout.sessions.create({
@@ -124,18 +159,16 @@ export async function handler(event) {
         },
 
         success_url:
-          `${origin}/?commande=succes&session_id={CHECKOUT_SESSION_ID}`,
+          `${FRONTEND_URL}?commande=succes&session_id={CHECKOUT_SESSION_ID}`,
 
         cancel_url:
-          `${origin}/?commande=annulee`
+          `${FRONTEND_URL}?commande=annulee`
       });
 
     return {
       statusCode: 200,
 
-      headers: {
-        "Content-Type": "application/json"
-      },
+      headers,
 
       body: JSON.stringify({
         url: session.url
@@ -151,9 +184,7 @@ export async function handler(event) {
     return {
       statusCode: 500,
 
-      headers: {
-        "Content-Type": "application/json"
-      },
+      headers,
 
       body: JSON.stringify({
         error:
