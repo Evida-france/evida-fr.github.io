@@ -1,0 +1,82 @@
+name: Build EVIDA Google Play AAB
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Install Android 36
+        run: |
+          yes | sdkmanager --licenses >/dev/null || true
+          sdkmanager "platforms;android-36" "build-tools;36.0.0"
+
+      - name: Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.9'
+
+      - name: Create private upload key
+        shell: bash
+        run: |
+          set -e
+          STORE_PASS="$(openssl rand -hex 18)"
+          KEY_PASS="$(openssl rand -hex 18)"
+          echo "::add-mask::$STORE_PASS"
+          echo "::add-mask::$KEY_PASS"
+
+          keytool -genkeypair \
+            -keystore "$GITHUB_WORKSPACE/upload-key.jks" \
+            -storepass "$STORE_PASS" \
+            -keypass "$KEY_PASS" \
+            -alias evida-upload \
+            -keyalg RSA \
+            -keysize 4096 \
+            -validity 10000 \
+            -dname "CN=EVIDA, OU=Android, O=EVIDA, L=Paris, C=FR"
+
+          echo "EVIDA_KEYSTORE_PATH=$GITHUB_WORKSPACE/upload-key.jks" >> "$GITHUB_ENV"
+          echo "EVIDA_STORE_PASSWORD=$STORE_PASS" >> "$GITHUB_ENV"
+          echo "EVIDA_KEY_PASSWORD=$KEY_PASS" >> "$GITHUB_ENV"
+          echo "EVIDA_KEY_ALIAS=evida-upload" >> "$GITHUB_ENV"
+
+          {
+            echo "EVIDA - CLE DE MISE A JOUR GOOGLE PLAY"
+            echo "CONSERVEZ CE FICHIER EN LIEU SUR."
+            echo "Alias: evida-upload"
+            echo "Store password: $STORE_PASS"
+            echo "Key password: $KEY_PASS"
+          } > key-credentials.txt
+
+      - name: Build signed AAB
+        run: gradle :app:bundleRelease
+
+      - name: Prepare Google Play files
+        shell: bash
+        run: |
+          mkdir -p google-play-output
+          cp app/build/outputs/bundle/release/app-release.aab google-play-output/EVIDA-0.3.0.aab
+          cp upload-key.jks google-play-output/upload-key.jks
+          cp key-credentials.txt google-play-output/key-credentials.txt
+
+      - name: Upload result
+        uses: actions/upload-artifact@v4
+        with:
+          name: EVIDA-GOOGLE-PLAY-AAB
+          path: google-play-output/
+          retention-days: 1
+          if-no-files-found: error
