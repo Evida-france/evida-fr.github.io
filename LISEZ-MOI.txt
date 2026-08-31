@@ -1,0 +1,27 @@
+ÉVIDA — génération du vrai fichier Google Play .aab
+
+Ce projet est configuré pour :
+- Application ID : com.evida.france
+- Version : 0.3.0
+- Version code : 3
+- Target SDK : 36
+
+ÉTAPES SUR GITHUB
+1. Décompresse ce ZIP.
+2. Envoie tout son contenu dans ton dépôt GitHub ÉVIDA, en gardant les dossiers.
+3. Va dans l'onglet Actions.
+4. Ouvre « Build EVIDA Google Play AAB ».
+5. Appuie sur « Run workflow ».
+6. Quand le build est vert, ouvre-le.
+7. Dans Artifacts, télécharge « EVIDA-GOOGLE-PLAY-AAB ».
+8. Décompresse cet artifact.
+9. Dans Google Play Console, importe le fichier EVIDA-0.3.0.aab.
+
+IMPORTANT — À CONSERVER
+L'artifact contient aussi :
+- upload-key.jks
+- key-credentials.txt
+
+Garde ces 2 fichiers en lieu sûr et privé. Ils servent à signer les futures mises à jour.
+Ne les publie pas dans le dépôt GitHub.
+L'artifact GitHub expire après 1 jour dans ce workflow, donc télécharge-le dès que le build est terminé.
