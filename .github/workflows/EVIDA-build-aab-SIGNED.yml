@@ -1,0 +1,142 @@
+name: Build EVIDA Google Play AAB
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Install Android 36
+        shell: bash
+        run: |
+          yes | sdkmanager --licenses >/dev/null || true
+          sdkmanager "platforms;android-36" "build-tools;36.0.0"
+
+      - name: Gradle 8.9
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.9'
+
+      - name: Create Google Play upload key
+        shell: bash
+        run: |
+          set -e
+          STORE_PASS="$(openssl rand -hex 18)"
+          KEY_PASS="$(openssl rand -hex 18)"
+
+          echo "::add-mask::$STORE_PASS"
+          echo "::add-mask::$KEY_PASS"
+
+          keytool -genkeypair \
+            -keystore "$GITHUB_WORKSPACE/upload-key.jks" \
+            -storepass "$STORE_PASS" \
+            -keypass "$KEY_PASS" \
+            -alias evida-upload \
+            -keyalg RSA \
+            -keysize 4096 \
+            -validity 10000 \
+            -dname "CN=EVIDA, OU=Android, O=EVIDA, L=Paris, C=FR"
+
+          echo "EVIDA_STORE_PASSWORD=$STORE_PASS" >> "$GITHUB_ENV"
+          echo "EVIDA_KEY_PASSWORD=$KEY_PASS" >> "$GITHUB_ENV"
+          echo "EVIDA_KEY_ALIAS=evida-upload" >> "$GITHUB_ENV"
+          echo "EVIDA_KEYSTORE_PATH=$GITHUB_WORKSPACE/upload-key.jks" >> "$GITHUB_ENV"
+
+          {
+            echo "EVIDA - CLE DE MISE A JOUR GOOGLE PLAY"
+            echo "CONSERVEZ CE FICHIER ET upload-key.jks EN LIEU SUR."
+            echo "Alias: evida-upload"
+            echo "Store password: $STORE_PASS"
+            echo "Key password: $KEY_PASS"
+          } > "$GITHUB_WORKSPACE/key-credentials.txt"
+
+      - name: Force signed release configuration
+        shell: bash
+        run: |
+          cat > app/build.gradle <<'EOF'
+          plugins {
+              id 'com.android.application'
+              id 'org.jetbrains.kotlin.android'
+          }
+
+          android {
+              namespace 'com.evida.app'
+              compileSdk 36
+
+              defaultConfig {
+                  applicationId 'com.evida.france'
+                  minSdk 24
+                  targetSdk 36
+                  versionCode 4
+                  versionName '0.4.0'
+              }
+
+              signingConfigs {
+                  release {
+                      storeFile file(System.getenv("EVIDA_KEYSTORE_PATH"))
+                      storePassword System.getenv("EVIDA_STORE_PASSWORD")
+                      keyAlias System.getenv("EVIDA_KEY_ALIAS")
+                      keyPassword System.getenv("EVIDA_KEY_PASSWORD")
+                  }
+              }
+
+              buildTypes {
+                  release {
+                      signingConfig signingConfigs.release
+                      minifyEnabled false
+                  }
+              }
+
+              compileOptions {
+                  sourceCompatibility JavaVersion.VERSION_17
+                  targetCompatibility JavaVersion.VERSION_17
+              }
+
+              kotlinOptions {
+                  jvmTarget = '17'
+              }
+          }
+          EOF
+
+      - name: Build signed AAB
+        run: gradle :app:clean :app:bundleRelease --stacktrace
+
+      - name: Verify AAB signature
+        shell: bash
+        run: |
+          set -e
+          AAB="app/build/outputs/bundle/release/app-release.aab"
+          test -f "$AAB"
+          jarsigner -verify -verbose -certs "$AAB" | tee signature-check.txt
+          grep -qi "jar verified" signature-check.txt
+
+      - name: Prepare files
+        shell: bash
+        run: |
+          mkdir -p google-play-output
+          cp app/build/outputs/bundle/release/app-release.aab google-play-output/EVIDA-0.4.0-SIGNED.aab
+          cp upload-key.jks google-play-output/upload-key.jks
+          cp key-credentials.txt google-play-output/key-credentials.txt
+          cp signature-check.txt google-play-output/signature-check.txt
+
+      - name: Upload signed AAB
+        uses: actions/upload-artifact@v4
+        with:
+          name: EVIDA-GOOGLE-PLAY-SIGNED-AAB
+          path: google-play-output/
+          retention-days: 1
+          if-no-files-found: error
