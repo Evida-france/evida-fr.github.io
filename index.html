@@ -30,4 +30,7 @@ if(params.get("commande")==="succes"){
   setTimeout(()=>alert("Paiement confirmé. Merci !"),50);
 }
 renderProducts();renderCart();
+const siteFooter=document.querySelector("footer");
+siteFooter.innerHTML='<strong>ÉVIDA</strong><br><br>Découvrez l\'évidence.<br>Des découvertes utiles, ingénieuses et surprenantes.<br><br><nav aria-label="Informations légales"><a href="mentions-legales.html">Mentions légales</a> · <a href="cgv.html">Conditions générales de vente</a> · <a href="privacy.html">Confidentialité et cookies</a> · <a href="livraison-retours.html">Livraison et retours</a></nav><br><small>© 2026 ÉVIDA — Maihdy Coudert, entrepreneur individuel en cours d\'immatriculation.</small>';
+siteFooter.querySelectorAll("a").forEach(link=>{link.style.color="inherit";link.style.lineHeight="2"});
 </script></body></html>
