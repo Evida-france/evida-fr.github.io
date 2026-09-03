@@ -1,7 +1,3 @@
-import Stripe from "stripe";
-
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
-
 const PRODUCTS = {
   201: { name: "Pommeau de douche filtrant", unit_amount: 2990 },
   202: { name: "Rideau occultant portable", unit_amount: 3990 },
@@ -19,12 +15,10 @@ const ALLOWED_ORIGINS = [
 ];
 
 function corsHeaders(origin = "") {
-  const allowedOrigin = ALLOWED_ORIGINS.includes(origin)
-    ? origin
-    : "https://evida-france.github.io";
-
   return {
-    "Access-Control-Allow-Origin": allowedOrigin,
+    "Access-Control-Allow-Origin": ALLOWED_ORIGINS.includes(origin)
+      ? origin
+      : "https://evida-france.github.io",
     "Access-Control-Allow-Headers": "Content-Type",
     "Access-Control-Allow-Methods": "POST, OPTIONS",
     "Content-Type": "application/json"
@@ -32,155 +26,98 @@ function corsHeaders(origin = "") {
 }
 
 export async function handler(event) {
-  const requestOrigin = event.headers?.origin || "";
+  const headers = corsHeaders(event.headers?.origin || "");
 
-  const headers = corsHeaders(requestOrigin);
-
-  // Autorise le navigateur à appeler Netlify depuis GitHub Pages
   if (event.httpMethod === "OPTIONS") {
-    return {
-      statusCode: 204,
-      headers,
-      body: ""
-    };
+    return { statusCode: 204, headers, body: "" };
   }
 
   if (event.httpMethod !== "POST") {
     return {
       statusCode: 405,
       headers,
-      body: JSON.stringify({
-        error: "Méthode non autorisée."
-      })
+      body: JSON.stringify({ error: "Méthode non autorisée." })
     };
   }
 
   try {
-    if (!process.env.STRIPE_SECRET_KEY) {
-      throw new Error("STRIPE_SECRET_KEY manquante.");
+    const apiKey = process.env.SUMUP_API_KEY;
+    const merchantCode = process.env.SUMUP_MERCHANT_CODE;
+    if (!apiKey || !merchantCode) {
+      throw new Error("Configuration SumUp incomplète.");
     }
 
     const body = JSON.parse(event.body || "{}");
-
-    const items = Array.isArray(body.items)
-      ? body.items
-      : [];
-
+    const items = Array.isArray(body.items) ? body.items : [];
     if (!items.length) {
       return {
         statusCode: 400,
         headers,
-        body: JSON.stringify({
-          error: "Votre panier est vide."
-        })
+        body: JSON.stringify({ error: "Votre panier est vide." })
       };
     }
 
     let subtotal = 0;
-    const line_items = items.map(item => {
+    const summary = [];
+
+    for (const item of items) {
       const id = Number(item.id);
-
       const product = PRODUCTS[id];
+      if (!product) throw new Error(`Produit ÉVIDA invalide : ${id}`);
 
-      if (!product) {
-        throw new Error(
-          `Produit ÉVIDA invalide : ${id}`
-        );
-      }
-
-      const rawQuantity = Number(
-        item.quantity ?? item.qty ?? 1
-      );
-
+      const rawQuantity = Number(item.quantity ?? item.qty ?? 1);
       const quantity = Math.max(
         1,
-        Math.min(
-          10,
-          Number.isFinite(rawQuantity)
-            ? Math.floor(rawQuantity)
-            : 1
-        )
+        Math.min(10, Number.isFinite(rawQuantity) ? Math.floor(rawQuantity) : 1)
       );
       subtotal += product.unit_amount * quantity;
+      summary.push(`${quantity}× ${product.name}`);
+    }
 
-      return {
-        quantity,
+    const shipping = subtotal >= 5000 ? 0 : 490;
+    const total = subtotal + shipping;
+    const reference = `EVIDA-${Date.now()}-${crypto.randomUUID().slice(0, 8)}`;
+    const frontendUrl = "https://evida-france.github.io/evida-fr.github.io/";
 
-        price_data: {
-          currency: "eur",
-
-          unit_amount: product.unit_amount,
-
-          product_data: {
-            name: product.name,
-
-            metadata: {
-              evida_product_id: String(id)
-            }
-          }
-        }
-      };
+    const response = await fetch("https://api.sumup.com/v0.1/checkouts", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        checkout_reference: reference,
+        amount: Number((total / 100).toFixed(2)),
+        currency: "EUR",
+        merchant_code: merchantCode,
+        description: `Commande ÉVIDA — ${summary.join(", ")}`.slice(0, 500),
+        redirect_url: `${frontendUrl}?commande=succes&reference=${encodeURIComponent(reference)}`,
+        hosted_checkout: { enabled: true }
+      })
     });
 
-    const FRONTEND_URL =
-      "https://evida-france.github.io/evida-fr.github.io/";
-
-    const session =
-      await stripe.checkout.sessions.create({
-        mode: "payment",
-
-        line_items,
-
-        billing_address_collection: "required",
-
-        shipping_address_collection: {
-          allowed_countries: ["FR"]
-        },
-
-        shipping_options: [{
-          shipping_rate_data: {
-            type: "fixed_amount",
-            fixed_amount: { amount: subtotal >= 5000 ? 0 : 490, currency: "eur" },
-            display_name: subtotal >= 5000 ? "Livraison suivie offerte" : "Livraison suivie",
-            delivery_estimate: {
-              minimum: { unit: "business_day", value: 10 },
-              maximum: { unit: "business_day", value: 20 }
-            }
-          }
-        }],
-
-        success_url:
-          `${FRONTEND_URL}?commande=succes&session_id={CHECKOUT_SESSION_ID}`,
-
-        cancel_url:
-          `${FRONTEND_URL}?commande=annulee`
-      });
+    const data = await response.json().catch(() => ({}));
+    if (!response.ok || !data.hosted_checkout_url) {
+      console.error("SumUp API error:", response.status, data);
+      throw new Error(data?.message || "SumUp n’a pas pu ouvrir le paiement.");
+    }
 
     return {
       statusCode: 200,
-
       headers,
-
       body: JSON.stringify({
-        url: session.url
+        url: data.hosted_checkout_url,
+        checkoutId: data.id,
+        reference
       })
     };
-
   } catch (error) {
-    console.error(
-      "Stripe checkout error:",
-      error
-    );
-
+    console.error("SumUp checkout error:", error);
     return {
       statusCode: 500,
-
       headers,
-
       body: JSON.stringify({
-        error:
-          error?.message ||
-          "Impossible de créer la session de paiement."
+        error: error?.message || "Impossible de créer le paiement SumUp."
       })
     };
   }
