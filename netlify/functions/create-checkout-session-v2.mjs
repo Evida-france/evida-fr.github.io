@@ -3,29 +3,14 @@ import Stripe from "stripe";
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 const PRODUCTS = {
-  101: { name: "Organiseur coulissant sous évier — 2 niveaux", unit_amount: 2490 },
-  102: { name: "Grand sac de rangement textile 50–75 L", unit_amount: 1490 },
-  103: { name: "Organiseur pliable pour vêtements et jeans", unit_amount: 1490 },
-  104: { name: "Organiseur rotatif 360°", unit_amount: 1990 },
-  105: { name: "Support mural pour balai et accessoires", unit_amount: 1290 },
-  106: { name: "Panier de rangement pour évier", unit_amount: 1290 },
-  107: { name: "Organiseur rotatif pour salle de bain", unit_amount: 1990 },
-  108: { name: "Rangement pliable multi-usage", unit_amount: 1990 },
-  109: { name: "Clip magnétique range-câbles", unit_amount: 990 },
-  110: { name: "Support pliable pour ordinateur portable", unit_amount: 2490 },
-  111: { name: "Support pliable pour smartphone", unit_amount: 1290 },
-  112: { name: "Pochette organiseur pour câbles et accessoires tech", unit_amount: 1990 },
-  113: { name: "Pèse-bagage portable", unit_amount: 1490 },
-  114: { name: "Trousse transparente de voyage", unit_amount: 1290 },
-  115: { name: "Set de 7 organiseurs de valise", unit_amount: 2490 },
-  116: { name: "Sac de voyage pliable grande capacité", unit_amount: 2490 },
-  117: { name: "Gourde portable pour chien et chat", unit_amount: 1990 },
-  118: { name: "Peigne de toilettage pour chien et chat", unit_amount: 1490 },
-  119: { name: "Gamelle pliable de voyage", unit_amount: 1490 },
-  120: { name: "Tapis de léchage en silicone", unit_amount: 1490 },
-  121: { name: "Pointeur laser vert de présentation <1 mW", unit_amount: 2000 },
-  122: { name: "Balance électronique de précision 0,01 g", unit_amount: 2000 },
-  123: { name: "Fontaine à eau pour chat 2 L", unit_amount: 2990 }
+  201: { name: "Pommeau de douche filtrant", unit_amount: 2990 },
+  202: { name: "Rideau occultant portable", unit_amount: 3990 },
+  203: { name: "Walking Pad compact", unit_amount: 19990 },
+  204: { name: "Nettoyeur textile injecteur-extracteur", unit_amount: 14990 },
+  205: { name: "Robot lave-vitres automatique", unit_amount: 11990 },
+  206: { name: "Plaid personnalisé — portrait d’animal", unit_amount: 5990 },
+  207: { name: "Bijou personnalisé — portrait d’animal", unit_amount: 3990 },
+  208: { name: "Pack complet anti-poils — 4 pièces", unit_amount: 3490 }
 };
 
 const ALLOWED_ORIGINS = [
@@ -91,6 +76,7 @@ export async function handler(event) {
       };
     }
 
+    let subtotal = 0;
     const line_items = items.map(item => {
       const id = Number(item.id);
 
@@ -115,6 +101,7 @@ export async function handler(event) {
             : 1
         )
       );
+      subtotal += product.unit_amount * quantity;
 
       return {
         quantity,
@@ -147,16 +134,20 @@ export async function handler(event) {
         billing_address_collection: "required",
 
         shipping_address_collection: {
-          allowed_countries: [
-            "FR",
-            "BE",
-            "LU",
-            "DE",
-            "ES",
-            "IT",
-            "NL"
-          ]
+          allowed_countries: ["FR"]
         },
+
+        shipping_options: [{
+          shipping_rate_data: {
+            type: "fixed_amount",
+            fixed_amount: { amount: subtotal >= 5000 ? 0 : 490, currency: "eur" },
+            display_name: subtotal >= 5000 ? "Livraison suivie offerte" : "Livraison suivie",
+            delivery_estimate: {
+              minimum: { unit: "business_day", value: 10 },
+              maximum: { unit: "business_day", value: 20 }
+            }
+          }
+        }],
 
         success_url:
           `${FRONTEND_URL}?commande=succes&session_id={CHECKOUT_SESSION_ID}`,
