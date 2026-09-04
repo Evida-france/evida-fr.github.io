@@ -1,12 +1,7 @@
 const PRODUCTS = {
-  201: { name: "Pommeau de douche filtrant", unit_amount: 2990 },
-  202: { name: "Rideau occultant portable", unit_amount: 3990 },
-  203: { name: "Walking Pad compact", unit_amount: 19990 },
-  204: { name: "Nettoyeur textile injecteur-extracteur", unit_amount: 14990 },
-  205: { name: "Robot lave-vitres automatique", unit_amount: 11990 },
-  206: { name: "Plaid personnalisé — portrait d’animal", unit_amount: 5990 },
-  207: { name: "Bijou personnalisé — portrait d’animal", unit_amount: 3990 },
-  208: { name: "Pack complet anti-poils — 4 pièces", unit_amount: 3490 }
+  206: { name: "Plaid personnalisé — portrait d’animal", unit_amount: 3990 },
+  207: { name: "Bijou personnalisé — portrait d’animal", unit_amount: 2490 },
+  208: { name: "Pack complet anti-poils — 4 pièces", unit_amount: 2990 }
 };
 
 const ALLOWED_ORIGINS = [
