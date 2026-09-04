@@ -17,8 +17,7 @@ Prototype de boutique Android plus complet.
 ## Paiement réel
 Le paiement réel n'est PAS activé dans cette version.
 Architecture prévue :
-- Stripe PaymentSheet
-- Google Pay
+- paiement sécurisé SumUp
 - backend sécurisé pour créer/valider les paiements
 - aucune clé secrète dans l'application
 
@@ -27,7 +26,7 @@ Architecture prévue :
 2. Remplacer les produits/prix de démonstration.
 3. Ajouter vraies images et stocks/disponibilités.
 4. Finaliser CGV, retours, identité du vendeur et confidentialité.
-5. Connecter backend + compte marchand.
+5. Connecter le backend au compte marchand SumUp.
 6. Tester le tunnel de paiement en environnement test.
 7. Ajouter suivi de commande réel.
 8. Tester l'application sur plusieurs appareils.
