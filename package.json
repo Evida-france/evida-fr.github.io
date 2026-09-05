@@ -1,5 +1,8 @@
 {
   "name": "evida-france",
   "version": "1.0.0",
-  "private": true
+  "private": true,
+  "dependencies": {
+    "@netlify/blobs": "^10.0.10"
+  }
 }
