@@ -1,4 +1,6 @@
-import { getStore } from "@netlify/blobs";
+import { connectLambda, getStore } from "@netlify/blobs";
+
+export const configureBlobs = event => connectLambda(event);
 
 export const orderStore = () => getStore({ name: "evida-orders", consistency: "strong" });
 export const photoStore = () => getStore({ name: "evida-private-photos", consistency: "strong" });
