@@ -2,11 +2,11 @@ import { connectLambda, getStore } from "@netlify/blobs";
 
 export const configureBlobs = event => connectLambda(event);
 
-export const orderStore = () => getStore({ name: "evida-orders", consistency: "strong" });
-export const photoStore = () => getStore({ name: "evida-private-photos", consistency: "strong" });
-export const checkoutStore = () => getStore({ name: "evida-checkout-index", consistency: "strong" });
-export const customerStore = () => getStore({ name: "evida-customers", consistency: "strong" });
-export const customerTokenStore = () => getStore({ name: "evida-customer-tokens", consistency: "strong" });
+export const orderStore = () => getStore("evida-orders");
+export const photoStore = () => getStore("evida-private-photos");
+export const checkoutStore = () => getStore("evida-checkout-index");
+export const customerStore = () => getStore("evida-customers");
+export const customerTokenStore = () => getStore("evida-customer-tokens");
 
 export const jsonHeaders = (origin = "") => ({
   "Access-Control-Allow-Origin": ["https://evida-france.github.io", "https://evida-france.netlify.app"].includes(origin)
