@@ -1,7 +1,8 @@
-import { jsonHeaders, orderStore, sendShippingConfirmation } from "../lib/orders.mjs";
+import { configureBlobs, jsonHeaders, orderStore, sendShippingConfirmation } from "../lib/orders.mjs";
 const authorized = event => Boolean(process.env.EVIDA_ADMIN_TOKEN) && event.headers?.authorization === `Bearer ${process.env.EVIDA_ADMIN_TOKEN}`;
 const safeOrder = order => ({ ...order, accessToken: undefined, accountToken: undefined });
 export async function handler(event) {
+  configureBlobs(event);
   const headers=jsonHeaders(event.headers?.origin||"");if(event.httpMethod==="OPTIONS")return{statusCode:204,headers,body:""};
   if(!authorized(event))return{statusCode:401,headers,body:JSON.stringify({error:"Accès refusé."})};
   try{

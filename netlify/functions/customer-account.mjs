@@ -1,6 +1,7 @@
-import { customerStore, customerTokenStore, jsonHeaders, orderStore, publicOrder } from "../lib/orders.mjs";
+import { configureBlobs, customerStore, customerTokenStore, jsonHeaders, orderStore, publicOrder } from "../lib/orders.mjs";
 
 export async function handler(event) {
+  configureBlobs(event);
   const headers = jsonHeaders(event.headers?.origin || "");
   if (event.httpMethod === "OPTIONS") return { statusCode: 204, headers, body: "" };
   if (event.httpMethod !== "GET") return { statusCode: 405, headers, body: JSON.stringify({ error: "Méthode non autorisée." }) };

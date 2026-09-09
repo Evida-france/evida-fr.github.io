@@ -1,5 +1,5 @@
 import { createHash, randomBytes } from "node:crypto";
-import { cleanText, customerStore, customerTokenStore, jsonHeaders } from "../lib/orders.mjs";
+import { cleanText, configureBlobs, customerStore, customerTokenStore, jsonHeaders } from "../lib/orders.mjs";
 
 const accountUrl = token => `https://evida-france.github.io/evida-fr.github.io/account.html?token=${token}`;
 async function welcome(record) {
@@ -9,6 +9,7 @@ async function welcome(record) {
   return result.ok ? "sent" : "failed";
 }
 export async function handler(event) {
+  configureBlobs(event);
   const headers=jsonHeaders(event.headers?.origin||"");
   if(event.httpMethod==="OPTIONS")return{statusCode:204,headers,body:""};
   if(event.httpMethod!=="POST")return{statusCode:405,headers,body:JSON.stringify({error:"Méthode non autorisée."})};

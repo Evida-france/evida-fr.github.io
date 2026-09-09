@@ -1,6 +1,7 @@
-import { checkoutStore, orderStore, sendConfirmation, verifySumUpCheckout } from "../lib/orders.mjs";
+import { checkoutStore, configureBlobs, orderStore, sendConfirmation, verifySumUpCheckout } from "../lib/orders.mjs";
 
 export async function handler(event) {
+  configureBlobs(event);
   if (event.httpMethod !== "POST") return { statusCode: 405, body: "" };
   try {
     const payload = JSON.parse(event.body || "{}");

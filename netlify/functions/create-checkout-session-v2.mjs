@@ -1,5 +1,5 @@
 import { createHash, randomBytes, randomUUID } from "node:crypto";
-import { checkoutStore, cleanText, customerStore, customerTokenStore, jsonHeaders, orderStore, photoStore } from "../lib/orders.mjs";
+import { checkoutStore, cleanText, configureBlobs, customerStore, customerTokenStore, jsonHeaders, orderStore, photoStore } from "../lib/orders.mjs";
 
 const PRODUCTS = {
   206: { name: "Plaid personnalisé — portrait d’animal", unitAmount: 3990, personalized: true },
@@ -21,6 +21,7 @@ function decodePhoto(photo, orderId, productId) {
 }
 
 export async function handler(event) {
+  configureBlobs(event);
   const headers = jsonHeaders(event.headers?.origin || "");
   if (event.httpMethod === "OPTIONS") return { statusCode: 204, headers, body: "" };
   if (event.httpMethod !== "POST") return { statusCode: 405, headers, body: JSON.stringify({ error: "Méthode non autorisée." }) };
