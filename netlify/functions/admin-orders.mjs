@@ -14,7 +14,7 @@ export async function handler(event) {
       orders.sort((a,b)=>b.createdAt.localeCompare(a.createdAt));return{statusCode:200,headers,body:JSON.stringify({orders})};
     }
     if(event.httpMethod==="PATCH"){
-      const const body=JSON.parse(event.body||"{}");let order=await store.get(String(body.id||""),{type:"json"});if(!order)return{statusCode:404,headers,body:JSON.stringify({error:"Commande introuvable."})};
+      const body=JSON.parse(event.body||"{}");let order=await store.get(String(body.id||""),{type:"json"});if(!order)return{statusCode:404,headers,body:JSON.stringify({error:"Commande introuvable."})};
       const allowed=["fulfillmentStatus","carrier","trackingNumber","trackingUrl"];for(const key of allowed)if(typeof body[key]==="string")order[key]=body[key].trim().slice(0,300);order.updatedAt=new Date().toISOString();if(order.fulfillmentStatus==="shipped")order=await sendShippingConfirmation(order);await store.setJSON(order.id,order);return{statusCode:200,headers,body:JSON.stringify({order:safeOrder(order)})};
     }
     return{statusCode:405,headers,body:JSON.stringify({error:"Méthode non autorisée."})};
