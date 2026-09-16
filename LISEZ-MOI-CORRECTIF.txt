@@ -1,0 +1,24 @@
+ÉVIDA — CORRECTIF FOURNISSEURS SÉCURISÉ
+
+État de cette version
+- Les trois produits restent visibles.
+- Les boutons d'achat affichent « Bientôt disponible » et sont désactivés.
+- Le serveur refuse aussi toute ancienne tentative de paiement.
+- L'ancien « pack anti-poils 4 pièces » est remplacé par la référence CJ réellement identifiée :
+  Brosse anti-poils 2-en-1, SKU CJMY200580801AZ.
+- L'image du prétendu pack est remplacée par un visuel neutre tant que la photo fournisseur n'est pas validée.
+
+Pourquoi les ventes sont bloquées
+- CJ : coût livré en France, stock et délai exacts restent à confirmer.
+- Bijou personnalisé : compte/fabricant et variantes finales restent à confirmer.
+- Plaid personnalisé : coût, dimensions et délai de fabrication restent à confirmer.
+
+Fichiers du correctif
+- index.html
+- storefront.js
+- supplier-lock.css
+- assets/products/anti-poils-validation.svg
+- netlify/functions/create-checkout-session-v2.mjs
+
+Ne passez aucune commande fournisseur et n'acceptez aucun paiement avant d'avoir confirmé,
+pour chaque produit, le prix total livré, le stock, le délai, l'adresse de retour et la procédure de commande.

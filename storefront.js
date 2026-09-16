@@ -1,22 +1,23 @@
 const API="https://evida-france.netlify.app/.netlify/functions";
 const products=[
-  {id:208,category:"Animaux",name:"Pack complet anti-poils — 4 pièces",price:29.90,image:"assets/products/pack-anti-poils.webp",description:"La solution complète pour retirer les poils du canapé, des vêtements, de la voiture et pendant le lavage.",details:"1 grande brosse · 1 petite brosse · 2 collecteurs de lavage",personalized:false},
-  {id:207,category:"Personnalisé",name:"Bijou personnalisé — portrait d’animal",price:24.90,image:"assets/products/bijou-animal.webp",description:"Ajoutez directement la photo de votre animal et vérifiez l’aperçu avant de payer.",details:"Pendentif aspect acier · gravure personnalisée · chaîne incluse",personalized:true,finishes:["Argent","Or","Or rose"],sizes:["Chaîne 45 cm + extension 5 cm"]},
-  {id:206,category:"Personnalisé",name:"Plaid personnalisé — portrait d’animal",price:39.90,image:"assets/products/plaid-animal.webp",description:"Ajoutez directement votre photo : elle restera liée de manière sécurisée à votre commande.",details:"Personnalisation sur photo · aperçu validé avant fabrication",personalized:true,finishes:["Impression portrait"],sizes:["Format standard — dimensions à confirmer"]}
+  {id:208,category:"Animaux",name:"Brosse anti-poils 2-en-1 — vêtements & textiles",price:29.90,image:"assets/products/anti-poils-validation.svg",description:"Brosse lavable pour retirer les poils sur les vêtements et les textiles. Référence fournisseur en cours de validation avant ouverture des ventes.",details:"1 brosse anti-poils en ABS · mouvement aller-retour · coloris blanc/orange · fournisseur CJ · SKU CJMY200580801AZ",personalized:false,available:false},
+  {id:207,category:"Personnalisé",name:"Bijou personnalisé — portrait d’animal",price:24.90,image:"assets/products/bijou-animal.webp",description:"Ajoutez directement la photo de votre animal et vérifiez l’aperçu avant de payer.",details:"Pendentif aspect acier · gravure personnalisée · chaîne incluse",personalized:true,available:false,finishes:["Argent","Or","Or rose"],sizes:["Chaîne 45 cm + extension 5 cm"]},
+  {id:206,category:"Personnalisé",name:"Plaid personnalisé — portrait d’animal",price:39.90,image:"assets/products/plaid-animal.webp",description:"Ajoutez directement votre photo : elle restera liée de manière sécurisée à votre commande.",details:"Personnalisation sur photo · aperçu validé avant fabrication",personalized:true,available:false,finishes:["Impression portrait"],sizes:["Format standard — dimensions à confirmer"]}
 ];
 let category="Tous",cart=[],pendingProduct=null,pendingPhoto=null;
 try{cart=JSON.parse(sessionStorage.getItem("evida-cart")||"[]")}catch{cart=[]}
+cart=cart.filter(item=>products.some(product=>product.id===item.id&&product.available));
 const $=id=>document.getElementById(id),euro=n=>n.toLocaleString("fr-FR",{style:"currency",currency:"EUR"});
 
 function saveCart(){try{sessionStorage.setItem("evida-cart",JSON.stringify(cart))}catch{}renderCart()}
 function renderProducts(){
   const q=$("search").value.trim().toLowerCase();
   const list=products.filter(p=>(category==="Tous"||p.category===category)&&(p.name.toLowerCase().includes(q)||p.description.toLowerCase().includes(q)));
-  $("grid").innerHTML=list.length?list.map(p=>`<article class="product"><div class="visual"><img src="${p.image}" alt="${p.name}" loading="lazy"></div><div class="body"><div class="tag">${p.category}</div><h3>${p.name}</h3><div class="desc">${p.description}</div><div class="details">${p.details}</div><div class="price">${euro(p.price)}</div><div class="shipping">Livraison : 4,90 € · offerte dès 50 €</div><button class="add" data-product="${p.id}">${p.personalized?"Personnaliser":"Ajouter au panier"}</button></div></article>`).join(""):"<p>Aucun produit trouvé.</p>";
+  $("grid").innerHTML=list.length?list.map(p=>`<article class="product"><div class="visual"><img src="${p.image}" alt="${p.name}" loading="lazy"></div><div class="body"><div class="tag">${p.category}</div><h3>${p.name}</h3><div class="desc">${p.description}</div><div class="details">${p.details}</div><div class="price">${euro(p.price)}</div><div class="shipping">${p.available?"Livraison : 4,90 € · offerte dès 50 €":"Approvisionnement en cours de validation"}</div><button class="add" data-product="${p.id}" ${p.available?"":"disabled"}>${p.available?(p.personalized?"Personnaliser":"Ajouter au panier"):"Bientôt disponible"}</button></div></article>`).join(""):"<p>Aucun produit trouvé.</p>";
   document.querySelectorAll("[data-product]").forEach(btn=>btn.onclick=()=>chooseProduct(Number(btn.dataset.product)));
 }
 function chooseProduct(id){
-  const p=products.find(x=>x.id===id); if(!p)return;
+  const p=products.find(x=>x.id===id); if(!p||!p.available)return;
   if(!p.personalized){cart.push({...p,lineId:crypto.randomUUID(),quantity:1});saveCart();openCart();return}
   pendingProduct=p;pendingPhoto=null;$("personalTitle").textContent=p.name;$("personalForm").reset();$("photoPreview").style.display="none";$("photoPreview").removeAttribute("src");$("previewHint").style.display="block";$("personalStatus").textContent="";
   $("finish").innerHTML=p.finishes.map(x=>`<option>${x}</option>`).join("");$("size").innerHTML=p.sizes.map(x=>`<option>${x}</option>`).join("");

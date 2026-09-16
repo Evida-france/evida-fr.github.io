@@ -7,16 +7,17 @@
   <title>ÉVIDA — Nos sélections phares</title>
   <link rel="stylesheet" href="storefront.css">
   <link rel="stylesheet" href="signup.css">
+  <link rel="stylesheet" href="supplier-lock.css">
 </head>
 <body>
-  <div class="top">Livraison suivie en France métropolitaine · 10 à 15 jours ouvrés, maximum 20 jours</div>
+  <div class="top">Boutique en préparation · ouverture après validation des fournisseurs</div>
   <header><div class="nav"><div class="logo">ÉVIDA</div><button class="cartBtn" id="openCart">Panier <span id="cartCount">0</span></button></div></header>
   <section class="hero"><div class="eyebrow">Nouvelle sélection ÉVIDA</div><h1>Nos sélections<br>phares.</h1><p>Trois solutions choisies pour simplifier le quotidien et célébrer le lien unique avec nos animaux. Des produits utiles, sélectionnés pour leur efficacité, leur qualité et leur vraie valeur au quotidien.</p></section>
   <section class="signup"><div><p class="eyebrow">Le cercle ÉVIDA</p><h2>Rejoignez le cercle ÉVIDA</h2><p>Profitez de nos offres réservées et découvrez en avant-première nos prochains produits phares.</p></div><form id="signupForm"><label>Prénom<input name="firstName" autocomplete="given-name" required placeholder="Votre prénom"></label><label>Adresse e-mail<input name="email" type="email" autocomplete="email" required placeholder="vous@exemple.fr"></label><label class="check"><input name="consent" type="checkbox" required><span>J’accepte de recevoir les offres et nouveautés ÉVIDA par e-mail. Désinscription possible à tout moment.</span></label><button class="pay" type="submit">Je rejoins le cercle</button><p id="signupStatus" class="payStatus" aria-live="polite"></p></form></section>
   <main class="wrap">
     <div class="eyebrow">Catalogue</div><h2>Les 3 essentiels ÉVIDA</h2>
     <div class="toolbar"><input id="search" class="search" placeholder="Rechercher un produit…" aria-label="Rechercher un produit"><div class="filters"><button class="filter active" data-cat="Tous">Tous</button><button class="filter" data-cat="Personnalisé">Personnalisé</button><button class="filter" data-cat="Animaux">Animaux</button></div></div>
-    <div class="notice"><strong>Livraison suivie.</strong> Expédition en France métropolitaine. Pour un article personnalisé, ajoutez et validez votre photo avant le paiement.</div>
+    <div class="notice"><strong>Validation fournisseurs en cours.</strong> Les produits restent visibles, mais le paiement est temporairement désactivé jusqu’à confirmation définitive du stock, du coût livré en France et du délai d’expédition.</div>
     <div id="grid" class="grid"></div>
   </main>
   <footer><strong>ÉVIDA</strong><br><br>Découvrez l'évidence.<br>Des solutions utiles sélectionnées pour votre quotidien.<br><br><nav><a href="mentions-legales.html">Mentions légales</a> · <a href="cgv.html">CGV</a> · <a href="privacy.html">Confidentialité et cookies</a> · <a href="livraison-retours.html">Livraison et retours</a></nav><br><small>© 2026 ÉVIDA — Maihdy Coudert, entrepreneur individuel — SIREN 887 540 086.</small></footer>

@@ -1,0 +1,5 @@
+.add:disabled {
+  opacity: .5;
+  cursor: not-allowed;
+  background: #6f6b65;
+}
