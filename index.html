@@ -1,35 +1,26 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="Les sélections phares ÉVIDA pour la maison et les animaux.">
-  <title>ÉVIDA — Nos sélections phares</title>
-  <link rel="stylesheet" href="storefront.css">
-  <link rel="stylesheet" href="signup.css">
-  <link rel="stylesheet" href="supplier-lock.css">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ÉVIDA — Nos sélections phares</title>
+<link rel="stylesheet" href="storefront.css">
 </head>
 <body>
-  <div class="top">Boutique ÉVIDA · Paiement sécurisé avec SumUp</div>
-  <header><div class="nav"><div class="logo">ÉVIDA</div><button class="cartBtn" id="openCart">Panier <span id="cartCount">0</span></button></div></header>
-  <section class="hero"><div class="eyebrow">Nouvelle sélection ÉVIDA</div><h1>Nos sélections<br>phares.</h1><p>Trois solutions choisies pour simplifier le quotidien et célébrer le lien unique avec nos animaux. Des produits utiles, sélectionnés pour leur efficacité, leur qualité et leur vraie valeur au quotidien.</p></section>
-  <section class="signup"><div><p class="eyebrow">Le cercle ÉVIDA</p><h2>Rejoignez le cercle ÉVIDA</h2><p>Profitez de nos offres réservées et découvrez en avant-première nos prochains produits phares.</p></div><form id="signupForm"><label>Prénom<input name="firstName" autocomplete="given-name" required placeholder="Votre prénom"></label><label>Adresse e-mail<input name="email" type="email" autocomplete="email" required placeholder="vous@exemple.fr"></label><label class="check"><input name="consent" type="checkbox" required><span>J’accepte de recevoir les offres et nouveautés ÉVIDA par e-mail. Désinscription possible à tout moment.</span></label><button class="pay" type="submit">Je rejoins le cercle</button><p id="signupStatus" class="payStatus" aria-live="polite"></p></form></section>
-  <main class="wrap">
-    <div class="eyebrow">Catalogue</div><h2>Les 3 essentiels ÉVIDA</h2>
-    <div class="toolbar"><input id="search" class="search" placeholder="Rechercher un produit…" aria-label="Rechercher un produit"><div class="filters"><button class="filter active" data-cat="Tous">Tous</button><button class="filter" data-cat="Personnalisé">Personnalisé</button><button class="filter" data-cat="Animaux">Animaux</button></div></div>
-    <div class="notice"><strong>Commandes ouvertes.</strong> Ajoutez votre produit au panier puis poursuivez vers le paiement sécurisé SumUp.</div>
-    <div id="grid" class="grid"></div>
-  </main>
-  <footer><strong>ÉVIDA</strong><br><br>Découvrez l'évidence.<br>Des solutions utiles sélectionnées pour votre quotidien.<br><br><nav><a href="mentions-legales.html">Mentions légales</a> · <a href="cgv.html">CGV</a> · <a href="privacy.html">Confidentialité et cookies</a> · <a href="livraison-retours.html">Livraison et retours</a></nav><br><small>© 2026 ÉVIDA — Maihdy Coudert, entrepreneur individuel — SIREN 887 540 086.</small></footer>
+<div class="top">Boutique ÉVIDA · Paiement sécurisé avec SumUp</div>
+<header><div class="nav"><div class="logo">ÉVIDA</div><button id="openCart" class="pill">Panier <span id="cartCount">0</span></button></div></header>
+<section class="hero"><div class="eyebrow">Nouvelle sélection ÉVIDA</div><h1>Nos sélections<br>phares.</h1><p>Trois produits soigneusement sélectionnés pour leur utilité, leur qualité et leur juste prix.</p></section>
+<main class="wrap">
+<div class="toolbar"><input id="search" placeholder="Rechercher un produit…"><button class="filter active" data-cat="Tous">Tous</button><button class="filter" data-cat="Animaux">Animaux</button><button class="filter" data-cat="Personnalisé">Personnalisé</button></div>
+<div class="notice"><strong>Commandes ouvertes.</strong> Paiement sécurisé SumUp. Livraison suivie en France métropolitaine.</div>
+<div id="grid" class="grid"></div>
+</main>
+<footer><strong>ÉVIDA</strong><br><br><a href="cgv.html">CGV</a> · <a href="livraison-retours.html">Livraison et retours</a> · <a href="privacy.html">Confidentialité</a><br><br>© 2026 ÉVIDA</footer>
 
-  <div id="overlay" class="overlay"></div>
-  <aside id="drawer" class="drawer" aria-label="Votre panier"><div class="cartHead"><h2>Votre panier</h2><button id="closeCart" class="close" aria-label="Fermer">×</button></div><div id="cartItems"></div><div class="total"><span>Sous-total</span><span id="subtotal">0,00 €</span></div><div class="shippingTotal"><span>Livraison</span><span id="shipping">0,00 €</span></div><div class="total"><span>Total</span><span id="total">0,00 €</span></div><button id="checkout" class="pay">Continuer</button><div id="payStatus" class="payStatus" aria-live="polite"></div></aside>
+<div id="overlay"></div>
+<aside id="drawer"><div class="cartHead"><h2>Votre panier</h2><button id="closeCart">×</button></div><div id="cartItems"></div><div class="line"><span>Sous-total</span><b id="subtotal"></b></div><div class="line"><span>Livraison</span><b id="shipping"></b></div><div class="line total"><span>Total</span><b id="total"></b></div><button id="checkout" class="pay">Continuer</button><p id="payStatus"></p></aside>
 
-  <dialog id="personalDialog" class="modal"><form id="personalForm" method="dialog"><button type="button" class="modalClose" aria-label="Fermer">×</button><p class="eyebrow">Personnalisation</p><h2 id="personalTitle">Personnalisez votre article</h2><div class="customLayout"><div><label class="uploadZone" for="photo"><span>Ajouter la photo de votre animal</span><small>JPG, PNG ou WebP · image nette et bien éclairée</small><input id="photo" type="file" accept="image/jpeg,image/png,image/webp" required></label><div class="preview"><img id="photoPreview" alt="Aperçu de votre photo"><span id="previewHint">Votre aperçu apparaîtra ici</span></div></div><div class="fields"><label>Texte facultatif<input id="customText" maxlength="80" placeholder="Ex. Nala"></label><label id="finishLabel">Finition<select id="finish"><option>Argent</option><option>Or</option><option>Or rose</option></select></label><label id="sizeLabel">Taille<select id="size"></select></label><label class="check"><input id="photoValidated" type="checkbox" required><span>Je confirme que la photo et les choix affichés sont corrects.</span></label><button class="pay" type="submit">Ajouter au panier</button><p id="personalStatus" class="payStatus" aria-live="polite"></p></div></div></form></dialog>
+<dialog id="photoDialog"><form id="photoForm"><button type="button" class="x">×</button><h2>Personnalisez votre plaid</h2><label>Photo de votre animal<input id="photo" type="file" accept="image/jpeg,image/png,image/webp" required></label><img id="preview" alt="Aperçu"><label>Texte facultatif<input id="customText" maxlength="80"></label><label class="check"><input id="photoOk" type="checkbox" required> Je confirme que la photo est correcte.</label><button class="pay">Ajouter au panier</button><p id="photoStatus"></p></form></dialog>
 
-  <dialog id="checkoutDialog" class="modal"><form id="checkoutForm"><button type="button" class="modalClose" aria-label="Fermer">×</button><p class="eyebrow">Commande sécurisée</p><h2>Livraison et confirmation</h2><div class="formGrid"><label>Prénom<input name="firstName" autocomplete="given-name" required></label><label>Nom<input name="lastName" autocomplete="family-name" required></label><label class="wide">E-mail<input name="email" type="email" autocomplete="email" required></label><label class="wide">Adresse de livraison<input name="address" autocomplete="street-address" required></label><label>Code postal<input name="postalCode" inputmode="numeric" autocomplete="postal-code" maxlength="10" required></label><label>Ville<input name="city" autocomplete="address-level2" required></label></div><label id="photoConsentRow" class="check"><input name="photoConsent" type="checkbox"><span>J’autorise ÉVIDA et son fournisseur à utiliser la photo uniquement pour fabriquer ma commande. Elle sera supprimée après la durée nécessaire à la fabrication et au traitement des réclamations.</span></label><label id="salesConsentRow" class="check"><input name="salesConsent" type="checkbox"><span>Je confirme mes choix de personnalisation et reconnais que les produits fabriqués selon mes instructions ne bénéficient pas du droit de rétractation, sauf défaut ou non-conformité.</span></label><hr><label class="check"><input name="createAccount" type="checkbox"><span><strong>Créer gratuitement mon espace ÉVIDA</strong><br>Je recevrai par e-mail un lien privé pour retrouver mes commandes et leurs suivis.</span></label><label class="check"><input name="marketingConsent" type="checkbox"><span><strong>Découvrir les nouveaux produits phares ÉVIDA</strong><br>J’accepte de recevoir les nouveautés par e-mail. Désinscription possible à tout moment.</span></label><button id="pay" class="pay" type="submit">Payer avec SumUp</button><div id="checkoutStatus" class="payStatus" aria-live="polite"></div></form></dialog>
-
-  <dialog id="orderDialog" class="modal"><div><button type="button" class="modalClose" aria-label="Fermer">×</button><p class="eyebrow">Suivi de commande</p><h2 id="orderTitle">Vérification du paiement…</h2><div id="orderResult" class="orderResult" aria-live="polite"></div></div></dialog>
-  <script src="storefront.js" defer></script>
-</body>
-</html>
+<dialog id="checkoutDialog"><form id="checkoutForm"><button type="button" class="x">×</button><h2>Livraison et paiement</h2><div class="formgrid"><label>Prénom<input name="firstName" required></label><label>Nom<input name="lastName" required></label><label class="wide">E-mail<input name="email" type="email" required></label><label class="wide">Adresse<input name="address" required></label><label>Code postal<input name="postalCode" required></label><label>Ville<input name="city" required></label></div><label id="photoConsentRow" class="check"><input name="photoConsent" type="checkbox"> J’autorise l’utilisation de la photo uniquement pour fabriquer le plaid.</label><label id="salesConsentRow" class="check"><input name="salesConsent" type="checkbox"> Je confirme ma personnalisation.</label><button id="pay" class="pay">Payer avec SumUp</button><p id="checkoutStatus"></p></form></dialog>
+<script src="storefront.js"></script>
+</body></html>

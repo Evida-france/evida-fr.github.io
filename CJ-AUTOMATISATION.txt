@@ -1,0 +1,31 @@
+ÉVIDA — AUTOMATISATION CJ
+
+Flux actif dans ce package :
+1. Le client commande sur ÉVIDA.
+2. Le paiement passe par SumUp.
+3. La commande CJ n'est créée qu'après statut SumUp = PAID.
+4. La brosse (CJMY200580801AZ) et le pendentif (CJGX195184801AZ) sont transmis à CJ.
+5. Par défaut CJ paie automatiquement la commande avec le solde du compte (payType=2).
+6. CJ expédie directement à l'adresse du client.
+7. Une synchronisation horaire récupère le statut et le numéro de suivi.
+8. Si Resend est configuré, l'e-mail d'expédition est envoyé automatiquement.
+
+Le plaid personnalisé n'est PAS transmis à CJ.
+
+VARIABLES NETLIFY
+Obligatoire :
+CJ_API_KEY = clé API obtenue dans My CJ > Authorization/API.
+SUMUP_API_KEY
+SUMUP_MERCHANT_CODE
+
+Réglages facultatifs :
+CJ_LOGISTIC_NAME = CJPacket Ordinary (valeur par défaut)
+CJ_FROM_COUNTRY_CODE = CN (défaut)
+CJ_PAY_TYPE = 2 (défaut, paiement par solde CJ)
+CJ_IOSS_TYPE = 3 (défaut, CJ IOSS lorsque la route l'accepte)
+CJ_ACCESS_TOKEN = facultatif ; si absent le serveur crée automatiquement un access token avec CJ_API_KEY.
+
+Important :
+- Le compte CJ doit avoir assez de solde pour que payType=2 soit réellement automatique.
+- Si la route "CJPacket Ordinary" n'est pas disponible pour un produit/adresse, la commande ÉVIDA est conservée et marquée cj_error ; la tâche horaire réessaiera après correction du réglage logistique.
+- Aucun secret CJ n'est envoyé au navigateur : tout reste dans les fonctions Netlify.
