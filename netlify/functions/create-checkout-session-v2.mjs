@@ -2,9 +2,9 @@ import { createHash, randomBytes, randomUUID } from "node:crypto";
 import { checkoutStore, cleanText, configureBlobs, customerStore, customerTokenStore, jsonHeaders, orderStore, photoStore } from "../lib/orders.mjs";
 
 const PRODUCTS = {
-  206: { name: "Plaid personnalisé — portrait d’animal", unitAmount: 3990, personalized: true },
-  207: { name: "Bijou personnalisé — portrait d’animal", unitAmount: 2490, personalized: true },
-  208: { name: "Pack complet anti-poils — 4 pièces", unitAmount: 2990, personalized: false }
+  206: { name: "Plaid personnalisé — portrait d’animal", unitAmount: 3990, personalized: true, available: true },
+  207: { name: "Bijou personnalisé — portrait d’animal", unitAmount: 2490, personalized: true, available: true },
+  208: { name: "Brosse anti-poils 2-en-1 — vêtements & textiles", unitAmount: 2990, personalized: false, available: true }
 };
 const FRONTEND_URL = "https://evida-france.github.io/evida-fr.github.io/";
 const FUNCTION_URL = "https://evida-france.netlify.app/.netlify/functions";
@@ -47,6 +47,7 @@ export async function handler(event) {
     for (const raw of rawItems) {
       const id = Number(raw.id), product = PRODUCTS[id];
       if (!product) throw new Error(`Produit ÉVIDA invalide : ${id}`);
+      if (!product.available) throw new Error("Ce produit est bientôt disponible.");
       const quantity = Math.max(1, Math.min(10, Math.floor(Number(raw.quantity || 1))));
       if (product.personalized && quantity !== 1) throw new Error("Ajoutez séparément chaque article personnalisé afin d’utiliser une photo différente.");
       let photoKey = "";
