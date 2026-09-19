@@ -1,0 +1,31 @@
+ÉVIDA — AUTOMATISATION COMPLÈTE
+
+AJOUTÉ DANS CE ZIP
+- Téléphone obligatoire sur chaque commande d'article.
+- Suggestions d'adresses françaises pendant la saisie.
+- Validation de l'adresse avant paiement via le service officiel Géoplateforme/BAN.
+- Message d'erreur si l'adresse n'est pas reconnue.
+- Calcul automatique du vrai tarif de transport CJ avant SumUp.
+- Ajout de ce transport au montant payé par le client.
+- Après paiement SumUp PAID : création automatique de la commande CJ.
+- CJ est appelé avec payType=2 : paiement par solde CJ.
+- E-mail de confirmation automatique au client.
+- Synchronisation CJ toutes les heures.
+- Dès qu'un suivi existe : e-mail de suivi automatique.
+
+VARIABLES NETLIFY REQUISES
+SUMUP_API_KEY
+SUMUP_MERCHANT_CODE
+CJ_API_KEY
+RESEND_API_KEY
+EVIDA_FROM_EMAIL
+
+OPTIONNEL
+CJ_USD_EUR_RATE=0.86  (taux de secours si le service de change est indisponible)
+CJ_FREIGHT_BUFFER_PCT=0 (0 = aucun supplément sur le tarif CJ)
+
+IMPORTANT
+- Le CJ Wallet doit contenir assez d'argent pour que payType=2 puisse payer automatiquement le fournisseur.
+- Les SKU du catalogue doivent rester valides chez CJ.
+- Le plaid personnalisé (id 206) reste hors CJ car le site actuel n'a pas de SKU fournisseur CJ pour ce produit.
+- Si CJ refuse une commande (stock, solde, variante ou logistique), l'erreur est conservée et le job horaire retente.
