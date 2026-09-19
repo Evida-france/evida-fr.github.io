@@ -1,4 +1,5 @@
 import { connectLambda, getStore } from "@netlify/blobs";
+
 export const configureBlobs = event => connectLambda(event);
 export const orderStore = () => getStore("evida-orders");
 export const photoStore = () => getStore("evida-private-photos");
@@ -9,8 +10,163 @@ export const contestStore = () => getStore("evida-contest-entries");
 export const contestCheckoutStore = () => getStore("evida-contest-checkouts");
 export const contestEmailStore = () => getStore("evida-contest-emails");
 export const voucherStore = () => getStore("evida-vouchers");
-export const jsonHeaders = (origin = "") => ({"Access-Control-Allow-Origin":["https://evida-france.github.io","https://evida-france.netlify.app"].includes(origin)?origin:"https://evida-france.github.io","Access-Control-Allow-Headers":"Content-Type, Authorization","Access-Control-Allow-Methods":"GET, POST, PATCH, OPTIONS","Content-Type":"application/json; charset=utf-8","Cache-Control":"no-store"});
-export function cleanText(value,max=200){return String(value??"").trim().replace(/[<>]/g,"").slice(0,max)}
-export async function verifySumUpCheckout(checkoutId){const apiKey=process.env.SUMUP_API_KEY;if(!apiKey||!checkoutId)return null;const result=await fetch(`https://api.sumup.com/v0.1/checkouts/${encodeURIComponent(checkoutId)}`,{headers:{Authorization:`Bearer ${apiKey}`}});if(!result.ok)return null;return result.json()}
-export async function sendConfirmation(order){if(order.confirmationSentAt)return order;const apiKey=process.env.RESEND_API_KEY,from=process.env.EVIDA_FROM_EMAIL;if(!apiKey||!from)return{...order,emailStatus:"configuration_required"};const lines=order.items.map(item=>`${item.quantity} × ${item.name}`).join("<br>");const result=await fetch("https://api.resend.com/emails",{method:"POST",headers:{Authorization:`Bearer ${apiKey}`,"Content-Type":"application/json"},body:JSON.stringify({from,to:[order.customer.email],subject:`Commande ÉVIDA ${order.id} confirmée`,html:`<h1>Merci pour votre commande</h1><p>Bonjour ${order.customer.firstName},</p><p>Votre paiement est confirmé.</p><p><strong>Commande :</strong> ${order.id}</p><p>${lines}</p><p><strong>Total payé :</strong> ${(order.total/100).toFixed(2).replace(".",",")} €</p><p>ÉVIDA</p>`})});return result.ok?{...order,emailStatus:"sent",confirmationSentAt:new Date().toISOString()}:{...order,emailStatus:"failed"}}
-export async function sendContestConfirmation(entry){if(entry.confirmationSentAt)return entry;const apiKey=process.env.RESEND_API_KEY,from=process.env.EVIDA_FROM_EMAIL;if(!apiKey||!from)return{...entry,emailStatus:"configuration_required"};const result=await fetch("https://api.resend.com/emails",{method:"POST",headers:{Authorization:`Bearer ${apiKey}`,"Content-Type":"application/json"},body:JSON.stringify({from,to:[entry.email],subject:"Participation ÉVIDA confirmée — Jeu concours iPhone 16 Pro Max",html:`<h1>Participation confirmée</h1><p>Bonjour ${entry.firstName},</p><p>Votre paiement de 19,99 € est confirmé et votre participation au jeu concours ÉVIDA est enregistrée.</p><p>Votre achat numérique est un bon ÉVIDA de 19,99 €.</p><p><strong>Code du bon : ${entry.voucherCode}</strong></p><p>Le règlement du jeu est disponible sur le site ÉVIDA.</p><p>ÉVIDA</p>`})});return result.ok?{...entry,emailStatus:"sent",confirmationSentAt:new Date().toISOString()}:{...entry,emailStatus:"failed"}}
+
+export const jsonHeaders = (origin = "") => ({
+  "Access-Control-Allow-Origin": [
+    "https://evida-france.github.io",
+    "https://evida-france.netlify.app"
+  ].includes(origin) ? origin : "https://evida-france.github.io",
+  "Access-Control-Allow-Headers": "Content-Type, Authorization",
+  "Access-Control-Allow-Methods": "GET, POST, PATCH, OPTIONS",
+  "Content-Type": "application/json; charset=utf-8",
+  "Cache-Control": "no-store"
+});
+
+export function cleanText(value, max = 200) {
+  return String(value ?? "").trim().replace(/[<>]/g, "").slice(0, max);
+}
+
+export async function verifySumUpCheckout(checkoutId) {
+  const apiKey = process.env.SUMUP_API_KEY;
+  if (!apiKey || !checkoutId) return null;
+
+  const result = await fetch(
+    `https://api.sumup.com/v0.1/checkouts/${encodeURIComponent(checkoutId)}`,
+    { headers: { Authorization: `Bearer ${apiKey}` } }
+  );
+
+  if (!result.ok) return null;
+  return result.json();
+}
+
+export async function sendConfirmation(order) {
+  if (order.confirmationSentAt) return order;
+
+  const apiKey = process.env.RESEND_API_KEY;
+  const from = process.env.EVIDA_FROM_EMAIL;
+
+  if (!apiKey || !from) {
+    return { ...order, emailStatus: "configuration_required" };
+  }
+
+  const lines = (order.items || [])
+    .map(item => `${item.quantity} × ${item.name}`)
+    .join("<br>");
+
+  const result = await fetch("https://api.resend.com/emails", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      from,
+      to: [order.customer.email],
+      subject: `Commande ÉVIDA ${order.id} confirmée`,
+      html: `<h1>Merci pour votre commande</h1>
+<p>Bonjour ${order.customer.firstName},</p>
+<p>Votre paiement est confirmé.</p>
+<p><strong>Commande :</strong> ${order.id}</p>
+<p>${lines}</p>
+<p><strong>Total payé :</strong> ${(order.total / 100).toFixed(2).replace(".", ",")} €</p>
+<p>ÉVIDA</p>`
+    })
+  });
+
+  return result.ok
+    ? { ...order, emailStatus: "sent", confirmationSentAt: new Date().toISOString() }
+    : { ...order, emailStatus: "failed" };
+}
+
+export async function sendShippingConfirmation(order) {
+  if (order.shippingEmailSentAt) return order;
+
+  const apiKey = process.env.RESEND_API_KEY;
+  const from = process.env.EVIDA_FROM_EMAIL;
+
+  if (!apiKey || !from) {
+    return { ...order, shippingEmailStatus: "configuration_required" };
+  }
+
+  const email = order?.customer?.email;
+  if (!email) {
+    return { ...order, shippingEmailStatus: "missing_customer_email" };
+  }
+
+  const firstName = cleanText(order?.customer?.firstName || "", 80);
+  const carrier = cleanText(order?.carrier || order?.cj?.carrier || "", 100);
+  const trackingNumber = cleanText(order?.trackingNumber || order?.cj?.trackingNumber || "", 120);
+  const trackingUrl = String(order?.trackingUrl || order?.cj?.trackingUrl || "").trim().slice(0, 500);
+
+  let trackingHtml = "";
+  if (trackingNumber) {
+    trackingHtml += `<p><strong>Numéro de suivi :</strong> ${trackingNumber}</p>`;
+  }
+  if (carrier) {
+    trackingHtml += `<p><strong>Transporteur :</strong> ${carrier}</p>`;
+  }
+  if (trackingUrl) {
+    trackingHtml += `<p><a href="${trackingUrl}" target="_blank" rel="noopener">Suivre mon colis</a></p>`;
+  }
+
+  const result = await fetch("https://api.resend.com/emails", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      from,
+      to: [email],
+      subject: `Votre commande ÉVIDA ${order.id} a été expédiée`,
+      html: `<h1>Votre commande est en route</h1>
+<p>Bonjour ${firstName || "cher client"},</p>
+<p>Votre commande <strong>${order.id}</strong> a été expédiée.</p>
+${trackingHtml}
+<p>ÉVIDA</p>`
+    })
+  });
+
+  return result.ok
+    ? {
+        ...order,
+        shippingEmailStatus: "sent",
+        shippingEmailSentAt: new Date().toISOString()
+      }
+    : { ...order, shippingEmailStatus: "failed" };
+}
+
+export async function sendContestConfirmation(entry) {
+  if (entry.confirmationSentAt) return entry;
+
+  const apiKey = process.env.RESEND_API_KEY;
+  const from = process.env.EVIDA_FROM_EMAIL;
+
+  if (!apiKey || !from) {
+    return { ...entry, emailStatus: "configuration_required" };
+  }
+
+  const result = await fetch("https://api.resend.com/emails", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      from,
+      to: [entry.email],
+      subject: "Participation ÉVIDA confirmée — Jeu concours iPhone 16 Pro Max",
+      html: `<h1>Participation confirmée</h1>
+<p>Bonjour ${entry.firstName},</p>
+<p>Votre paiement de 19,99 € est confirmé et votre participation au jeu concours ÉVIDA est enregistrée.</p>
+<p>Votre achat numérique est un bon ÉVIDA de 19,99 €.</p>
+<p><strong>Code du bon : ${entry.voucherCode}</strong></p>
+<p>Le règlement du jeu est disponible sur le site ÉVIDA.</p>
+<p>ÉVIDA</p>`
+    })
+  });
+
+  return result.ok
+    ? { ...entry, emailStatus: "sent", confirmationSentAt: new Date().toISOString() }
+    : { ...entry, emailStatus: "failed" };
+}
