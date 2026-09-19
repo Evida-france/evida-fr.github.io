@@ -1,27 +1,28 @@
-ÉVIDA — génération du vrai fichier Google Play .aab
+ÉVIDA — PACKAGE BOUTIQUE + JEU CONCOURS — 19/09/2026
 
-Ce projet est configuré pour :
-- Application ID : com.evida.france
-- Version : 0.3.0
-- Version code : 3
-- Target SDK : 36
+CONTENU
+- Rubrique « Nos compagnons » avec les 3 produits actuels.
+- Rubrique « Nos sélections » avec 3 nouvelles références CJdropshipping.
+- Rubrique « Maison & bien-être » avec 4 nouvelles références CJdropshipping.
+- Images réelles fournisseur et descriptions basées sur les fiches CJ.
+- Bloc iPhone 16 Pro Max en haut de page avec photo Apple, formulaire nom/prénom/e-mail et paiement SumUp à 19,99 €.
+- Le paiement de 19,99 € correspond à l’achat d’un bon numérique ÉVIDA de même valeur et inclut la participation promotionnelle au jeu.
+- Retour de paiement : activation du bon et confirmation de participation.
+- Bon ÉVIDA réutilisable sur une commande ultérieure via le champ « Bon ÉVIDA » au checkout.
 
-ÉTAPES SUR GITHUB
-1. Décompresse ce ZIP.
-2. Envoie tout son contenu dans ton dépôt GitHub ÉVIDA, en gardant les dossiers.
-3. Va dans l'onglet Actions.
-4. Ouvre « Build EVIDA Google Play AAB ».
-5. Appuie sur « Run workflow ».
-6. Quand le build est vert, ouvre-le.
-7. Dans Artifacts, télécharge « EVIDA-GOOGLE-PLAY-AAB ».
-8. Décompresse cet artifact.
-9. Dans Google Play Console, importe le fichier EVIDA-0.3.0.aab.
+NETLIFY — VARIABLES À CONSERVER / CONFIGURER
+SUMUP_API_KEY
+SUMUP_MERCHANT_CODE
+RESEND_API_KEY (facultatif mais recommandé pour les e-mails)
+EVIDA_FROM_EMAIL (facultatif mais recommandé)
 
-IMPORTANT — À CONSERVER
-L'artifact contient aussi :
-- upload-key.jks
-- key-credentials.txt
+DÉPLOIEMENT
+1. Décompresser ce ZIP à la racine du dépôt du site.
+2. Remplacer les fichiers portant le même nom.
+3. Déployer le frontend sur GitHub Pages et les fonctions sur Netlify.
+4. Vérifier un paiement test SumUp avant ouverture.
+5. Lire VALIDATION-FOURNISSEURS.txt et contrôler les frais de livraison France dans CJ avant d’activer les nouveaux produits en production.
+6. Faire relire le règlement et les pages juridiques avant lancement réel du jeu concours.
 
-Garde ces 2 fichiers en lieu sûr et privé. Ils servent à signer les futures mises à jour.
-Ne les publie pas dans le dépôt GitHub.
-L'artifact GitHub expire après 1 jour dans ce workflow, donc télécharge-le dès que le build est terminé.
+IMPORTANT FOURNISSEUR
+Les nouvelles références sont compatibles dropshipping chez CJ, mais l’automatisation de commande fournisseur n’est pas activée pour ces nouveaux SKU dans ce package : après paiement, la commande est enregistrée et doit être passée chez CJ manuellement jusqu’à ce que les variantes/logistiques exactes soient mappées dans l’API CJ.
