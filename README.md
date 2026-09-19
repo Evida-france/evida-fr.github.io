@@ -33,3 +33,5 @@ Architecture prévue :
 9. Préparer signature/AAB et conformité Google Play.
 
 Cette V3 est un prototype fonctionnel de parcours, pas une boutique prête à encaisser.
+
+Redeploy Netlify 19/09/2026
