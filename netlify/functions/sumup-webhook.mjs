@@ -1,42 +1,4 @@
-import { checkoutStore, configureBlobs, orderStore, sendConfirmation, sendShippingConfirmation, verifySumUpCheckout } from "../lib/orders.mjs";
-import { fulfillPaidOrderWithCJ, syncCJOrder } from "../lib/cj.mjs";
-
-export async function handler(event) {
-  configureBlobs(event);
-  if (event.httpMethod !== "POST") return { statusCode: 405, body: "" };
-  try {
-    const payload = JSON.parse(event.body || "{}");
-    if (payload.event_type !== "CHECKOUT_STATUS_CHANGED" || !payload.id) return { statusCode: 204, body: "" };
-    const checkout = await verifySumUpCheckout(payload.id);
-    if (!checkout) return { statusCode: 204, body: "" };
-    const orderId = await checkoutStore().get(payload.id, { type: "text" });
-    if (!orderId) return { statusCode: 204, body: "" };
-
-    const store = orderStore();
-    let order = await store.get(orderId, { type: "json" });
-    if (!order) return { statusCode: 204, body: "" };
-
-    order.paymentStatus = checkout.status;
-    order.updatedAt = new Date().toISOString();
-
-    if (checkout.status === "PAID") {
-      order.status = "paid";
-      order.paidAt ||= order.updatedAt;
-      order = await sendConfirmation(order);
-      await store.setJSON(orderId, order);
-
-      // Après confirmation SumUp seulement : création de la commande fournisseur CJ.
-      order = await fulfillPaidOrderWithCJ(order);
-      order = await syncCJOrder(order);
-      if (order.trackingNumber && !order.shippingEmailSentAt) order = await sendShippingConfirmation(order);
-    } else if (["FAILED", "EXPIRED"].includes(checkout.status)) {
-      order.status = checkout.status.toLowerCase();
-    }
-
-    await store.setJSON(orderId, order);
-    return { statusCode: 204, body: "" };
-  } catch (error) {
-    console.error("SumUp/CJ webhook:", error);
-    return { statusCode: 204, body: "" };
-  }
-}
+import {checkoutStore,configureBlobs,contestCheckoutStore,contestStore,orderStore,sendConfirmation,sendContestConfirmation,verifySumUpCheckout,voucherStore} from "../lib/orders.mjs";
+import {fulfillPaidOrderWithCJ,syncCJOrder} from "../lib/cj.mjs";
+export async function handler(event){configureBlobs(event);if(event.httpMethod!=="POST")return{statusCode:405,body:""};try{const payload=JSON.parse(event.body||"{}");if(payload.event_type!=="CHECKOUT_STATUS_CHANGED"||!payload.id)return{statusCode:204,body:""};const checkout=await verifySumUpCheckout(payload.id);if(!checkout)return{statusCode:204,body:""};const contestId=await contestCheckoutStore().get(payload.id,{type:"text"});if(contestId){const store=contestStore();let entry=await store.get(contestId,{type:"json"});if(!entry)return{statusCode:204,body:""};entry.paymentStatus=checkout.status;entry.updatedAt=new Date().toISOString();if(checkout.status==="PAID"){entry.paidAt ||= entry.updatedAt;await voucherStore().setJSON(entry.voucherCode,{code:entry.voucherCode,value:1999,active:true,createdAt:entry.paidAt,sourceEntry:entry.id});entry=await sendContestConfirmation(entry)}await store.setJSON(contestId,entry);return{statusCode:204,body:""}}
+const orderId=await checkoutStore().get(payload.id,{type:"text"});if(!orderId)return{statusCode:204,body:""};const store=orderStore();let order=await store.get(orderId,{type:"json"});if(!order)return{statusCode:204,body:""};order.paymentStatus=checkout.status;order.updatedAt=new Date().toISOString();if(checkout.status==="PAID"){order.status="paid";order.paidAt ||= order.updatedAt;order=await sendConfirmation(order);await store.setJSON(orderId,order);if(order.voucherCode){const v=await voucherStore().get(order.voucherCode,{type:"json"});if(v){v.redeemedAt=order.updatedAt;v.redeemedBy=order.id;v.reservedAt="";v.reservedBy="";await voucherStore().setJSON(order.voucherCode,v)}}order=await fulfillPaidOrderWithCJ(order);order=await syncCJOrder(order)}else if(["FAILED","EXPIRED"].includes(checkout.status)){order.status=checkout.status.toLowerCase();if(order.voucherCode){const v=await voucherStore().get(order.voucherCode,{type:"json"});if(v?.reservedBy===order.id){v.reservedAt="";v.reservedBy="";await voucherStore().setJSON(order.voucherCode,v)}}}await store.setJSON(orderId,order);return{statusCode:204,body:""}}catch(error){console.error("SumUp webhook:",error);return{statusCode:204,body:""}}}
