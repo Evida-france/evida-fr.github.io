@@ -16,4 +16,245 @@
 <meta property="og:locale" content="fr_FR">
 <meta property="og:site_name" content="ÉVIDA">
 <meta property="og:title" content="ÉVIDA – Boutique en ligne officielle">
-<meta property="og:description" content="Découvrez les sélections ÉVIDA : produits utiles pour la maison, le
+<meta property="og:description" content="Découvrez les sélections ÉVIDA : produits utiles pour la maison, le bien-être et vos compagnons.">
+<meta property="og:url" content="https://evida.fr/">
+
+<meta name="twitter:card" content="summary">
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"WebSite",
+  "name":"ÉVIDA",
+  "alternateName":"Evida",
+  "url":"https://evida.fr/"
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Organization",
+  "name":"ÉVIDA",
+  "url":"https://evida.fr/"
+}
+</script>
+
+<link rel="stylesheet" href="storefront.css">
+
+<style>
+.addr-wrap{position:relative}
+.addr-suggestions{position:absolute;left:0;right:0;top:100%;z-index:50;background:#fff;border:1px solid #ddd;border-radius:10px;box-shadow:0 8px 30px rgba(0,0,0,.12);max-height:260px;overflow:auto}
+.addr-suggestions button{display:block;width:100%;text-align:left;background:#fff;border:0;padding:11px 12px;cursor:pointer}
+.field-error{color:#b00020;font-size:.88rem;margin-top:4px}
+.shipping-quote{padding:10px 12px;border-radius:10px;background:#f5f5f5;margin:8px 0}
+</style>
+
+</head>
+<body>
+<div class="top">Boutique ÉVIDA · Paiement sécurisé avec SumUp · Livraison suivie en France métropolitaine</div>
+
+<header>
+  <div class="nav">
+    <a class="logo" href="index.html">ÉVIDA</a>
+    <nav class="navlinks">
+      <a href="#jeu-concours">Jeu concours</a>
+      <a href="#selections">Nos sélections</a>
+      <a href="#maison">Maison & bien-être</a>
+      <a href="#compagnons">Nos compagnons</a>
+    </nav>
+    <button id="openCart" class="pill">Panier <span id="cartCount">0</span></button>
+  </div>
+</header>
+
+<section class="contest" id="jeu-concours">
+  <div class="contestCopy">
+    <div class="contestBadge">JEU CONCOURS ÉVIDA</div>
+    <h1>Un iPhone 16 Pro Max<br>à gagner</h1>
+    <p class="contestLead">Participez au jeu concours ÉVIDA. Achat d’un bon numérique ÉVIDA de <strong>19,99 €</strong> avec une participation au jeu incluse.</p>
+    <div class="contestPrice">19,99 €</div>
+    <button id="openContest" class="contestButton">Participer au jeu</button>
+    <p class="contestFine">1 participation maximum par adresse e-mail. Jeu ouvert en France métropolitaine du 19/09/2026 au 19/10/2026. Tirage annoncé le 20/10/2026.</p>
+  </div>
+  <div class="contestVisual">
+    <div class="halo"></div>
+    <img src="https://www.apple.com/newsroom/images/2024/09/apple-debuts-iphone-16-pro-and-iphone-16-pro-max/article/Apple-iPhone-16-Pro-hero-geo-240909_inline.jpg.large.jpg" alt="iPhone 16 Pro Max">
+  </div>
+</section>
+
+<section id="contestFormWrap" class="contestFormWrap" hidden>
+  <form id="contestForm" class="contestForm">
+    <div>
+      <div class="eyebrow">Votre participation</div>
+      <h2>Jeu concours iPhone 16 Pro Max</h2>
+    </div>
+
+    <div class="formgrid">
+      <label>Prénom<input name="firstName" required></label>
+      <label>Nom<input name="lastName" required></label>
+      <label class="wide">Adresse e-mail<input name="email" type="email" required></label>
+    </div>
+
+    <label class="check">
+      <input name="rules" type="checkbox" required>
+      J’accepte le <a href="reglement-jeu.html" target="_blank">règlement du jeu concours</a>.
+    </label>
+
+    <button class="pay contestPay">Continuer vers SumUp — 19,99 €</button>
+    <p id="contestStatus" class="status"></p>
+  </form>
+</section>
+
+<main class="wrap">
+  <div id="orderMessage" class="notice" hidden></div>
+
+  <section class="shopSection" id="selections">
+    <div class="sectionHead">
+      <div>
+        <span class="eyebrow">Tendances utiles</span>
+        <h2>Nos sélections</h2>
+      </div>
+    </div>
+    <div id="grid-selections" class="grid"></div>
+  </section>
+
+  <section class="shopSection" id="maison">
+    <div class="sectionHead">
+      <div>
+        <span class="eyebrow">Quotidien</span>
+        <h2>Maison & bien-être</h2>
+      </div>
+    </div>
+    <div id="grid-maison" class="grid"></div>
+  </section>
+
+  <section class="shopSection" id="compagnons">
+    <div class="sectionHead">
+      <div>
+        <span class="eyebrow">Pour eux</span>
+        <h2>Nos compagnons</h2>
+      </div>
+    </div>
+    <div id="grid-compagnons" class="grid"></div>
+  </section>
+</main>
+
+<footer>
+  <strong>ÉVIDA</strong><br><br>
+  <a href="cgv.html">CGV</a> ·
+  <a href="livraison-retours.html">Livraison et retours</a> ·
+  <a href="privacy.html">Confidentialité</a> ·
+  <a href="mentions-legales.html">Mentions légales</a> ·
+  <a href="reglement-jeu.html">Règlement jeu concours</a><br><br>
+  © 2026 ÉVIDA
+</footer>
+
+<div id="overlay"></div>
+
+<aside id="drawer">
+  <div class="cartHead">
+    <h2>Votre panier</h2>
+    <button id="closeCart">×</button>
+  </div>
+
+  <div id="cartItems"></div>
+
+  <div class="line">
+    <span>Sous-total</span>
+    <b id="subtotal"></b>
+  </div>
+
+  <div class="line">
+    <span>Livraison</span>
+    <b id="shipping">Calculée à l’adresse</b>
+  </div>
+
+  <div class="line total">
+    <span>Total estimé</span>
+    <b id="total"></b>
+  </div>
+
+  <button id="checkout" class="pay">Continuer</button>
+  <p id="payStatus" class="status"></p>
+</aside>
+
+<dialog id="photoDialog">
+  <form id="photoForm">
+    <button type="button" class="x">×</button>
+    <h2>Personnalisez votre plaid</h2>
+
+    <label>
+      Photo de votre animal
+      <input id="photo" type="file" accept="image/jpeg,image/png,image/webp" required>
+    </label>
+
+    <img id="preview" alt="Aperçu">
+
+    <label>
+      Texte facultatif
+      <input id="customText" maxlength="80">
+    </label>
+
+    <label class="check">
+      <input id="photoOk" type="checkbox" required>
+      Je confirme que la photo est correcte.
+    </label>
+
+    <button class="pay">Ajouter au panier</button>
+    <p id="photoStatus" class="status"></p>
+  </form>
+</dialog>
+
+<dialog id="checkoutDialog">
+  <form id="checkoutForm">
+    <button type="button" class="x">×</button>
+    <h2>Livraison et paiement</h2>
+
+    <div class="formgrid">
+      <label>Prénom<input name="firstName" required autocomplete="given-name"></label>
+      <label>Nom<input name="lastName" required autocomplete="family-name"></label>
+      <label class="wide">E-mail<input name="email" type="email" required autocomplete="email"></label>
+      <label class="wide">Téléphone<input name="phone" type="tel" required autocomplete="tel" placeholder="06 12 34 56 78"></label>
+
+      <label class="wide addr-wrap">
+        Adresse
+        <input id="addressInput" name="address" required autocomplete="off" placeholder="Commencez à taper votre adresse">
+        <div id="addressSuggestions" class="addr-suggestions" hidden></div>
+        <div id="addressError" class="field-error" hidden>* Adresse introuvable ou incomplète en France. Sélectionnez une adresse proposée.</div>
+      </label>
+
+      <label>Code postal<input id="postalCodeInput" name="postalCode" required readonly></label>
+      <label>Ville<input id="cityInput" name="city" required readonly></label>
+
+      <input type="hidden" id="cityCodeInput" name="cityCode">
+      <input type="hidden" id="addressLabelInput" name="addressLabel">
+      <input type="hidden" id="addressValidatedInput" name="addressValidated" value="false">
+
+      <label class="wide">
+        Bon ÉVIDA (facultatif)
+        <input name="voucherCode" maxlength="24">
+      </label>
+    </div>
+
+    <div id="shippingQuote" class="shipping-quote">
+      La livraison CJ sera calculée automatiquement à votre adresse avant le paiement.
+    </div>
+
+    <label id="photoConsentRow" class="check">
+      <input name="photoConsent" type="checkbox">
+      J’autorise l’utilisation de la photo uniquement pour fabriquer le plaid.
+    </label>
+
+    <label id="salesConsentRow" class="check">
+      <input name="salesConsent" type="checkbox">
+      Je confirme ma personnalisation.
+    </label>
+
+    <button id="pay" class="pay">Calculer la livraison et payer avec SumUp</button>
+    <p id="checkoutStatus" class="status"></p>
+  </form>
+</dialog>
+
+<script src="storefront.js"></script>
+</body>
+</html>
