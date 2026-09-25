@@ -1,5 +1,24 @@
-import {configureBlobs,orderStore,sendShippingConfirmation} from "../lib/orders.mjs";
+import {configureBlobs,orderStore,sendConfirmation,sendShippingConfirmation} from "../lib/orders.mjs";
 import {fulfillPaidOrderWithCJ,syncCJOrder} from "../lib/cj.mjs";
-export const config={schedule:"@hourly"};
-const sleep=ms=>new Promise(r=>setTimeout(r,ms));
-export default async function handler(event){configureBlobs(event);const store=orderStore();const listing=await store.list({paginate:false});for(const key of listing.blobs.map(x=>x.key).slice(-100)){try{let o=await store.get(key,{type:"json"});if(!o||o.paymentStatus!=="PAID")continue;if(!o.cj?.orderId&&o.cj?.status!=="manual_personalization"&&o.cj?.status!=="not_applicable"){try{o=await fulfillPaidOrderWithCJ(o)}catch(e){o.cj={...(o.cj||{}),status:"error",error:e.message,lastRetryAt:new Date().toISOString()}}await store.setJSON(key,o);await sleep(1100)}if(o.cj?.orderId){o=await syncCJOrder(o);if(o.trackingNumber&&!o.shippingEmailSentAt)o=await sendShippingConfirmation(o);await store.setJSON(key,o);await sleep(1100)}}catch(e){console.error("CJ sync",key,e)}}}
+
+// Exécutée automatiquement toutes les 15 minutes par Netlify.
+// Elle couvre aussi les rares cas où le webhook SumUp est retardé.
+export default async function handler(event){
+  configureBlobs(event);
+  const store=orderStore();
+  const listing=await store.list({paginate:false});
+  const keys=listing.blobs.map(x=>x.key).slice(-20);
+  for(const key of keys){
+    try{
+      let order=await store.get(key,{type:"json"});
+      if(!order||order.paymentStatus!=="PAID")continue;
+      if(!order.confirmationSentAt)order=await sendConfirmation(order);
+      if(!order.cj?.orderId&&order.cj?.status!=="manual_personalization"&&order.cj?.status!=="not_applicable"){
+        try{order=await fulfillPaidOrderWithCJ(order)}catch(error){order.cj={...(order.cj||{}),status:"error",error:error.message,lastRetryAt:new Date().toISOString()}}
+      }
+      if(order.cj?.orderId)order=await syncCJOrder(order);
+      if(order.trackingNumber&&!order.shippingEmailSentAt)order=await sendShippingConfirmation(order);
+      await store.setJSON(key,order);
+    }catch(error){console.error("CJ sync",key,error)}
+  }
+}
