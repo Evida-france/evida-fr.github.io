@@ -3,3 +3,6 @@
 
 [functions]
   node_bundler = "esbuild"
+
+[functions."cj-sync"]
+  schedule = "*/15 * * * *"
