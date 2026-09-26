@@ -8,11 +8,36 @@ android {
     compileSdk 36
 
     defaultConfig {
-        applicationId 'com.evida.app'
+        applicationId 'com.evida.france'
         minSdk 24
         targetSdk 36
-        versionCode 6
-        versionName '0.5.1'
+        versionCode 8
+        versionName '0.8.0'
+    }
+
+    def storeFilePath = providers.gradleProperty("EVIDA_STORE_FILE").orNull
+    def storePasswordValue = providers.gradleProperty("EVIDA_STORE_PASSWORD").orNull
+    def keyAliasValue = providers.gradleProperty("EVIDA_KEY_ALIAS").orNull
+    def keyPasswordValue = providers.gradleProperty("EVIDA_KEY_PASSWORD").orNull
+
+    if (storeFilePath && storePasswordValue && keyAliasValue && keyPasswordValue) {
+        signingConfigs {
+            release {
+                storeFile file(storeFilePath)
+                storePassword storePasswordValue
+                keyAlias keyAliasValue
+                keyPassword keyPasswordValue
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            if (storeFilePath && storePasswordValue && keyAliasValue && keyPasswordValue) {
+                signingConfig signingConfigs.release
+            }
+        }
     }
 
     compileOptions {
