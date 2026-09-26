@@ -1,0 +1,51 @@
+name: ÉVIDA - Google Play
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build-signed-aab:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: android-actions/setup-android@v3
+      - name: Install Android SDK
+        run: |
+          yes | sdkmanager --licenses >/dev/null || true
+          sdkmanager "platforms;android-36" "build-tools;36.0.0"
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.9'
+      - name: Restore the approved Google Play upload key
+        env:
+          EVIDA_UPLOAD_KEYSTORE_BASE64: ${{ secrets.EVIDA_UPLOAD_KEYSTORE_BASE64 }}
+          EVIDA_UPLOAD_STORE_PASSWORD: ${{ secrets.EVIDA_UPLOAD_STORE_PASSWORD }}
+          EVIDA_UPLOAD_KEY_ALIAS: ${{ secrets.EVIDA_UPLOAD_KEY_ALIAS }}
+          EVIDA_UPLOAD_KEY_PASSWORD: ${{ secrets.EVIDA_UPLOAD_KEY_PASSWORD }}
+        run: |
+          test -n "$EVIDA_UPLOAD_KEYSTORE_BASE64"
+          test -n "$EVIDA_UPLOAD_STORE_PASSWORD"
+          test -n "$EVIDA_UPLOAD_KEY_ALIAS"
+          test -n "$EVIDA_UPLOAD_KEY_PASSWORD"
+          echo "$EVIDA_UPLOAD_KEYSTORE_BASE64" | base64 --decode > "$RUNNER_TEMP/evida-upload-key.jks"
+      - name: Build signed Android App Bundle
+        env:
+          EVIDA_UPLOAD_STORE_PASSWORD: ${{ secrets.EVIDA_UPLOAD_STORE_PASSWORD }}
+          EVIDA_UPLOAD_KEY_ALIAS: ${{ secrets.EVIDA_UPLOAD_KEY_ALIAS }}
+          EVIDA_UPLOAD_KEY_PASSWORD: ${{ secrets.EVIDA_UPLOAD_KEY_PASSWORD }}
+        run: |
+          gradle :app:clean :app:bundleRelease \
+            -PEVIDA_STORE_FILE="$RUNNER_TEMP/evida-upload-key.jks" \
+            -PEVIDA_STORE_PASSWORD="$EVIDA_UPLOAD_STORE_PASSWORD" \
+            -PEVIDA_KEY_ALIAS="$EVIDA_UPLOAD_KEY_ALIAS" \
+            -PEVIDA_KEY_PASSWORD="$EVIDA_UPLOAD_KEY_PASSWORD"
+      - name: Verify the signature
+        run: jarsigner -verify -verbose -certs app/build/outputs/bundle/release/app-release.aab
+      - uses: actions/upload-artifact@v4
+        with:
+          name: EVIDA-0.8.0-GOOGLE-PLAY
+          path: app/build/outputs/bundle/release/app-release.aab
