@@ -19,11 +19,19 @@ jobs:
           distribution: temurin
           java-version: '17'
 
-      - name: Android SDK
-        uses: android-actions/setup-android@v3
-
+      # The setup action currently fails on the Ubuntu runner while accepting
+      # unrelated preview SDK licences.  The standard runner already provides
+      # the Android command-line tools, so install only the platform ÉVIDA uses.
       - name: Install Android 36
-        run: sdkmanager "platforms;android-36" "build-tools;36.0.0"
+        shell: bash
+        run: |
+          SDK_ROOT="${ANDROID_HOME:-${ANDROID_SDK_ROOT}}"
+          test -n "$SDK_ROOT"
+          export ANDROID_HOME="$SDK_ROOT"
+          export ANDROID_SDK_ROOT="$SDK_ROOT"
+          export PATH="$SDK_ROOT/cmdline-tools/latest/bin:$SDK_ROOT/platform-tools:$PATH"
+          yes | sdkmanager --licenses >/dev/null || true
+          sdkmanager --install "platforms;android-36" "build-tools;36.0.0"
 
       - name: Gradle
         uses: gradle/actions/setup-gradle@v4
