@@ -5,6 +5,7 @@ import android.app.Activity
 import android.graphics.Color
 import android.os.Bundle
 import android.view.Gravity
+import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebChromeClient
 import android.webkit.WebResourceRequest
@@ -63,7 +64,7 @@ class MainActivity : Activity() {
                 }
 
                 override fun onPageFinished(view: WebView, url: String) {
-                    progress.visibility = ProgressBar.GONE
+                    progress.setVisibility(View.GONE)
                     super.onPageFinished(view, url)
                 }
             }
