@@ -5,7 +5,6 @@ import android.app.Activity
 import android.graphics.Color
 import android.os.Bundle
 import android.view.Gravity
-import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebChromeClient
 import android.webkit.WebResourceRequest
@@ -13,12 +12,10 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.FrameLayout
 import android.widget.LinearLayout
-import android.widget.ProgressBar
 import android.widget.TextView
 
 class MainActivity : Activity() {
     private lateinit var shop: WebView
-    private lateinit var progress: ProgressBar
 
     companion object {
         private const val SHOP_URL = "https://evida.fr/"
@@ -64,7 +61,6 @@ class MainActivity : Activity() {
                 }
 
                 override fun onPageFinished(view: WebView, url: String) {
-                    progress.setVisibility(View.GONE)
                     super.onPageFinished(view, url)
                 }
             }
@@ -72,9 +68,6 @@ class MainActivity : Activity() {
         }
         content.addView(shop, LinearLayout.LayoutParams(-1, 0, 1f))
         root.addView(content, FrameLayout.LayoutParams(-1, -1))
-
-        progress = ProgressBar(this).apply { isIndeterminate = true }
-        root.addView(progress, FrameLayout.LayoutParams(dp(48), dp(48), Gravity.CENTER))
         setContentView(root)
     }
 
