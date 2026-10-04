@@ -11,8 +11,8 @@ android {
         applicationId 'com.evida.france'
         minSdk 24
         targetSdk 36
-        versionCode 8
-        versionName '0.8.0'
+        versionCode 9
+        versionName '0.8.1'
     }
 
     def storeFilePath = providers.gradleProperty("EVIDA_STORE_FILE").orNull
