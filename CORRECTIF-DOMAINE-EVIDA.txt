@@ -1,0 +1,31 @@
+CORRECTIF DOMAINE EVIDA
+
+Probleme constate le 04/10/2026 :
+- https://evida.fr redirige vers https://www.evida.fr
+- https://www.evida.fr repond depuis Vercel
+- La page publique affiche une application qui n'est pas la boutique EVIDA
+
+Correction cote depot GitHub Pages :
+1. Ajouter un fichier nomme exactement CNAME a la racine du depot.
+2. Mettre dedans uniquement :
+
+evida.fr
+
+Correction cote DNS :
+Option A - Si la boutique doit etre servie par GitHub Pages :
+- Supprimer les anciens enregistrements Vercel de evida.fr et www.evida.fr.
+- Ajouter pour evida.fr les 4 enregistrements A GitHub Pages :
+  185.199.108.153
+  185.199.109.153
+  185.199.110.153
+  185.199.111.153
+- Ajouter pour www.evida.fr un CNAME vers :
+  Evida-france.github.io
+
+Option B - Si la boutique doit etre servie par Netlify :
+- Dans Netlify, ajouter evida.fr et www.evida.fr au site de la boutique.
+- Supprimer les anciens enregistrements Vercel.
+- Utiliser les enregistrements DNS donnes par Netlify pour ce site.
+
+Important :
+Tant que evida.fr et www.evida.fr pointent vers Vercel, les clients ne voient pas la boutique.
