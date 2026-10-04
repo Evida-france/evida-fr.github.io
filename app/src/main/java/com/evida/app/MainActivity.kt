@@ -18,7 +18,7 @@ class MainActivity : Activity() {
     private lateinit var shop: WebView
 
     companion object {
-        private const val SHOP_URL = "https://evida.fr/"
+        private const val SHOP_URL = "https://evida-france.netlify.app/"
     }
 
     @SuppressLint("SetJavaScriptEnabled")
