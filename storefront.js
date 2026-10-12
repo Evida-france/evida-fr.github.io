@@ -6,7 +6,7 @@ const PRODUCTS=[
     problem:"Les poils restent accrochés aux vêtements, au canapé et aux sièges.",
     result:"Un geste simple pour nettoyer les textiles avant de sortir ou avant de recevoir.",
     benefits:["Format facile à garder à la maison","Utile pour vêtements, plaids et sièges","Petit prix pour un usage régulier"],
-    specs:["Produit non personnalisé","Convient aux textiles du quotidien","Livraison suivie en France métropolitaine"],personalized:false
+    specs:["Produit non personnalisé","Convient aux textiles du quotidien","Livraison suivie"],personalized:false
   },
   {
     id:206,featured:true,section:"compagnons",category:"Cadeau personnalisé",name:"Plaid personnalisé — portrait d’animal",price:39.90,image:"assets/products/plaid-animal.webp",
@@ -22,7 +22,7 @@ const PRODUCTS=[
     problem:"Le téléphone tombe à court de batterie au mauvais moment.",
     result:"Une solution de secours simple pour les sorties, le travail ou les déplacements.",
     benefits:["Pratique en déplacement","Format facile à transporter","Utile au quotidien"],
-    specs:["Capacité annoncée fournisseur : jusqu’à 20 000 mAh","Produit non personnalisé","Livraison suivie en France métropolitaine"],personalized:false
+    specs:["Capacité annoncée fournisseur : jusqu’à 20 000 mAh","Produit non personnalisé","Livraison suivie"],personalized:false
   },
   {
     id:210,featured:true,section:"selections",category:"Anti-perte",name:"Balise Bluetooth anti-perte",price:7.99,image:"https://cf.cjdropshipping.com/15139872/1547729804061.jpg",
@@ -30,7 +30,7 @@ const PRODUCTS=[
     problem:"Clés, sac ou objet important peuvent disparaître au pire moment.",
     result:"Une petite balise pour retrouver plus vite l’essentiel à proximité.",
     benefits:["Petit format discret","Utile pour clés, sac ou accessoires","Prix accessible"],
-    specs:["Fonction Bluetooth selon compatibilité téléphone","Produit non personnalisé","Livraison suivie en France métropolitaine"],personalized:false
+    specs:["Fonction Bluetooth selon compatibilité téléphone","Produit non personnalisé","Livraison suivie"],personalized:false
   },
   {
     id:207,section:"compagnons",category:"Petite attention",name:"Pendentif cœur chat & petit chien",price:11.99,image:"assets/products/bijou-animal.webp",
@@ -38,7 +38,7 @@ const PRODUCTS=[
     problem:"Envie d’un petit cadeau animalier sans chercher longtemps.",
     result:"Un bijou simple, mignon et facile à offrir.",
     benefits:["Idée cadeau accessible","Univers animalier cohérent avec ÉVIDA","Format léger"],
-    specs:["Bijou décoratif","Produit non personnalisé","Livraison suivie en France métropolitaine"],personalized:false
+    specs:["Bijou décoratif","Produit non personnalisé","Livraison suivie"],personalized:false
   },
   {
     id:211,section:"selections",category:"Bureau & maison",name:"Support téléphone/tablette rotatif 360°",price:2.99,image:"https://oss-cf.cjdropshipping.com/product/2024/04/01/05/6de0dea8-d7a8-4c9f-ad03-b37f11e1b761.jpg",
@@ -46,7 +46,7 @@ const PRODUCTS=[
     problem:"Le téléphone traîne sur le bureau ou glisse pendant les vidéos.",
     result:"Un support simple pour garder l’écran visible et stable.",
     benefits:["Pratique sur bureau","Rotation 360° annoncée fournisseur","Petit accessoire utile"],
-    specs:["Produit non personnalisé","Usage bureau ou maison","Livraison suivie en France métropolitaine"],personalized:false
+    specs:["Produit non personnalisé","Usage bureau ou maison","Livraison suivie"],personalized:false
   },
   {
     id:212,section:"maison",category:"À emporter",name:"Blender portable rechargeable",price:8.99,image:"https://cf.cjdropshipping.com/quick/product/bef87977-9a0d-4099-826a-75bdcae7a2f9.jpg",
@@ -54,7 +54,7 @@ const PRODUCTS=[
     problem:"Envie de préparer une boisson rapide sans gros appareil.",
     result:"Un format compact à utiliser pour les boissons simples du quotidien.",
     benefits:["Format portable","Rechargeable selon modèle fournisseur","Utile maison ou déplacement"],
-    specs:["Capacité annoncée fournisseur : 401 à 600 ml","Produit non personnalisé","Livraison suivie en France métropolitaine"],personalized:false
+    specs:["Capacité annoncée fournisseur : 401 à 600 ml","Produit non personnalisé","Livraison suivie"],personalized:false
   },
   {
     id:213,section:"maison",category:"Ambiance maison",name:"Diffuseur d’arômes effet flamme",price:6.99,image:"https://oss-cf.cjdropshipping.com/product/2024/09/30/06/f8c292ac-be2b-4330-9058-f321cd75720f.jpg",
@@ -62,7 +62,7 @@ const PRODUCTS=[
     problem:"Une pièce peut manquer d’ambiance le soir ou pendant un moment calme.",
     result:"Un petit diffuseur décoratif pour adoucir l’ambiance de la maison.",
     benefits:["Effet visuel chaleureux","Format compact","Idée cadeau accessible"],
-    specs:["Utilisation selon notice fournisseur","Produit non personnalisé","Livraison suivie en France métropolitaine"],personalized:false
+    specs:["Utilisation selon notice fournisseur","Produit non personnalisé","Livraison suivie"],personalized:false
   },
   {
     id:214,section:"maison",category:"Pratique en voyage",name:"Défroisseur portable USB",price:4.99,image:"https://oss-cf.cjdropshipping.com/product/2025/08/16/09/4d5163f2-6002-43df-8402-fd92e81e5b72_trans.jpeg",
@@ -70,7 +70,7 @@ const PRODUCTS=[
     problem:"Un vêtement froissé juste avant de sortir donne vite mauvaise impression.",
     result:"Un accessoire compact pour dépanner en déplacement.",
     benefits:["Format voyage","Simple à ranger","Utile avant rendez-vous ou sortie"],
-    specs:["Produit non personnalisé","Usage selon notice fournisseur","Livraison suivie en France métropolitaine"],personalized:false
+    specs:["Produit non personnalisé","Usage selon notice fournisseur","Livraison suivie"],personalized:false
   },
   {
     id:215,section:"maison",category:"Bien-être",name:"Correcteur de posture intelligent",price:57.99,image:"https://cf.cjdropshipping.com/1617170852159.jpg",
@@ -78,7 +78,7 @@ const PRODUCTS=[
     problem:"On se tient souvent mal devant un écran sans s’en rendre compte.",
     result:"Un rappel discret pour reprendre une meilleure posture dans la journée.",
     benefits:["Rappel de posture","Discret sous certains vêtements","Usage quotidien"],
-    specs:["Accessoire de confort, pas un dispositif médical","Produit non personnalisé","Livraison suivie en France métropolitaine"],personalized:false
+    specs:["Accessoire de confort, pas un dispositif médical","Produit non personnalisé","Livraison suivie"],personalized:false
   }
 ];
 
@@ -87,7 +87,7 @@ try{cart=JSON.parse(sessionStorage.getItem("evida-cart")||"[]")}catch{}
 const $=x=>document.getElementById(x);
 const euro=n=>n.toLocaleString("fr-FR",{style:"currency",currency:"EUR"});
 const faq=[
-  ["Quand vais-je recevoir ma commande ?","La livraison suivie en France métropolitaine est annoncée entre 10 et 15 jours ouvrés, avec un maximum de 20 jours ouvrés sauf indication particulière avant paiement."],
+  ["Quand vais-je recevoir ma commande ?","Votre commande bénéficie d’une livraison suivie. Les informations de suivi sont communiquées après expédition."],
   ["Le paiement est-il sécurisé ?","Oui. Le règlement se fait via la page de paiement sécurisée SumUp."],
   ["Vais-je recevoir un suivi ?","Oui. Une confirmation est envoyée après paiement, puis un numéro de suivi est envoyé dès que la commande est expédiée."]
 ];
