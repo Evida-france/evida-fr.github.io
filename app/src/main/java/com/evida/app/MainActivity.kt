@@ -4,15 +4,11 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.graphics.Color
 import android.os.Bundle
-import android.view.Gravity
-import android.view.ViewGroup
 import android.webkit.WebChromeClient
 import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.FrameLayout
-import android.widget.LinearLayout
-import android.widget.TextView
 
 class MainActivity : Activity() {
     private lateinit var shop: WebView
@@ -26,21 +22,6 @@ class MainActivity : Activity() {
         super.onCreate(savedInstanceState)
 
         val root = FrameLayout(this).apply { setBackgroundColor(Color.WHITE) }
-        val content = LinearLayout(this).apply {
-            orientation = LinearLayout.VERTICAL
-            setBackgroundColor(Color.WHITE)
-        }
-
-        val title = TextView(this).apply {
-            text = "ÉVIDA"
-            setTextColor(Color.rgb(23, 23, 23))
-            textSize = 22f
-            gravity = Gravity.CENTER_VERTICAL
-            setPadding(dp(20), 0, dp(20), 0)
-            letterSpacing = .10f
-            setBackgroundColor(Color.WHITE)
-        }
-        content.addView(title, LinearLayout.LayoutParams(-1, dp(58)))
 
         shop = WebView(this).apply {
             settings.javaScriptEnabled = true
@@ -52,12 +33,7 @@ class MainActivity : Activity() {
             webChromeClient = WebChromeClient()
             webViewClient = object : WebViewClient() {
                 override fun shouldOverrideUrlLoading(view: WebView, request: WebResourceRequest): Boolean {
-                    val url = request.url.toString()
-                    return if (url.startsWith("https://evida.fr") || url.startsWith("https://www.evida.fr") || url.startsWith("https://evida-france.netlify.app") || url.startsWith("https://sumup")) {
-                        false
-                    } else {
-                        false
-                    }
+                    return false
                 }
 
                 override fun onPageFinished(view: WebView, url: String) {
@@ -66,8 +42,8 @@ class MainActivity : Activity() {
             }
             loadUrl(savedInstanceState?.getString("current_url") ?: SHOP_URL)
         }
-        content.addView(shop, LinearLayout.LayoutParams(-1, 0, 1f))
-        root.addView(content, FrameLayout.LayoutParams(-1, -1))
+
+        root.addView(shop, FrameLayout.LayoutParams(-1, -1))
         setContentView(root)
     }
 
@@ -84,6 +60,4 @@ class MainActivity : Activity() {
         if (::shop.isInitialized) shop.destroy()
         super.onDestroy()
     }
-
-    private fun dp(value: Int) = (value * resources.displayMetrics.density).toInt()
 }
