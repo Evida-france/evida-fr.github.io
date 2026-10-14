@@ -132,18 +132,23 @@ dialog{border:0;border-radius:22px;padding:25px;max-width:650px;width:calc(100% 
 .heroBrandInner p{color:#806654}
 @media(max-width:600px){.heroBrand{min-height:260px}.heroBrandInner strong{font-size:34px}}
 
-/* Accueil ÉVIDA final — maquette validée */
-.homePoster{position:relative;width:min(100%,980px);margin:0 auto 34px;background:#f7eadc;overflow:hidden}
+/* V8 — accueil accrocheur + maquette fiable */
+.homeFinal{background:#fff8ef}
+.homeHook{text-align:center;padding:46px 22px 34px;max-width:900px;margin:auto}
+.homeHook>span{font-size:13px;letter-spacing:.18em;font-weight:900;color:#a95f34}
+.homeHook h1{font-family:Georgia,serif;font-size:clamp(38px,6vw,68px);line-height:1.02;color:#2e1c13;margin:14px 0 16px}
+.homeHook h1 em{font-style:normal;color:#b96b39}
+.homeHook p{font-size:19px;line-height:1.55;color:#705848;max-width:660px;margin:0 auto 24px}
+.homeCTA{display:inline-block;background:#b66534;color:#fff!important;text-decoration:none;font-weight:900;font-size:18px;padding:16px 28px;border-radius:999px;box-shadow:0 10px 24px rgba(105,58,31,.18)}
+.homePoster{position:relative;width:min(100%,900px);margin:auto;overflow:hidden}
 .homePosterImage{display:block;width:100%;height:auto}
 .homePosterLinks{position:absolute;inset:0;pointer-events:none}
-.posterZone{position:absolute;display:block;pointer-events:auto;border-radius:18px}
-.posterZone:focus-visible{outline:4px solid #a95f34;outline-offset:2px}
-.posterCuisine{left:2%;top:62%;width:23%;height:20%}
-.posterOrganisation{left:26%;top:62%;width:23%;height:20%}
-.posterEntretien{left:50%;top:62%;width:23%;height:20%}
-.posterQuotidien{left:74%;top:62%;width:24%;height:20%}
+.posterZone{position:absolute;display:block;pointer-events:auto}
+.posterCuisine{left:2%;top:62%;width:23%;height:20%}.posterOrganisation{left:26%;top:62%;width:23%;height:20%}
+.posterEntretien{left:50%;top:62%;width:23%;height:20%}.posterQuotidien{left:74%;top:62%;width:24%;height:20%}
 .posterShop{left:6%;top:84%;width:88%;height:12%}
-@media(max-width:700px){
-  .homePoster{width:100%;margin-bottom:24px}
-  .homePosterImage{width:100%;height:auto}
+.homeTrust{display:flex;justify-content:center;gap:28px;flex-wrap:wrap;padding:22px;background:#f2dfca;color:#5b3926;font-weight:800}
+@media(max-width:600px){
+ .homeHook{padding:34px 18px 25px}.homeHook h1{font-size:39px}.homeHook p{font-size:17px}
+ .homeTrust{gap:10px 20px;font-size:13px}
 }
