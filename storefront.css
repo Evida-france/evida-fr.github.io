@@ -87,3 +87,40 @@ dialog{border:0;border-radius:22px;padding:25px;max-width:650px;width:calc(100% 
  .formgrid{grid-template-columns:1fr}.wide{grid-column:auto}
  dialog{padding:18px}
 }
+
+
+/* CARTES PRODUITS — correspond exactement au HTML généré par storefront.js */
+.categorySection{padding:38px 0;border-top:1px solid #ead4bd}
+.categoryTitle{display:flex;align-items:end;justify-content:space-between;gap:20px;margin-bottom:18px}
+.categoryTitle h2{font-family:Georgia,serif;font-size:32px;margin:4px 0;color:#332117}
+.categoryTitle p{margin:0;color:#806654;max-width:480px}
+.productGrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.product{min-width:0;background:#fff9f0;border:1px solid #e6ccb0;border-radius:20px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 8px 25px rgba(83,48,25,.07)}
+.product .visual{width:100%;aspect-ratio:4/3;background:#f0dfca;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.product .visual img{width:100%!important;height:100%!important;max-width:100%!important;object-fit:contain!important;position:static!important;margin:0!important}
+.product .body{padding:17px;display:flex;flex-direction:column;flex:1;min-width:0}
+.product .tag{font-size:10px;text-transform:uppercase;letter-spacing:.09em;color:#a45f37;font-weight:800}
+.product h3{font-family:Georgia,serif;font-size:20px;line-height:1.2;margin:7px 0;color:#332117}
+.product .desc{font-size:13px;line-height:1.45;color:#725b4b;margin-bottom:10px}
+.product .benefits{display:flex;flex-wrap:wrap;gap:5px;margin:4px 0 12px}
+.product .benefits span{font-size:10px;background:#f1e2d2;border-radius:999px;padding:5px 8px;color:#6c503d}
+.product .price{font-size:21px;font-weight:900;color:#3a281d;margin-top:auto}
+.product .shipping{font-size:11px;color:#806b5b;margin:4px 0 12px}
+.product .buttonRow{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.product button{min-height:42px;border-radius:999px;padding:9px 10px;font-weight:800;cursor:pointer}
+.product .ghostButton{background:#fffaf4;border:1px solid #cda987;color:#6b4630}
+.product .add{border:0;background:#a95f34;color:white}
+.product .microTrust{display:flex;gap:10px;margin-top:10px;font-size:10px;color:#8a715e}
+.detailMedia img{max-width:100%;height:auto;object-fit:contain}
+#grid-selections,#grid-maison{display:none!important}
+@media(max-width:900px){.productGrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){
+ .categorySection{padding:28px 0}.categoryTitle{display:block}.categoryTitle h2{font-size:27px}
+ .productGrid{grid-template-columns:1fr;gap:16px}
+ .product{border-radius:17px}
+ .product .visual{aspect-ratio:4/3}
+ .product .body{padding:15px}
+ .product h3{font-size:20px}
+ .product .desc{font-size:14px}
+ .product .buttonRow{grid-template-columns:1fr 1fr}
+}

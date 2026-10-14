@@ -1,137 +1,25 @@
-<!doctype html>
-<html lang="fr">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<!doctype html><html lang="fr"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>ÉVIDA – Les essentiels du quotidien</title>
 <meta name="description" content="Des essentiels pratiques pour simplifier votre quotidien. Paiement sécurisé avec SumUp et livraison suivie.">
-<meta name="robots" content="index,follow,max-image-preview:large">
-<link rel="canonical" href="https://evida-essentiel.com/">
-<meta property="og:type" content="website">
-<meta property="og:locale" content="fr_FR">
-<meta property="og:site_name" content="ÉVIDA">
-<meta property="og:title" content="ÉVIDA – Les essentiels du quotidien">
-<meta property="og:description" content="Une sélection claire de produits utiles pour la maison et le quotidien.">
-<meta property="og:url" content="https://evida-essentiel.com/">
-<link rel="stylesheet" href="storefront.css">
-</head>
-<body>
+<link rel="canonical" href="https://evida-essentiel.com/"><link rel="stylesheet" href="storefront.css">
+</head><body>
 <div class="top">Paiement sécurisé SumUp · Livraison suivie</div>
-
-<header>
-  <div class="nav">
-    <a class="logo" href="index.html">ÉVIDA</a>
-    <nav class="navlinks">
-      <a href="#categories">Catégories</a>
-      <a href="#selections">Produits</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-    <button id="openCart" class="pill">Panier <span id="cartCount">0</span></button>
-  </div>
-</header>
-
-<section class="hero heroStore">
-  <div class="heroCopy">
-    <span class="eyebrow">ÉVIDA · Sélection du quotidien</span>
-    <h1>Les essentiels du quotidien.</h1>
-    <p>Des produits pratiques, simples et utiles pour rendre chaque journée plus facile.</p>
-    <div class="heroActions">
-      <a class="heroButton" href="#selections">Découvrir les produits</a>
-    </div>
-  </div>
-  <div class="heroVisual">
-    <img src="assets/products/pack-anti-poils.webp" alt="Produit ÉVIDA">
-    <div class="heroBadge"><strong>ÉVIDA</strong><span>Simple · utile · pratique</span></div>
-  </div>
-</section>
-
-<main class="wrap">
-  <div id="orderMessage" class="notice" hidden></div>
-
-  <section class="categories" id="categories">
-    <div class="sectionHead compact">
-      <div><span class="eyebrow">Explorer</span><h2>Tout pour simplifier le quotidien</h2></div>
-    </div>
-    <div class="categoryGrid">
-      <a href="#selections" class="categoryCard"><span>01</span><strong>Cuisine plus simple</strong><small>Pratique au quotidien</small></a>
-      <a href="#selections" class="categoryCard"><span>02</span><strong>Maison plus organisée</strong><small>Des solutions utiles</small></a>
-      <a href="#selections" class="categoryCard"><span>03</span><strong>Entretien plus facile</strong><small>Gagner du temps</small></a>
-      <a href="#selections" class="categoryCard"><span>04</span><strong>Un quotidien plus agréable</strong><small>Les petits essentiels</small></a>
-    </div>
-  </section>
-
-  <section class="shopSection" id="selections">
-    <div class="sectionHead compact">
-      <div><span class="eyebrow">Notre sélection</span><h2>Produits phares</h2></div>
-      <p>Une sélection courte et facile à parcourir.</p>
-    </div>
-    <div id="grid-selections" class="grid"></div>
-  </section>
-
-  <section class="shopSection catalogue" id="maison">
-    <div class="sectionHead compact">
-      <div><span class="eyebrow">Catalogue</span><h2>Plus d’essentiels</h2></div>
-    </div>
-    <div id="grid-maison" class="grid"></div>
-  </section>
-
-  <section class="trustStrip">
-    <div><strong>Paiement sécurisé</strong><span>Avec SumUp</span></div>
-    <div><strong>Livraison suivie</strong><span>Tarif calculé avant paiement</span></div>
-    <div><strong>Adresse vérifiée</strong><span>Avant la commande</span></div>
-    <div><strong>Suivi par e-mail</strong><span>Après expédition</span></div>
-  </section>
+<header><div class="nav"><a class="logo" href="/">ÉVIDA</a><nav class="navlinks"><a href="#cuisine">Cuisine</a><a href="#organisation">Maison</a><a href="#entretien">Entretien</a><a href="#quotidien">Quotidien</a></nav><button id="openCart" class="pill">Panier <span id="cartCount">0</span></button></div></header>
+<section class="hero"><div class="heroCopy"><span class="eyebrow">ÉVIDA · Les essentiels du quotidien</span><h1>Une maison plus simple, un quotidien plus agréable.</h1><p>Une sélection claire de produits réellement utiles, rangés par usage.</p><div class="heroActions"><a class="heroButton" href="#cuisine">Découvrir les essentiels</a></div></div><div class="heroVisual"><img src="assets/products/pack-anti-poils.webp" alt="Les essentiels ÉVIDA"><div class="heroBadge"><strong>ÉVIDA</strong><span>Utile · simple · chaleureux</span></div></div></section>
+<main class="wrap"><div id="orderMessage" class="notice" hidden></div>
+<section class="categorySection" id="cuisine"><div class="categoryTitle"><div><span class="eyebrow">Cuisine</span><h2>Cuisine plus simple</h2></div><p>Des essentiels pratiques pour préparer et organiser plus facilement.</p></div><div id="grid-cuisine" class="productGrid"></div></section>
+<section class="categorySection" id="organisation"><div class="categoryTitle"><div><span class="eyebrow">Maison</span><h2>Maison plus organisée</h2></div><p>Des objets simples qui trouvent vraiment leur place à la maison.</p></div><div id="grid-organisation" class="productGrid"></div></section>
+<section class="categorySection" id="entretien"><div class="categoryTitle"><div><span class="eyebrow">Entretien</span><h2>Entretien plus facile</h2></div><p>Nettoyer les textiles, surfaces et petits recoins sans compliquer le quotidien.</p></div><div id="grid-entretien" class="productGrid"></div></section>
+<section class="categorySection" id="quotidien"><div class="categoryTitle"><div><span class="eyebrow">Confort</span><h2>Un quotidien plus agréable</h2></div><p>Quelques produits utiles pour le confort de la maison et de vos compagnons.</p></div><div id="grid-quotidien" class="productGrid"></div></section>
+<div id="grid-selections"></div><div id="grid-maison"></div>
+<section class="trustStrip"><div><strong>Paiement sécurisé</strong><span>Avec SumUp</span></div><div><strong>Livraison suivie</strong><span>Tarif calculé avant paiement</span></div><div><strong>Adresse vérifiée</strong><span>Avant la commande</span></div><div><strong>Suivi par e-mail</strong><span>Après expédition</span></div></section>
 </main>
-
-<footer>
-  <div class="footerInner">
-    <div><strong class="footerLogo">ÉVIDA</strong><p>Les essentiels du quotidien.</p></div>
-    <div class="footerLinks">
-      <a href="cgv.html">CGV</a>
-      <a href="livraison-retours.html">Livraison & retours</a>
-      <a href="privacy.html">Confidentialité</a>
-      <a href="mentions-legales.html">Mentions légales</a>
-      <a href="contact.html">Contact</a>
-    </div>
-  </div>
-  <div class="copyright">© 2026 ÉVIDA</div>
-</footer>
-
-<div id="overlay"></div>
-<aside id="drawer">
-  <div class="cartHead"><h2>Votre panier</h2><button id="closeCart">×</button></div>
-  <div id="cartItems"></div>
-  <div class="line"><span>Sous-total</span><b id="subtotal"></b></div>
-  <div class="line"><span>Livraison</span><b id="shipping">Calculée à l’adresse</b></div>
-  <div class="line total"><span>Total estimé</span><b id="total"></b></div>
-  <button id="checkout" class="pay">Continuer</button>
-  <p id="payStatus" class="status"></p>
-</aside>
-
-<dialog id="checkoutDialog">
-<form id="checkoutForm">
-<button type="button" class="x">×</button><h2>Livraison et paiement</h2>
-<div class="formgrid">
-<label>Prénom<input name="firstName" required autocomplete="given-name"></label>
-<label>Nom<input name="lastName" required autocomplete="family-name"></label>
-<label class="wide">E-mail<input name="email" type="email" required autocomplete="email"></label>
-<label class="wide">Téléphone<input name="phone" type="tel" required autocomplete="tel"></label>
-<label class="wide addr-wrap">Adresse<input id="addressInput" name="address" required autocomplete="off" placeholder="Commencez à taper votre adresse"><div id="addressSuggestions" class="addr-suggestions" hidden></div><div id="addressError" class="field-error" hidden>Adresse introuvable ou incomplète. Sélectionnez une adresse proposée.</div></label>
-<label>Code postal<input id="postalCodeInput" name="postalCode" required readonly></label>
-<label>Ville<input id="cityInput" name="city" required readonly></label>
-<input type="hidden" id="cityCodeInput" name="cityCode">
-<input type="hidden" id="addressLabelInput" name="addressLabel">
-<input type="hidden" id="addressValidatedInput" name="addressValidated" value="false">
-<label class="wide">Bon ÉVIDA (facultatif)<input name="voucherCode" maxlength="24"></label>
-</div>
-<div id="shippingQuote" class="shipping-quote">La livraison sera calculée automatiquement avant le paiement.</div>
-<button id="pay" class="pay">Calculer la livraison et payer avec SumUp</button>
-<p id="checkoutStatus" class="status"></p>
-</form>
-</dialog>
-
+<footer><div class="footerInner"><div><strong class="footerLogo">ÉVIDA</strong><p>Les essentiels du quotidien.</p></div><div class="footerLinks"><a href="cgv.html">CGV</a><a href="livraison-retours.html">Livraison & retours</a><a href="privacy.html">Confidentialité</a><a href="mentions-legales.html">Mentions légales</a><a href="contact.html">Contact</a></div></div><div class="copyright">© 2026 ÉVIDA</div></footer>
+<div id="overlay"></div><aside id="drawer"><div class="cartHead"><h2>Votre panier</h2><button id="closeCart">×</button></div><div id="cartItems"></div><div class="line"><span>Sous-total</span><b id="subtotal"></b></div><div class="line"><span>Livraison</span><b id="shipping">Calculée à l’adresse</b></div><div class="line total"><span>Total estimé</span><b id="total"></b></div><button id="checkout" class="pay">Continuer</button><p id="payStatus" class="status"></p></aside>
+<!-- Compatibilité storefront.js : plaid retiré mais ces éléments empêchent toute erreur JS -->
+<dialog id="photoDialog"><form id="photoForm"><button type="button" class="x">×</button><input id="photo" type="file"><img id="preview" hidden><input id="customText"><input id="photoOk" type="checkbox"><p id="photoStatus"></p></form></dialog>
+<dialog id="checkoutDialog"><form id="checkoutForm"><button type="button" class="x">×</button><h2>Livraison et paiement</h2><div class="formgrid"><label>Prénom<input name="firstName" required autocomplete="given-name"></label><label>Nom<input name="lastName" required autocomplete="family-name"></label><label class="wide">E-mail<input name="email" type="email" required autocomplete="email"></label><label class="wide">Téléphone<input name="phone" type="tel" required autocomplete="tel"></label><label class="wide addr-wrap">Adresse<input id="addressInput" name="address" required autocomplete="off"><div id="addressSuggestions" class="addr-suggestions" hidden></div><div id="addressError" class="field-error" hidden>Adresse introuvable ou incomplète.</div></label><label>Code postal<input id="postalCodeInput" name="postalCode" required readonly></label><label>Ville<input id="cityInput" name="city" required readonly></label><input type="hidden" id="cityCodeInput" name="cityCode"><input type="hidden" id="addressLabelInput" name="addressLabel"><input type="hidden" id="addressValidatedInput" name="addressValidated" value="false"><label class="wide">Bon ÉVIDA (facultatif)<input name="voucherCode"></label></div><label id="photoConsentRow" style="display:none"><input name="photoConsent" type="checkbox"></label><label id="salesConsentRow" style="display:none"><input name="salesConsent" type="checkbox"></label><div id="shippingQuote" class="shipping-quote">La livraison sera calculée avant paiement.</div><button id="pay" class="pay">Calculer la livraison et payer avec SumUp</button><p id="checkoutStatus" class="status"></p></form></dialog>
 <dialog id="productDialog" class="productDialog"><button type="button" class="x">×</button><div id="productDetail"></div></dialog>
-<script src="storefront.js"></script>
-<script src="catalogue-patch.js"></script>
-</body>
-</html>
+<script src="storefront.js"></script><script src="catalogue-patch.js"></script>
+</body></html>
