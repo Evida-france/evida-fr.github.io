@@ -1,285 +1,36 @@
 <!doctype html>
 <html lang="fr">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-
-<title>ÉVIDA – Boutique française de produits utiles du quotidien</title>
-
-<meta name="description" content="ÉVIDA sélectionne des produits utiles pour simplifier le quotidien : paiement sécurisé, livraison suivie en France métropolitaine et service client joignable.">
-
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ÉVIDA – Les essentiels du quotidien</title>
+<meta name="description" content="ÉVIDA sélectionne des produits utiles pour simplifier le quotidien. Paiement sécurisé avec SumUp et livraison suivie.">
 <meta name="robots" content="index,follow,max-image-preview:large">
-
-<link rel="canonical" href="https://evida.fr/">
-
-<meta property="og:type" content="website">
-<meta property="og:locale" content="fr_FR">
-<meta property="og:site_name" content="ÉVIDA">
-<meta property="og:title" content="ÉVIDA – Boutique française de produits utiles du quotidien">
-<meta property="og:description" content="Une sélection courte, claire et suivie de produits pratiques pour la maison, les sorties et les compagnons.">
-<meta property="og:url" content="https://evida.fr/">
-
-<meta name="twitter:card" content="summary">
-
-<script type="application/ld+json">
-{
-  "@context":"https://schema.org",
-  "@type":"WebSite",
-  "name":"ÉVIDA",
-  "alternateName":"Evida",
-  "url":"https://evida.fr/"
-}
-</script>
-
-<script type="application/ld+json">
-{
-  "@context":"https://schema.org",
-  "@type":"Organization",
-  "name":"ÉVIDA",
-  "url":"https://evida.fr/"
-}
-</script>
-
+<link rel="canonical" href="https://evida-essentiel.com/">
+<meta property="og:type" content="website"><meta property="og:locale" content="fr_FR"><meta property="og:site_name" content="ÉVIDA">
+<meta property="og:title" content="ÉVIDA – Les essentiels du quotidien">
+<meta property="og:description" content="Des essentiels pratiques pour une maison et un quotidien plus simples.">
+<meta property="og:url" content="https://evida-essentiel.com/">
 <link rel="stylesheet" href="storefront.css">
-
 <style>
-.addr-wrap{position:relative}
-.addr-suggestions{position:absolute;left:0;right:0;top:100%;z-index:50;background:#fff;border:1px solid #ddd;border-radius:10px;box-shadow:0 8px 30px rgba(0,0,0,.12);max-height:260px;overflow:auto}
-.addr-suggestions button{display:block;width:100%;text-align:left;background:#fff;border:0;padding:11px 12px;cursor:pointer}
-.field-error{color:#b00020;font-size:.88rem;margin-top:4px}
-.shipping-quote{padding:10px 12px;border-radius:10px;background:#f5f5f5;margin:8px 0}
+.addr-wrap{position:relative}.addr-suggestions{position:absolute;left:0;right:0;top:100%;z-index:50;background:#fff;border:1px solid #ddd;border-radius:10px;box-shadow:0 8px 30px rgba(0,0,0,.12);max-height:260px;overflow:auto}.addr-suggestions button{display:block;width:100%;text-align:left;background:#fff;border:0;padding:11px 12px;cursor:pointer}.field-error{color:#b00020;font-size:.88rem;margin-top:4px}.shipping-quote{padding:10px 12px;border-radius:10px;background:#f5f5f5;margin:8px 0}
 </style>
-
 </head>
 <body>
 <div class="top">Paiement sécurisé avec SumUp · Livraison suivie · Service client : personnalisation.evidafr@gmail.com</div>
-
-<header>
-  <div class="nav">
-    <a class="logo" href="index.html">ÉVIDA</a>
-    <nav class="navlinks">
-      <a href="#selections">Produits phares</a>
-      <a href="#avis">Avis</a>
-      <a href="#pourquoi">Pourquoi ÉVIDA</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-    <button id="openCart" class="pill">Panier <span id="cartCount">0</span></button>
-  </div>
-</header>
-
-<section class="hero heroStore">
-  <div class="heroCopy">
-    <div class="eyebrow">Boutique française · sélection courte</div>
-    <h1>Des produits utiles qui simplifient votre quotidien.</h1>
-    <p>ÉVIDA met en avant peu de produits, mais des produits faciles à comprendre, pratiques, et commandables avec un suivi clair jusqu’à la livraison.</p>
-    <div class="heroActions">
-      <a class="heroButton" href="#selections">Découvrir nos produits phares</a>
-      <a class="heroLink" href="#pourquoi">Voir les garanties</a>
-    </div>
-    <div class="heroReassurance">
-      <span>Paiement sécurisé</span>
-      <span>Livraison suivie</span>
-      <span>Suivi envoyé après expédition</span>
-    </div>
-  </div>
-  <div class="heroVisual">
-    <img src="assets/products/pack-anti-poils.webp" alt="Brosse anti-poils ÉVIDA pour vêtements et textiles">
-    <div class="heroBadge"><strong>Produit phare</strong><span>Brosse anti-poils 2-en-1</span></div>
-  </div>
-</section>
-
-<main class="wrap">
-  <div id="orderMessage" class="notice" hidden></div>
-
-  <section class="trustStrip" aria-label="Garanties ÉVIDA">
-    <div><strong>Paiement protégé</strong><span>Transaction sécurisée via SumUp.</span></div>
-    <div><strong>Suivi de commande</strong><span>Numéro de suivi envoyé après expédition.</span></div>
-    <div><strong>Livraison suivie</strong><span>Suivi envoyé dès que la commande est expédiée.</span></div>
-    <div><strong>Support humain</strong><span>Réponse par e-mail pour toute question.</span></div>
-  </section>
-
-  <section class="shopSection" id="selections">
-    <div class="sectionHead">
-      <div>
-        <span class="eyebrow">À découvrir en premier</span>
-        <h2>Les produits phares ÉVIDA</h2>
-      </div>
-      <p>Une sélection volontairement courte : chaque produit doit avoir une utilité claire en quelques secondes.</p>
-    </div>
-    <div id="grid-selections" class="grid"></div>
-  </section>
-
-  <section class="storyBand">
-    <div>
-      <span class="eyebrow">Comment ÉVIDA choisit</span>
-      <h2>Un bon produit doit résoudre un petit problème réel.</h2>
-    </div>
-    <div class="storySteps">
-      <article><strong>1. Problème</strong><span>On part d’une gêne du quotidien : poils, batterie faible, cadeau personnalisé.</span></article>
-      <article><strong>2. Démonstration</strong><span>La fiche explique le résultat attendu avant de demander l’achat.</span></article>
-      <article><strong>3. Commande suivie</strong><span>Le client reçoit une confirmation puis un suivi dès l’expédition.</span></article>
-    </div>
-  </section>
-
-  <section class="shopSection" id="maison">
-    <div class="sectionHead">
-      <div>
-        <span class="eyebrow">Catalogue</span>
-        <h2>Autres idées utiles</h2>
-      </div>
-      <p>Davantage d’articles sont disponibles, sans surcharger l’accueil.</p>
-    </div>
-    <div id="grid-maison" class="grid"></div>
-  </section>
-
-  <section class="shopSection reviewSection" id="avis">
-    <div class="sectionHead">
-      <div>
-        <span class="eyebrow">Avis clients</span>
-        <h2>Des avis honnêtes, pas inventés</h2>
-      </div>
-      <p>ÉVIDA démarre : les premiers avis vérifiés seront ajoutés après les vraies commandes clients.</p>
-    </div>
-    <div class="reviewBox">
-      <strong>Boutique en lancement</strong>
-      <p>Après chaque commande, le client pourra envoyer un retour et une photo. Les avis affichés ici devront venir de vrais achats, avec un ton simple et vérifiable.</p>
-    </div>
-  </section>
-
-  <section class="shopSection promise" id="pourquoi">
-    <div class="sectionHead"><div><span class="eyebrow">Commander en confiance</span><h2>Simple, clair, sécurisé</h2></div></div>
-    <div class="promiseGrid">
-      <article><strong>Prix clair</strong><p>Le prix de l’article et le total sont visibles avant paiement.</p></article>
-      <article><strong>Paiement sécurisé</strong><p>Le paiement est réalisé sur la page sécurisée SumUp.</p></article>
-      <article><strong>Livraison suivie</strong><p>Le tarif exact est présenté avant paiement selon votre adresse.</p></article>
-      <article><strong>Adresse vérifiée</strong><p>La boutique propose une adresse française reconnue avant de payer.</p></article>
-      <article><strong>Suivi par e-mail</strong><p>Confirmation de commande puis suivi envoyé automatiquement après expédition.</p></article>
-      <article><strong>Service client</strong><p>Contact : personnalisation.evidafr@gmail.com.</p></article>
-    </div>
-  </section>
+<header><div class="nav"><a class="logo" href="index.html">ÉVIDA</a><nav class="navlinks"><a href="#selections">Produits phares</a><a href="#maison">Essentiels</a><a href="#pourquoi">Pourquoi ÉVIDA</a><a href="contact.html">Contact</a></nav><button id="openCart" class="pill">Panier <span id="cartCount">0</span></button></div></header>
+<section class="hero heroStore"><div class="heroCopy"><div class="eyebrow">ÉVIDA · Les essentiels du quotidien</div><h1>Des essentiels utiles pour simplifier votre quotidien.</h1><p>Une sélection de produits pratiques pour la cuisine, la maison, l’entretien et votre confort quotidien.</p><div class="heroActions"><a class="heroButton" href="#selections">Découvrir les essentiels</a><a class="heroLink" href="#pourquoi">Nos garanties</a></div><div class="heroReassurance"><span>Paiement sécurisé</span><span>Livraison suivie</span><span>Suivi après expédition</span></div></div><div class="heroVisual"><img src="assets/products/pack-anti-poils.webp" alt="Brosse anti-poils ÉVIDA"><div class="heroBadge"><strong>Produit phare</strong><span>Brosse anti-poils 2-en-1</span></div></div></section>
+<main class="wrap"><div id="orderMessage" class="notice" hidden></div>
+<section class="trustStrip"><div><strong>Paiement protégé</strong><span>Transaction sécurisée via SumUp.</span></div><div><strong>Livraison suivie</strong><span>Tarif calculé selon votre adresse.</span></div><div><strong>Suivi de commande</strong><span>Envoyé après expédition.</span></div><div><strong>Support</strong><span>Service client par e-mail.</span></div></section>
+<section class="shopSection" id="selections"><div class="sectionHead"><div><span class="eyebrow">Nos incontournables</span><h2>Produits phares ÉVIDA</h2></div><p>Des produits simples, pratiques et faciles à utiliser au quotidien.</p></div><div id="grid-selections" class="grid"></div></section>
+<section class="storyBand"><div><span class="eyebrow">Notre sélection</span><h2>Les essentiels du quotidien.</h2></div><div class="storySteps"><article><strong>Cuisine plus simple</strong><span>Des accessoires pratiques pour cuisiner au quotidien.</span></article><article><strong>Maison plus organisée</strong><span>Des solutions simples pour gagner en praticité.</span></article><article><strong>Entretien plus facile</strong><span>Des produits pensés pour faciliter le nettoyage.</span></article><article><strong>Un quotidien plus agréable</strong><span>Des petits essentiels utiles jour après jour.</span></article></div></section>
+<section class="shopSection" id="maison"><div class="sectionHead"><div><span class="eyebrow">Catalogue</span><h2>Nos essentiels</h2></div><p>Une sélection courte pour garder une boutique claire.</p></div><div id="grid-maison" class="grid"></div></section>
+<section class="shopSection promise" id="pourquoi"><div class="sectionHead"><div><span class="eyebrow">Commander en confiance</span><h2>Simple, clair, sécurisé</h2></div></div><div class="promiseGrid"><article><strong>Prix clair</strong><p>Prix de l’article visible avant paiement.</p></article><article><strong>SumUp</strong><p>Paiement sur la page sécurisée SumUp.</p></article><article><strong>Livraison suivie</strong><p>Tarif présenté avant paiement selon l’adresse.</p></article><article><strong>Adresse vérifiée</strong><p>Validation de l’adresse française avant paiement.</p></article><article><strong>Suivi par e-mail</strong><p>Suivi envoyé après expédition.</p></article><article><strong>Service client</strong><p>personnalisation.evidafr@gmail.com</p></article></div></section>
 </main>
-
-<footer>
-  <strong>ÉVIDA</strong><br><br>
-  <a href="cgv.html">CGV</a> ·
-  <a href="livraison-retours.html">Livraison et retours</a> ·
-  <a href="privacy.html">Confidentialité</a> ·
-  <a href="mentions-legales.html">Mentions légales</a> ·
-  <a href="contact.html">Contact</a><br><br>
-  © 2026 ÉVIDA
-</footer>
-
+<footer><strong>ÉVIDA</strong><br><br><a href="cgv.html">CGV</a> · <a href="livraison-retours.html">Livraison et retours</a> · <a href="privacy.html">Confidentialité</a> · <a href="mentions-legales.html">Mentions légales</a> · <a href="contact.html">Contact</a><br><br>© 2026 ÉVIDA</footer>
 <div id="overlay"></div>
-
-<aside id="drawer">
-  <div class="cartHead">
-    <h2>Votre panier</h2>
-    <button id="closeCart">×</button>
-  </div>
-
-  <div id="cartItems"></div>
-
-  <div class="line">
-    <span>Sous-total</span>
-    <b id="subtotal"></b>
-  </div>
-
-  <div class="line">
-    <span>Livraison</span>
-    <b id="shipping">Calculée à l’adresse</b>
-  </div>
-
-  <div class="line total">
-    <span>Total estimé</span>
-    <b id="total"></b>
-  </div>
-
-  <button id="checkout" class="pay">Continuer</button>
-  <p id="payStatus" class="status"></p>
-</aside>
-
-<dialog id="photoDialog">
-  <form id="photoForm">
-    <button type="button" class="x">×</button>
-    <h2>Personnalisez votre plaid</h2>
-
-    <label>
-      Photo de votre animal
-      <input id="photo" type="file" accept="image/jpeg,image/png,image/webp" required>
-    </label>
-
-    <img id="preview" alt="Aperçu">
-
-    <label>
-      Texte facultatif
-      <input id="customText" maxlength="80">
-    </label>
-
-    <label class="check">
-      <input id="photoOk" type="checkbox" required>
-      Je confirme que la photo est correcte.
-    </label>
-
-    <button class="pay">Ajouter au panier</button>
-    <p id="photoStatus" class="status"></p>
-  </form>
-</dialog>
-
-<dialog id="checkoutDialog">
-  <form id="checkoutForm">
-    <button type="button" class="x">×</button>
-    <h2>Livraison et paiement</h2>
-
-    <div class="formgrid">
-      <label>Prénom<input name="firstName" required autocomplete="given-name"></label>
-      <label>Nom<input name="lastName" required autocomplete="family-name"></label>
-      <label class="wide">E-mail<input name="email" type="email" required autocomplete="email"></label>
-      <label class="wide">Téléphone<input name="phone" type="tel" required autocomplete="tel" placeholder="06 12 34 56 78"></label>
-
-      <label class="wide addr-wrap">
-        Adresse
-        <input id="addressInput" name="address" required autocomplete="off" placeholder="Commencez à taper votre adresse">
-        <div id="addressSuggestions" class="addr-suggestions" hidden></div>
-        <div id="addressError" class="field-error" hidden>* Adresse introuvable ou incomplète en France. Sélectionnez une adresse proposée.</div>
-      </label>
-
-      <label>Code postal<input id="postalCodeInput" name="postalCode" required readonly></label>
-      <label>Ville<input id="cityInput" name="city" required readonly></label>
-
-      <input type="hidden" id="cityCodeInput" name="cityCode">
-      <input type="hidden" id="addressLabelInput" name="addressLabel">
-      <input type="hidden" id="addressValidatedInput" name="addressValidated" value="false">
-
-      <label class="wide">
-        Bon ÉVIDA (facultatif)
-        <input name="voucherCode" maxlength="24">
-      </label>
-    </div>
-
-    <div id="shippingQuote" class="shipping-quote">
-      La livraison suivie sera calculée automatiquement à votre adresse avant le paiement.
-    </div>
-
-    <label id="photoConsentRow" class="check">
-      <input name="photoConsent" type="checkbox">
-      J’autorise l’utilisation de la photo uniquement pour fabriquer le plaid.
-    </label>
-
-    <label id="salesConsentRow" class="check">
-      <input name="salesConsent" type="checkbox">
-      Je confirme ma personnalisation.
-    </label>
-
-    <button id="pay" class="pay">Calculer la livraison et payer avec SumUp</button>
-    <p id="checkoutStatus" class="status"></p>
-  </form>
-</dialog>
-
-<dialog id="productDialog" class="productDialog">
-  <button type="button" class="x">×</button>
-  <div id="productDetail"></div>
-</dialog>
-
+<aside id="drawer"><div class="cartHead"><h2>Votre panier</h2><button id="closeCart">×</button></div><div id="cartItems"></div><div class="line"><span>Sous-total</span><b id="subtotal"></b></div><div class="line"><span>Livraison</span><b id="shipping">Calculée à l’adresse</b></div><div class="line total"><span>Total estimé</span><b id="total"></b></div><button id="checkout" class="pay">Continuer</button><p id="payStatus" class="status"></p></aside>
+<dialog id="checkoutDialog"><form id="checkoutForm"><button type="button" class="x">×</button><h2>Livraison et paiement</h2><div class="formgrid"><label>Prénom<input name="firstName" required autocomplete="given-name"></label><label>Nom<input name="lastName" required autocomplete="family-name"></label><label class="wide">E-mail<input name="email" type="email" required autocomplete="email"></label><label class="wide">Téléphone<input name="phone" type="tel" required autocomplete="tel" placeholder="06 12 34 56 78"></label><label class="wide addr-wrap">Adresse<input id="addressInput" name="address" required autocomplete="off" placeholder="Commencez à taper votre adresse"><div id="addressSuggestions" class="addr-suggestions" hidden></div><div id="addressError" class="field-error" hidden>* Adresse introuvable ou incomplète en France. Sélectionnez une adresse proposée.</div></label><label>Code postal<input id="postalCodeInput" name="postalCode" required readonly></label><label>Ville<input id="cityInput" name="city" required readonly></label><input type="hidden" id="cityCodeInput" name="cityCode"><input type="hidden" id="addressLabelInput" name="addressLabel"><input type="hidden" id="addressValidatedInput" name="addressValidated" value="false"><label class="wide">Bon ÉVIDA (facultatif)<input name="voucherCode" maxlength="24"></label></div><div id="shippingQuote" class="shipping-quote">La livraison suivie sera calculée automatiquement à votre adresse avant le paiement.</div><button id="pay" class="pay">Calculer la livraison et payer avec SumUp</button><p id="checkoutStatus" class="status"></p></form></dialog>
+<dialog id="productDialog" class="productDialog"><button type="button" class="x">×</button><div id="productDetail"></div></dialog>
 <script src="storefront.js"></script>
-</body>
-</html>
+<script src="catalogue-patch.js"></script>
+</body></html>
