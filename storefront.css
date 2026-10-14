@@ -124,3 +124,26 @@ dialog{border:0;border-radius:22px;padding:25px;max-width:650px;width:calc(100% 
  .product .desc{font-size:14px}
  .product .buttonRow{grid-template-columns:1fr 1fr}
 }
+
+.heroBrand{min-height:390px;background:linear-gradient(135deg,#ead4bd,#fff8ef);display:flex;align-items:center;justify-content:center}
+.heroBrandInner{text-align:center;padding:35px}
+.heroBrandInner .heroMini{font-size:16px;letter-spacing:.25em;font-weight:900;color:#a95f34}
+.heroBrandInner strong{display:block;font-family:Georgia,serif;font-size:42px;line-height:1.05;color:#332117;margin:12px 0}
+.heroBrandInner p{color:#806654}
+@media(max-width:600px){.heroBrand{min-height:260px}.heroBrandInner strong{font-size:34px}}
+
+/* Accueil ÉVIDA final — maquette validée */
+.homePoster{position:relative;width:min(100%,980px);margin:0 auto 34px;background:#f7eadc;overflow:hidden}
+.homePosterImage{display:block;width:100%;height:auto}
+.homePosterLinks{position:absolute;inset:0;pointer-events:none}
+.posterZone{position:absolute;display:block;pointer-events:auto;border-radius:18px}
+.posterZone:focus-visible{outline:4px solid #a95f34;outline-offset:2px}
+.posterCuisine{left:2%;top:62%;width:23%;height:20%}
+.posterOrganisation{left:26%;top:62%;width:23%;height:20%}
+.posterEntretien{left:50%;top:62%;width:23%;height:20%}
+.posterQuotidien{left:74%;top:62%;width:24%;height:20%}
+.posterShop{left:6%;top:84%;width:88%;height:12%}
+@media(max-width:700px){
+  .homePoster{width:100%;margin-bottom:24px}
+  .homePosterImage{width:100%;height:auto}
+}
